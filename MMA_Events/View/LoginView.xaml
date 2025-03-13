@@ -1,0 +1,427 @@
+﻿<Window x:Class="MMA_Fights.View.LoginView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MMA_Fights.View"
+        mc:Ignorable="d"
+        Title="LoginView" Height="550" Width="800"
+        MinHeight="550" MinWidth="800"
+        WindowStyle="None"
+        Background="Transparent"
+        AllowsTransparency="True"
+        WindowStartupLocation="CenterScreen"
+        >
+
+
+    <Border CornerRadius="50">
+        <Border.Background>
+            <ImageBrush ImageSource="/Images/wallpaper2.jpg" AlignmentX="Center" >
+                <ImageBrush.Transform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform X="0"/>
+                    </TransformGroup>
+                </ImageBrush.Transform>
+            </ImageBrush>
+        </Border.Background>
+
+        <Border
+           CornerRadius="50"
+        BorderThickness="4">
+
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" Opacity="0.96">
+                    <GradientStop Color="#FF262626"/>
+                    <GradientStop Color="#FF313131" Offset="1"/>
+                    <GradientStop Color="#FF262626"/>
+                    <GradientStop Color="#FF262626"/>
+                </LinearGradientBrush>
+            </Border.Background>
+
+            <Border.BorderBrush>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF980B11"/>
+                    <GradientStop Color="#FFF34251" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.BorderBrush>
+
+            <Grid>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.1*" MinHeight="0"/>
+                    <RowDefinition Height="0.6*"/>
+                    <RowDefinition Height="0.15*" MinHeight="0"/>
+                    <RowDefinition Height="0.15*" MinHeight="0"/>
+                    <RowDefinition Height="0.15*" MinHeight="0"/>
+                    <RowDefinition Height="0.1*" MinHeight="0"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="2.5*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+
+                <Grid Grid.Row="0" Grid.Column="2">
+                    <!-- Dugme za fullscreen -->
+                    <Button Grid.Column="2" Grid.Row="0"
+                            x:Name="FullscreenButton"
+        Background="#FFAF0E14" 
+        BorderBrush="{x:Null}" 
+        Foreground="#FF262626" 
+        FontFamily="Arial Black" 
+                            Click="FullscreenButton_Click"
+            
+            HorizontalAlignment="Right" 
+                            
+                VerticalAlignment="Top"
+            FontSize="14" Width="50" Height="30" Margin="0,10,80,0">
+                        <Rectangle Width="12" Height="12" Stroke="#FF262626" StrokeThickness="3"/>
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border x:Name="border" 
+Background="{TemplateBinding Background}" 
+BorderBrush="{TemplateBinding BorderBrush}" 
+BorderThickness="{TemplateBinding BorderThickness}" 
+CornerRadius="15">
+                                    <!-- Zaobljenje rubova -->
+                                    <ContentPresenter HorizontalAlignment="Center" 
+              VerticalAlignment="Center"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <!-- Promijeni boju kada je miš iznad dugmeta -->
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter TargetName="border" Property="Background" Value="#910c11"/>
+                                        <!-- Zlatna boja -->
+                                    </Trigger>
+
+                                    <!-- Promijeni boju kada je dugme pritisnuto -->
+                                    <Trigger Property="IsPressed" Value="True">
+                                        <Setter TargetName="border" Property="Background" Value="#70090d"/>
+                                        <!-- Tamnocrvena boja -->
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+                    <!-- Dugme za exit -->
+                    <Button Content="X" Grid.Column="2" Grid.Row="0"
+                            x:Name="ExitButton"
+        Background="#FFAF0E14" 
+        BorderBrush="{x:Null}" 
+        Foreground="#FF262626" 
+        FontFamily="Arial Black" 
+                            Click="ExitButton_Click"
+            
+            HorizontalAlignment="Right" 
+                            
+                VerticalAlignment="Top"
+            FontSize="14" Width="50" Height="30" Margin="0,10,25,0">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border x:Name="border" 
+Background="{TemplateBinding Background}" 
+BorderBrush="{TemplateBinding BorderBrush}" 
+BorderThickness="{TemplateBinding BorderThickness}" 
+CornerRadius="15">
+                                    <!-- Zaobljenje rubova -->
+                                    <ContentPresenter HorizontalAlignment="Center" 
+              VerticalAlignment="Center"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <!-- Promijeni boju kada je miš iznad dugmeta -->
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter TargetName="border" Property="Background" Value="#910c11"/>
+                                        <!-- Zlatna boja -->
+                                    </Trigger>
+
+                                    <!-- Promijeni boju kada je dugme pritisnuto -->
+                                    <Trigger Property="IsPressed" Value="True">
+                                        <Setter TargetName="border" Property="Background" Value="#70090d"/>
+                                        <!-- Tamnocrvena boja -->
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </Grid>
+
+
+                <Image Grid.Row="1" Grid.Column="1" Source="../Images/logo.png" RenderTransformOrigin="0.5,0.5">
+                    <Image.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-41.137"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Image.RenderTransform>
+                </Image>
+
+
+                <Grid Margin="60,0,60,0" Grid.Row="2" Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*" MinHeight="35"/>
+                        <RowDefinition Height="*" MaxHeight="8"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBox x:Name="userEmail" Grid.Row="1"
+         TextWrapping="Wrap" 
+         BorderBrush="#FFAF0E14" 
+         SelectionBrush="#FFAF0E14"
+         BorderThickness="0,0,0,3" 
+         Foreground="#FFAF0E14" 
+         Padding="30,0,0,2" 
+         SelectionTextBrush="{x:Null}" 
+         FontFamily="Arial" 
+         CaretBrush="#FFAF0E14"
+         VerticalContentAlignment="Center" TextChanged="userEmail_TextChanged">
+
+                        <TextBox.Style>
+                            <Style TargetType="TextBox">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="TextBox">
+                                            <Border x:Name="border" 
+                                Background="{TemplateBinding Background}" 
+                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                CornerRadius="2">
+                                                <ScrollViewer x:Name="PART_ContentHost"/>
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsFocused" Value="True">
+                                                    <Setter TargetName="border" Property="BorderBrush" Value="#FFAF0E14"/>
+                                                </Trigger>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter TargetName="border" Property="BorderBrush" Value="#FFAF0E14"/>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="FontSize" Value="14"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ActualHeight, RelativeSource={RelativeSource Self}}" Value="35">
+                                        <Setter Property="FontSize" Value="14"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding ActualHeight, RelativeSource={RelativeSource Self}}" Value="70">
+                                        <Setter Property="FontSize" Value="25"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+
+                        </TextBox.Style>
+                        <TextBox.Background>
+                            <ImageBrush ImageSource="../Images/userIcon.png" Stretch="Uniform" AlignmentX="Left">
+                                <ImageBrush.Transform>
+                                    <TransformGroup>
+                                        <ScaleTransform/>
+                                        <SkewTransform/>
+                                        <RotateTransform/>
+                                        <TranslateTransform X="0"/>
+                                    </TransformGroup>
+                                </ImageBrush.Transform>
+                                <ImageBrush.RelativeTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform CenterY="0" CenterX="0" ScaleX="0.8" ScaleY="0.8"/>
+                                        <SkewTransform CenterX="0" CenterY="0"/>
+                                        <RotateTransform Angle="0" CenterX="0" CenterY="0"/>
+                                        <TranslateTransform X="0"/>
+                                    </TransformGroup>
+                                </ImageBrush.RelativeTransform>
+
+                            </ImageBrush>
+                        </TextBox.Background>
+                    </TextBox>
+                    <TextBlock x:Name="EmailPromptTextBlock" Grid.Row="1"
+               Text="Email address" 
+               Foreground="Gray" 
+               VerticalAlignment="Center" 
+               HorizontalAlignment="Left" 
+               IsHitTestVisible="False" Padding="30,3,0,0">
+                        <TextBlock.Style>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Text, ElementName=userEmail}" Value="">
+                                        <Setter Property="Visibility" Value="Visible" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                </Grid>
+
+                <Grid Margin="60,0,60,0"  Grid.Row="3" Grid.Column="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="33*"/>
+                        <ColumnDefinition Width="31*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" MinHeight="35"/>
+                        <RowDefinition Height="*" MaxHeight="8"/>
+                    </Grid.RowDefinitions>
+                    <PasswordBox x:Name="userPass"
+                BorderBrush="#FFAF0E14" 
+                SelectionBrush="#FFAF0E14"
+                BorderThickness="0,0,0,3" 
+                Foreground="#FFAF0E14" 
+                Padding="30,0,0,2" 
+                SelectionTextBrush="{x:Null}" 
+                FontFamily="Arial" 
+                CaretBrush="#FFAF0E14" 
+                             PasswordChanged="userPass_PasswordChanged"
+
+                VerticalContentAlignment="Center" Grid.ColumnSpan="2" Margin="0,22,0,0" Grid.RowSpan="2">
+
+                        <PasswordBox.Style>
+                            <Style TargetType="PasswordBox">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="PasswordBox">
+                                            <Border x:Name="border" 
+                Background="{TemplateBinding Background}" 
+                BorderBrush="{TemplateBinding BorderBrush}" 
+                BorderThickness="{TemplateBinding BorderThickness}" 
+                CornerRadius="2">
+                                                <ScrollViewer x:Name="PART_ContentHost"/>
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsFocused" Value="True">
+                                                    <Setter TargetName="border" Property="BorderBrush" Value="#FFAF0E14"/>
+                                                </Trigger>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter TargetName="border" Property="BorderBrush" Value="#FFAF0E14"/>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </PasswordBox.Style>
+
+                        <PasswordBox.Background>
+                            <ImageBrush ImageSource="../Images/passicon.png" Stretch="Uniform" AlignmentX="Left">
+                                <ImageBrush.RelativeTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform CenterY="0" CenterX="0" ScaleX="0.8" ScaleY="0.8"/>
+                                        <SkewTransform CenterX="0" CenterY="0"/>
+                                        <RotateTransform Angle="0" CenterX="0" CenterY="0"/>
+                                        <TranslateTransform X="0"/>
+                                    </TransformGroup>
+                                </ImageBrush.RelativeTransform>
+
+                            </ImageBrush>
+                        </PasswordBox.Background>
+
+                    </PasswordBox>
+
+                    <TextBlock x:Name="PassPromptTextBlock" Grid.Row="1"
+                 Text="Password" 
+                 Foreground="Gray" 
+                 VerticalAlignment="Center" 
+                 HorizontalAlignment="Left" 
+                 IsHitTestVisible="False" Padding="30,3,0,0">
+                    </TextBlock>
+
+                </Grid>
+
+                <Grid Margin="60,0,60,0"  Grid.Row="4" Grid.Column="1">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" MinHeight="35"/>
+                        <RowDefinition Height="*" MaxHeight="8"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="0.2*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button Content="Login" Grid.Column="0" Grid.Row="1"
+            Background="#FFAF0E14" 
+            BorderBrush="{x:Null}" 
+            Foreground="#FF262626" 
+            FontFamily="Arial Black" 
+            FontSize="16"
+                        Click="BtnLogin_Click"
+                        >
+
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border x:Name="border" 
+            Background="{TemplateBinding Background}" 
+            BorderBrush="{TemplateBinding BorderBrush}" 
+            BorderThickness="{TemplateBinding BorderThickness}" 
+            CornerRadius="18">
+                                    <!-- Zaobljenje rubova -->
+                                    <ContentPresenter HorizontalAlignment="Center" 
+                          VerticalAlignment="Center"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter TargetName="border" Property="Background" Value="#910c11"/>
+                                    </Trigger>
+
+                                    <Trigger Property="IsPressed" Value="True">
+                                        <Setter TargetName="border" Property="Background" Value="#70090d"/>
+
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+                    <Button Content="Register" Grid.Column="1" Grid.Row="1"
+                    Background="#FFAF0E14" 
+                    BorderBrush="{x:Null}" 
+                    Foreground="#FF262626" 
+                    FontFamily="Arial Black" 
+                        
+                        Margin="20,0,10,0"
+                        FontSize="16" Grid.ColumnSpan="2" Click="Button_Click">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border x:Name="border" 
+            Background="{TemplateBinding Background}" 
+            BorderBrush="{TemplateBinding BorderBrush}" 
+            BorderThickness="{TemplateBinding BorderThickness}" 
+            CornerRadius="18">
+                                    <!-- Zaobljenje rubova -->
+                                    <ContentPresenter HorizontalAlignment="Center" 
+                          VerticalAlignment="Center"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <!-- Promijeni boju kada je miš iznad dugmeta -->
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter TargetName="border" Property="Background" Value="#910c11"/>
+                                        <!-- Zlatna boja -->
+                                    </Trigger>
+
+                                    <!-- Promijeni boju kada je dugme pritisnuto -->
+                                    <Trigger Property="IsPressed" Value="True">
+                                        <Setter TargetName="border" Property="Background" Value="#70090d"/>
+                                        <!-- Tamnocrvena boja -->
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </Grid>
+
+
+
+
+            </Grid>
+
+        </Border>
+    </Border>
+</Window>

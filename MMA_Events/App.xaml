@@ -1,0 +1,32 @@
+﻿<Application x:Class="MMA_Fights.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:MMA_Fights"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             StartupUri="View/LoginView.xaml"
+             xmlns:System="clr-namespace:System;assembly=mscorlib">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary x:Name="style1" Source="/Styles/Style1.xaml"></ResourceDictionary>
+                <materialDesign:BundledTheme BaseTheme="Dark" PrimaryColor="Red" SecondaryColor="DeepOrange" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.DatePicker.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Card.xaml" />
+                <ResourceDictionary Source="/Styles/ButtonStyle.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+
+            <System:Double x:Key="MenuButtonFontSize">13.5</System:Double>
+            <System:Double x:Key="MenuIconSize">22</System:Double>
+            <System:Double x:Key="RadioBoxSize">50</System:Double>
+            <System:Double x:Key="TypeFontSize">20</System:Double>
+            <System:Double x:Key="ValueFontSize">14</System:Double>
+            <System:Double x:Key="FinishNumFontSize">48</System:Double>
+            <System:Double x:Key="NameFontSize">20</System:Double>
+            <System:Double x:Key="weightTextboxWidth">40</System:Double>
+            <System:Double x:Key="rectangleHeight">80</System:Double>
+            <System:Double x:Key="eventCardSize">200</System:Double>
+            <System:Double x:Key="dockButtonWidth">92</System:Double>
+            <System:Double x:Key="eventResultFontSize">12</System:Double>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

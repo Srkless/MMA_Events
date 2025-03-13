@@ -1,0 +1,126 @@
+﻿<Page x:Class="MMA_Fights.View.SettingsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MMA_Fights.View"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="SettingsPage">
+
+    <Border>
+        <Border.Background>
+            <ImageBrush ImageSource="/Images/settingsWallpaper.jpg" AlignmentX="Center" Stretch="UniformToFill" >
+                <ImageBrush.Transform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform X="0"/>
+                    </TransformGroup>
+                </ImageBrush.Transform>
+            </ImageBrush>
+        </Border.Background>
+
+
+
+        <Border
+    BorderThickness="4"
+        BorderBrush="{DynamicResource DynamicGradientBrush}"
+        Background="{DynamicResource DynamicGradientBackground}">
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.5*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="0.4*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="0.5*"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="1" Text="Styles" Foreground="White" FontSize="72" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Arial Black"/>
+
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="0.2*"></ColumnDefinition>
+                        <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                        <ColumnDefinition Width="0.2*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <Button Grid.Column="1" 
+        BorderBrush="White" 
+                            
+                BorderThickness="3,3,3,3" Click="Button_Click">
+                        <Button.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="Black"/>
+                                <GradientStop Color="#FF383838" Offset="0.771"/>
+                            </LinearGradientBrush>
+                        </Button.Background>
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border x:Name="border" 
+Background="{TemplateBinding Background}" 
+BorderBrush="{TemplateBinding BorderBrush}" 
+BorderThickness="{TemplateBinding BorderThickness}" 
+CornerRadius="1000">
+                                    <!-- Zaobljenje rubova -->
+                                    <ContentPresenter HorizontalAlignment="Center" 
+              VerticalAlignment="Center"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <!-- Promijeni boju kada je miš iznad dugmeta -->
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter TargetName="border" Property="BorderBrush" Value="#FF8A0D0D"/>
+                                        <!-- Zlatna boja -->
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <Button Grid.Column="3" 
+        BorderBrush="White" 
+             BorderThickness="3,3,3,3" Click="Button_Click_1">
+                        <Button.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FF980B11"/>
+                                <GradientStop Color="#FFF34251" Offset="1"/>
+                                <GradientStop Color="#FFDE3542"/>
+                                <GradientStop Color="#FFB81E27" Offset="0.176"/>
+                                <GradientStop Color="#FFBB2029" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Button.Background>
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border x:Name="border" 
+Background="{TemplateBinding Background}" 
+BorderBrush="{TemplateBinding BorderBrush}" 
+BorderThickness="{TemplateBinding BorderThickness}" 
+CornerRadius="1000">
+                                    <!-- Zaobljenje rubova -->
+                                    <ContentPresenter HorizontalAlignment="Center" 
+              VerticalAlignment="Center"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <!-- Promijeni boju kada je miš iznad dugmeta -->
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter TargetName="border" Property="BorderBrush" Value="#FF8A0D0D"/>
+                                        <!-- Zlatna boja -->
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </Grid>
+                <TextBlock Grid.Row="3" Text="Languages" Foreground="White" FontSize="72" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Arial Black"/>
+
+            </Grid>
+        </Border>
+    </Border>
+
+
+
+</Page>
