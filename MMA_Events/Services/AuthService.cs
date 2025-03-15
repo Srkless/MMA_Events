@@ -168,5 +168,46 @@ namespace MMA_Fights.Services
 
             return organizator;
         }
+
+        public Organizator GetOrganizatorByID(int id)
+        {
+            Organizator organizator = null;
+
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string query = @"SELECT *" +
+                        "FROM Organization WHERE Organization.idOrganization = @id;";
+
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@id", id);
+
+                        using (MySqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                organizator = new Organizator
+                                {
+                                    IdOrganizator = reader.GetInt32("idOrganization"),
+                                    Password = reader.GetString("Password"),
+                                    Name = reader.GetString("Name"),
+                                    Image = reader.GetString("Image"),
+                                };
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Greška: " + ex.Message);
+            }
+
+            return organizator;
+        }
     }
 }

@@ -1,0 +1,151 @@
+﻿<Page x:Class="MMA_Events.View.SearchPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MMA_Events.View"
+      xmlns:conv="clr-namespace:MMA_Fights.Services"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="SearchPage">
+
+    <Page.Resources>
+        <conv:NicknameConverter x:Key="NicknameConverter"/>
+        <DataTemplate x:Key="EventTemplate">
+            <Border Padding="5" Margin="5,0,5,5" Width="{DynamicResource eventCardSize}">
+                <StackPanel>
+
+                    <Button Click="OpenPage" CommandParameter="{Binding}">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border x:Name="border" BorderThickness="1" BorderBrush="#FF404040" Padding="0, 0, 0, 0">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter TargetName="border" Property="BorderBrush" Value="#FFEA3444"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Button.Template>
+                        <Grid>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Image Grid.Column="0" Source="{Binding Event.RedCorner.Image}" HorizontalAlignment="Left"/>
+                                <Image Grid.Column="1" Source="{Binding Event.BlueCorner.Image}" HorizontalAlignment="Right"/>
+                            </Grid>
+
+                            <Border>
+                                <Border.Background>
+                                    <LinearGradientBrush StartPoint="0,1" EndPoint="0,0">
+                                        <GradientStop Offset="0" Color="black" />
+                                        <GradientStop Offset="1" Color="#B23E0000" />
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                            </Border>
+                            <TextBlock Text="{Binding Event.Name}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{DynamicResource FinishNumFontSize}" FontFamily="Arial Black">
+                                <TextBlock.Foreground>
+                                    <SolidColorBrush Color="white" Opacity="0.6"/>
+                                </TextBlock.Foreground>
+                            </TextBlock>
+                        </Grid>
+
+                    </Button>
+                </StackPanel>
+            </Border>
+        </DataTemplate>
+        <!-- Šablon za Fighter-a -->
+        <DataTemplate x:Key="FighterTemplate">
+            <Border Padding="5" Margin="5,0,5,5" Width="180">
+                <StackPanel>
+                    <Button Click="OpenPage" CommandParameter="{Binding}">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border x:Name="border" BorderThickness="0,1,0,1" BorderBrush="#FF404040" Padding="0, 10, 0, 0">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter TargetName="border" Property="BorderBrush" Value="#FFEA3444"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Button.Template>
+                        <StackPanel>
+                            <TextBlock Text="{Binding Fighter.Nickname, Converter={StaticResource NicknameConverter}}" HorizontalAlignment="Center" FontSize="16" FontFamily="Arial Black">
+                                <TextBlock.Foreground>
+                                    <SolidColorBrush Color="#FF4E4E4E" Opacity="1"/>
+                                </TextBlock.Foreground>
+                            </TextBlock>
+                            <Grid>
+                                <Image Source="{Binding Fighter.Image}" Height="200">
+                                    <Image.Clip>
+                                        <RectangleGeometry Rect="0,0,200,100"/>
+
+                                    </Image.Clip>
+
+                                </Image>
+                                <TextBlock Text="{Binding Fighter.CategoryName}" Padding="0, 105, 0, 0" HorizontalAlignment="Center" Foreground="red" FontSize="13" FontFamily="Arial Black"/>
+                                <TextBlock Text="{Binding Fighter.Fullname}" Padding="0, 120, 0, 0" HorizontalAlignment="Center" Foreground="White" FontSize="18"/>
+                                <TextBlock Text="{Binding Fighter.Score, StringFormat='Score: {0}'}" Padding="0, 140, 0, 0" HorizontalAlignment="Center" Foreground="White" FontSize="18"/>
+                            </Grid>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </Border>
+        </DataTemplate>
+
+        <!-- Selektor šablona -->
+        <local:TemplateSelector x:Key="TemplateSelector"
+                                  FighterTemplate="{StaticResource FighterTemplate}"
+                                  EventTemplate="{StaticResource EventTemplate}"/>
+    </Page.Resources>
+
+    <Border>
+        <Border.Background>
+            <ImageBrush ImageSource="/Images/settingsWallpaper.jpg" AlignmentX="Center" Stretch="UniformToFill" >
+                <ImageBrush.Transform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform X="0"/>
+                    </TransformGroup>
+                </ImageBrush.Transform>
+            </ImageBrush>
+        </Border.Background>
+
+
+
+        <Border
+BorderThickness="4"
+    BorderBrush="{DynamicResource DynamicGradientBrush}"
+    Background="{DynamicResource DynamicGradientBackground}">
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.1*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1">
+                    <ItemsControl ItemsSource="{Binding SearchDetails}" x:Name="FightersListView">
+
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel x:Name="GridPanel"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+
+                        <ItemsControl.ItemTemplateSelector>
+                            <StaticResource ResourceKey="TemplateSelector"/>
+                        </ItemsControl.ItemTemplateSelector>
+                    </ItemsControl>
+                </ScrollViewer>
+            </Grid>
+
+        </Border>
+    </Border>
+</Page>

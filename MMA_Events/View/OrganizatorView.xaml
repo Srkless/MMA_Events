@@ -19,6 +19,55 @@
     <Window.Resources>
         <!-- Konverter za Visibility -->
         <BooleanToVisibilityConverter x:Key="BoolToVis" />
+        <SolidColorBrush x:Key="TextBox.Static.Border" Color="#FFABAdB3"/>
+        <SolidColorBrush x:Key="TextBox.MouseOver.Border" Color="#FF7EB4EA"/>
+        <SolidColorBrush x:Key="TextBox.Focus.Border" Color="#FF569DE5"/>
+        <Style x:Key="seachTextbox" TargetType="{x:Type TextBox}">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="AllowDrop" Value="true"/>
+            <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+            <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+
+            <Setter Property="FontFamily" Value="Montserrat"/>
+            <Setter Property="FontWeight" Value="Medium"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="{DynamicResource MenuButtonFontSize}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="True">
+                            <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Opacity" TargetName="border" Value="0.56"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="Transparent"/>
+                            </Trigger>
+                            <Trigger Property="IsKeyboardFocused" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="Transparent"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="IsInactiveSelectionHighlightEnabled" Value="true"/>
+                        <Condition Property="IsSelectionActive" Value="false"/>
+                    </MultiTrigger.Conditions>
+                    <Setter Property="SelectionBrush" Value="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}"/>
+                </MultiTrigger>
+            </Style.Triggers>
+        </Style>
     </Window.Resources>
 
     <Border>
@@ -85,10 +134,18 @@
                         <Grid Grid.Row="1">
 
                             <StackPanel>
-                                <RadioButton Style="{DynamicResource menuButton}" Tag="{DynamicResource color1}" Padding="0,0,0,8" MinHeight="7">
+                                <RadioButton x:Name="SerachRB" Style="{DynamicResource menuButton}" Tag="{DynamicResource color1}" Padding="0,0,0,8" MinHeight="7" Checked="SearchRadioButton_Checked" Unchecked="SearchRadioButton_UnChecked">
                                     <StackPanel Grid.Column="1" Orientation="Horizontal">
                                         <fa:IconImage Icon="Search" Style="{DynamicResource menuButtonIcon}"></fa:IconImage>
-                                        <TextBlock Text="Search" Style="{DynamicResource menuButtonText}"></TextBlock>
+                                        <Grid>
+                                            <!-- Prikazuje se kada RadioButton NIJE čekiran -->
+                                            <TextBlock x:Name="searchTextBlock" Text="Search" 
+                       Style="{DynamicResource menuButtonText}" Visibility="Visible"/>
+
+                                            <!-- Prikazuje se kada je RadioButton čekiran -->
+                                            <TextBox Style="{DynamicResource seachTextbox}" x:Name="searchTextBox" Width="100" Visibility="Collapsed" Foreground="{DynamicResource plainTextColor}"
+                     KeyDown="SearchTextBox_KeyDown" />
+                                        </Grid>
                                     </StackPanel>
                                 </RadioButton>
 
@@ -143,7 +200,7 @@
                                     </StackPanel>
                                 </RadioButton>
 
-                                <RadioButton Grid.Row="5" Style="{DynamicResource menuButton}" Tag="{DynamicResource color1}">
+                                <RadioButton Grid.Row="5" Style="{DynamicResource menuButton}" Tag="{DynamicResource color1}" Checked="logoutRB_checked">
                                     <StackPanel Grid.Column="1" Orientation="Horizontal">
                                         <fa:IconImage Icon="RightFromBracket" Style="{DynamicResource menuButtonIcon}"></fa:IconImage>
                                         <TextBlock Text="Logout" Style="{DynamicResource menuButtonText}"></TextBlock>

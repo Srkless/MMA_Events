@@ -1,5 +1,6 @@
 ﻿using MMA_Fights.Model;
 using MMA_Fights.Services;
+using Mysqlx;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -100,6 +101,23 @@ namespace MMA_Fights.View
 
         }
 
+
+        private void OnlyNumbers_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            // Dozvoljava samo brojeve
+            e.Handled = !int.TryParse(e.Text, out _);
+
+        }
+
+        private void AllowControlKeys(object sender, KeyEventArgs e)
+        {
+            // Dozvoljava Backspace, Delete, strelice, Tab
+            if (e.Key == Key.Back || e.Key == Key.Delete || e.Key == Key.Tab ||
+                e.Key == Key.Left || e.Key == Key.Right)
+            {
+                e.Handled = false;
+            }
+        }
         private void btnT_Unchecked(object sender, RoutedEventArgs e)
         {
             DockPanel.SetDock(btnS, Dock.Left);
@@ -328,13 +346,31 @@ namespace MMA_Fights.View
         {
             if (e.Key == Key.Enter)
             {
-                if(fieldMethod.Text != "" && fieldRound.Text != "" && (leftFighterWinner.Visibility == Visibility.Visible || rightFighterWinner.Visibility == Visibility.Visible))
+                if (fieldMethod.Text != "" && fieldRound.Text != "" && (leftFighterWinner.Visibility == Visibility.Visible || rightFighterWinner.Visibility == Visibility.Visible))
                 {
+                    if (!fieldMethod.Text.Equals(FightMethod.KO.ToString(), StringComparison.OrdinalIgnoreCase) && 
+                        !fieldMethod.Text.Equals(FightMethod.Submission.ToString(), StringComparison.OrdinalIgnoreCase) && 
+                        !fieldMethod.Text.Equals(FightMethod.Decision.ToString(), StringComparison.OrdinalIgnoreCase))
+                    {
+                        MessageBox.Show("Neispravna method (KO, Submission, Decision)!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+                        return;
+                    }
+                    if(int.Parse(fieldRound.Text) < 1 || int.Parse(fieldRound.Text) > 5)
+                    {
+                        MessageBox.Show("Neispravan broj rundi!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+                        return;
+                    }
                     FightService fightService = FightService.getInstance();
                     fightService.UpdateFightResult(details.idFightCard, Winner.idFighter, fieldMethod.Text, int.Parse(fieldRound.Text), selectedFight);
 
                     fieldMethod.IsEnabled = false;
                     fieldRound.IsEnabled = false;
+
+                    MessageBox.Show("Uspesno ste uneli rezultat!", "Uspeh", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Popunite sva polja i odaberite pobednika!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }

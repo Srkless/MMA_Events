@@ -90,7 +90,6 @@ namespace MMA_Fights.View
             // Dozvoljava samo brojeve
             e.Handled = !int.TryParse(e.Text, out _);
             
-
         }
         private void OnlyText_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {

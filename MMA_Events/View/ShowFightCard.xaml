@@ -21,7 +21,8 @@
     xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
 
     <Window.Resources>
-        <!-- Konverter za Visibility -->
+        
+        
         <BooleanToVisibilityConverter x:Key="BoolToVis" />
 
         <Style TargetType="{x:Type ScrollBar}">
@@ -561,6 +562,7 @@
                                 VerticalContentAlignment="Center"
                                 HorizontalContentAlignment="Center"
                                  MinWidth="40"
+                                PreviewTextInput="OnlyNumbers_PreviewTextInput" PreviewKeyDown="AllowControlKeys"
 >
                                 <TextBox.Style>
                                     <Style TargetType="TextBox">
@@ -730,15 +732,15 @@ Click="nextFight_Click" Margin="0,0,30,0">
 
                             <Border.BorderBrush>
                                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                    <GradientStop Offset="0" Color="#FF8C1313" />
+                                    <GradientStop Offset="0" Color="#FF13368C" />
                                     <GradientStop Offset="1" Color="Transparent" />
                                 </LinearGradientBrush>
                             </Border.BorderBrush>
                             <Border.Background>
                                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                    <GradientStop Offset="0" Color="#FF3E0000" />
+                                    <GradientStop Offset="0" Color="#FF00123E" />
                                     <!-- Full opacity -->
-                                    <GradientStop Offset="1" Color="#B23E0000" />
+                                    <GradientStop Offset="1" Color="#4C00123E" />
                                     <!-- Transparent (opacity = 0) -->
                                 </LinearGradientBrush>
                             </Border.Background>

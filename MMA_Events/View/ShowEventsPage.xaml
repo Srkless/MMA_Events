@@ -65,8 +65,6 @@
                                                 </ControlTemplate>
                                             </Button.Template>
                                             <Grid>
-
-
                                                 <Grid>
                                                     <Grid.ColumnDefinitions>
                                                         <ColumnDefinition></ColumnDefinition>

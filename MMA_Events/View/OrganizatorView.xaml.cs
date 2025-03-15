@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using MMA_Events.View;
 using MMA_Fights.Model;
 
 namespace MMA_Fights.View
@@ -130,6 +130,44 @@ namespace MMA_Fights.View
             Main.Content = new SettingsPage();
         }
 
+        private void SearchRadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            searchTextBlock.Visibility = Visibility.Collapsed; // Sakrij TextBlock
+            searchTextBox.Visibility = Visibility.Visible;     // Prikaži TextBox
+            searchTextBox.Focus();                             // Fokusiraj TextBox
+        }
+
+        private void SearchRadioButton_UnChecked(object sender, RoutedEventArgs e)
+        {
+            searchTextBlock.Visibility = Visibility.Visible; // Sakrij TextBlock
+            searchTextBox.Visibility = Visibility.Collapsed;     // Prikaži TextBox
+            searchTextBox.Text = "";
+        }
+
+        private void SearchTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                string searchText = searchTextBox.Text;
+                MessageBox.Show($"Prikazujem rezultate za: {searchText}");
+                if (Main.Content is SearchPage searchPage)
+                {
+                    // Pozovi metod za pretragu na postojećoj stranici
+                    searchPage.Search(searchText);
+                }
+                else
+                {
+                    // Kreiraj novu instancu SearchPage i postavi je u Main.Content
+                    searchPage = new SearchPage(this);
+                    Main.Content = searchPage;
+                    searchPage.Search(searchText); // Pokreni pretragu odmah
+                }
+
+                searchTextBox.Text = "";
+                SearchRadioButton_UnChecked(sender, e);
+                SerachRB.IsChecked = false;
+            }
+        }
         private void addEvent(object sender, RoutedEventArgs e)
         {
             //NavBar.Visibility = Visibility.Collapsed;
@@ -189,12 +227,33 @@ namespace MMA_Fights.View
         {
             if (rbAddEvent.IsChecked == true)
             {
-                //Main.Content = 
+                addFighter(sender, e);
             }
             else if (rbShowEvents.IsChecked == true)
             {
                 showFighters(sender, e);
             }
+        }
+
+        private void logoutRB_checked(object sender, RoutedEventArgs e)
+        {
+            LoginView loginWindow = new LoginView();
+            org = null;
+
+            if (this.WindowState == WindowState.Maximized)
+            {
+                loginWindow.WindowState = WindowState.Maximized;
+            }
+            else
+            {
+                loginWindow.Width = this.Width;
+                loginWindow.Height = this.Height;
+                loginWindow.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+
+            }
+            loginWindow.Show();
+            loginWindow.paddingAdjustment();
+            this.Close();
         }
 
     }
