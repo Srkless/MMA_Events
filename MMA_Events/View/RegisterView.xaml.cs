@@ -1,5 +1,5 @@
-﻿using MMA_Fights.Model;
-using MMA_Fights.Services;
+﻿using MMA_Events.Model;
+using MMA_Events.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace MMA_Fights.View
+namespace MMA_Events.View
 {
     /// <summary>
     /// Interaction logic for RegisterView.xaml

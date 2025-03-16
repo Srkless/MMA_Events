@@ -1,5 +1,6 @@
-﻿using MMA_Fights.Model;
-using MMA_Fights.Services;
+﻿using MMA_Events.View;
+using MMA_Events.Model;
+using MMA_Events.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace MMA_Fights.View
+namespace MMA_Events.View
 {
     /// <summary>
     /// Interaction logic for Window1.xaml
@@ -53,6 +54,21 @@ namespace MMA_Fights.View
                 if (user != null && user.Password == _validationService.HashPassword(password))
                 {
                     MessageBox.Show("Uspešno ste se prijavili!", "Dobrodošli", MessageBoxButton.OK, MessageBoxImage.Information);
+                    UserView userView = new UserView();
+                    if (this.WindowState == WindowState.Maximized)
+                    {
+                        userView.WindowState = WindowState.Maximized;
+                    }
+                    else
+                    {
+                        userView.Width = this.Width;
+                        userView.Height = this.Height;
+                        userView.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+
+                    }
+                    userView.Show();
+                    userView.paddingAdjustment();
+                    this.Close();
                 }
                 else
                 {

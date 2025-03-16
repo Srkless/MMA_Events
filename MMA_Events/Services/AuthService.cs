@@ -7,10 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
-using MMA_Fights.Model;
+using MMA_Events.Model;
 using MySql.Data.MySqlClient;
 
-namespace MMA_Fights.Services
+namespace MMA_Events.Services
 {
     public class AuthService
     {

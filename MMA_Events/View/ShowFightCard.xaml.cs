@@ -1,5 +1,5 @@
-﻿using MMA_Fights.Model;
-using MMA_Fights.Services;
+﻿using MMA_Events.Model;
+using MMA_Events.Services;
 using Mysqlx;
 using System;
 using System.Collections.Generic;
@@ -18,7 +18,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Resources;
 using System.Windows.Shapes;
 
-namespace MMA_Fights.View
+namespace MMA_Events.View
 {
     /// <summary>
     /// Interaction logic for ShowFightCard.xaml

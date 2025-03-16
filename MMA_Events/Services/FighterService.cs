@@ -1,4 +1,4 @@
-﻿using MMA_Fights.Model;
+﻿using MMA_Events.Model;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace MMA_Fights.Services
+namespace MMA_Events.Services
 {
    public class FighterService
     {
@@ -31,7 +31,55 @@ namespace MMA_Fights.Services
             return instance;
 
         }
-       
+        public List<FighterDetails> GetAllFighters()
+        {
+            List<FighterDetails> details = new List<FighterDetails>();
+
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string query = @"SELECT * from FighterDetails;";
+
+
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                    {
+
+                        using (MySqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                details.Add(new FighterDetails
+                                {
+                                    idFighter = reader.GetInt32("idFighter"),
+                                    Nickname = reader.IsDBNull("Nickname") ? string.Empty : reader.GetString("Nickname"),
+                                    Name = reader.GetString("Name"),
+                                    Surname = reader.GetString("Surname"),
+                                    Country = reader.GetString("Country"),
+                                    CategoryName = reader.GetString("CategoryName"),
+                                    BirthDate = reader.GetDateTime("BirthDate").Date.ToString("dd.MM.yyyy"),
+                                    FightWeight = reader.GetFloat("FightWeight"),
+                                    Image = reader.GetString("ProfileImage"),
+                                    Wins = reader.GetInt32("Wins"),
+                                    Losses = reader.GetInt32("Losses"),
+                                    Draws = reader.GetInt32("Draws"),
+                                    KOs = reader.GetInt32("KOs"),
+                                    Submissions = reader.GetInt32("Submissions")
+                                });
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Greška: " + ex.Message);
+            }
+
+            return details;
+        }
         public List<FighterDetails> GetAllFighters(Organizator org)
         {
             List<FighterDetails> details = new List<FighterDetails>();

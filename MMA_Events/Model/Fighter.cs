@@ -1,12 +1,11 @@
-﻿using MMA_Fights.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MMA_Fights.Model
+namespace MMA_Events.Model
 {
     public class Fighter : Person
     {

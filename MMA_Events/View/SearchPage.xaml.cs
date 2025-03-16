@@ -1,9 +1,6 @@
 ﻿using MMA_Events.Model;
 using MMA_Events.Services;
-using MMA_Fights;
-using MMA_Fights.Model;
-using MMA_Fights.Services;
-using MMA_Fights.View;
+using MMA_Events.View;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -50,7 +47,9 @@ namespace MMA_Events.View
         public OrganizatorView organizatorView { get; set; }
         public SearchPage()
         {
+            SearchDetails = new ObservableCollection<SearchDetails>();
             InitializeComponent();
+            DataContext = this;
         }
 
         public SearchPage(OrganizatorView view)
@@ -68,12 +67,9 @@ namespace MMA_Events.View
             SearchDetails.Clear();
             SearchService SearchService = SearchService.getInstance();
 
-            if (organizatorView != null)
+            foreach (SearchDetails details in SearchService.SearchFightersAndEvents(searchText))
             {
-                foreach (SearchDetails details in SearchService.SearchFightersAndEvents(searchText))
-                {
-                    SearchDetails.Add(details);
-                }
+                SearchDetails.Add(details);
             }
         }
 
@@ -82,15 +78,20 @@ namespace MMA_Events.View
             if (sender is Button button)
             {
                 if (button.CommandParameter is SearchDetails selectedItem)
+
                 {
+                    BaseWindow view = Window.GetWindow(this) as BaseWindow;
+
+                    if (view == null) return;
+
                     if (selectedItem.Fighter == null)
                     {
-                        
-                        organizatorView.BackButton.Visibility = Visibility.Visible;
+
+                        view.bButton.Visibility = Visibility.Visible;
 
                         ShowFightCard showFightCard = new ShowFightCard(organizatorView, selectedItem.Event);
 
-                        if (organizatorView.WindowState == WindowState.Maximized)
+                        if (view.WindowState == WindowState.Maximized)
                         {
                             showFightCard.WindowState = WindowState.Maximized;
                         }
@@ -104,17 +105,17 @@ namespace MMA_Events.View
                         }
                         showFightCard.Show();
                         //registerWindow.paddingAdjustment();
-                        organizatorView.Visibility = Visibility.Collapsed;
+                        view.Visibility = Visibility.Collapsed;
                     }
                     else if (selectedItem.Event == null)
                     {
 
-                        organizatorView.BackButton.Visibility = Visibility.Visible;
-                        organizatorView.Main.Content = new FighterProfilePage(selectedItem.Fighter);
+                        view.bButton.Visibility = Visibility.Visible;
+                        view.MainFrame.Content = new FighterProfilePage(selectedItem.Fighter);
 
                     }
                 }
-                    
+
             }
         }
 

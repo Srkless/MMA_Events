@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
 
-namespace MMA_Fights.Services
+namespace MMA_Events.Services
 {
     public class NicknameConverter : IValueConverter
     {

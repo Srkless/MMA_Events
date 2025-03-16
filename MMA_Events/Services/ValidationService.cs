@@ -2,7 +2,7 @@
 using System.Security.Cryptography;
 using System.Text;
 
-namespace MMA_Fights.Services
+namespace MMA_Events.Services
 {
     public class ValidationService
     {

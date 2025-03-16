@@ -4,7 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:MMA_Events.View"
-      xmlns:conv="clr-namespace:MMA_Fights.Services"
+      xmlns:conv="clr-namespace:MMA_Events.Services"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="SearchPage">
@@ -130,20 +130,30 @@ BorderThickness="4"
                     <RowDefinition Height="0.1*"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
-                <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1">
-                    <ItemsControl ItemsSource="{Binding SearchDetails}" x:Name="FightersListView">
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.1*"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <TextBlock x:Name="searchLabel" Text="Rezultati pretrage za " FontSize="{DynamicResource NameFontSize}" 
+                               VerticalAlignment="Center" 
+                               HorizontalAlignment="Center" FontFamily="Arial Black" Foreground="white"></TextBlock>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1">
+                        <ItemsControl ItemsSource="{Binding SearchDetails}" x:Name="FightersListView">
 
-                        <ItemsControl.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <WrapPanel x:Name="GridPanel"/>
-                            </ItemsPanelTemplate>
-                        </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapPanel x:Name="GridPanel"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
 
-                        <ItemsControl.ItemTemplateSelector>
-                            <StaticResource ResourceKey="TemplateSelector"/>
-                        </ItemsControl.ItemTemplateSelector>
-                    </ItemsControl>
-                </ScrollViewer>
+                            <ItemsControl.ItemTemplateSelector>
+                                <StaticResource ResourceKey="TemplateSelector"/>
+                            </ItemsControl.ItemTemplateSelector>
+                        </ItemsControl>
+                    </ScrollViewer>
+                </Grid>
+                
             </Grid>
 
         </Border>

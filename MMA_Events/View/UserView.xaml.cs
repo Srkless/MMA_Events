@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MMA_Events.View;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,36 +10,22 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using MMA_Events.View;
-using MMA_Events.Model;
 
 namespace MMA_Events.View
 {
     /// <summary>
-    /// Interaction logic for OrganizatorView.xaml
+    /// Interaction logic for UserView.xaml
     /// </summary>
-    /// 
-
-    public partial class OrganizatorView : BaseWindow
+    public partial class UserView : BaseWindow
     {
-        public Organizator org { get; set; }
+
         public override Frame MainFrame => Main;
         public override Button bButton => BackButton;
-
-        public OrganizatorView()
+        public UserView()
         {
             InitializeComponent();
-        }
-
-        public OrganizatorView(Organizator o)
-        {
-            InitializeComponent();
-
-            org = o;
-            DataContext = this;
         }
 
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -121,16 +108,12 @@ namespace MMA_Events.View
             Application.Current.Shutdown(); // Zatvori aplikaciju
         }
 
-        private void RadioButton_Checked(object sender, RoutedEventArgs e)
+        private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-
+            Main.Content = new ShowFightersPage();
+            BackButton.Visibility = Visibility.Collapsed;
         }
 
-
-        private void settingsRB_checked(object sender, RoutedEventArgs e)
-        {
-            Main.Content = new SettingsPage();
-        }
 
         private void SearchRadioButton_Checked(object sender, RoutedEventArgs e)
         {
@@ -160,88 +143,37 @@ namespace MMA_Events.View
                 else
                 {
                     // Kreiraj novu instancu SearchPage i postavi je u Main.Content
-                    searchPage = new SearchPage(this);
+                    searchPage = new SearchPage();
                     Main.Content = searchPage;
                     searchPage.Search(searchText); // Pokreni pretragu odmah
                 }
-
                 searchPage.searchLabel.Text += "\"" + searchText + "\"";
                 searchTextBox.Text = "";
                 SearchRadioButton_UnChecked(sender, e);
                 SerachRB.IsChecked = false;
             }
         }
-        private void addEvent(object sender, RoutedEventArgs e)
+        private void rbDashBoard_checked(object sender, RoutedEventArgs e)
         {
-            //NavBar.Visibility = Visibility.Collapsed;
-            AddEventView addEventWindow = new AddEventView(this);
 
-
-            if (this.WindowState == WindowState.Maximized)
-            {
-                addEventWindow.WindowState = WindowState.Maximized;
-            }
-            else
-            {
-                addEventWindow.Width = this.Width;
-                addEventWindow.Height = this.Height;
-
-                addEventWindow.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-
-            }
-            addEventWindow.Show();
-            //registerWindow.paddingAdjustment();
-            this.Visibility = Visibility.Collapsed;
         }
 
-        private void showEvents(object sender, RoutedEventArgs e)
+        private void rbOrganizations_checked(object sender, RoutedEventArgs e)
         {
-            Main.Content = new ShowEventsPage(this);
+
         }
 
-        private void showFighters(object sender, RoutedEventArgs e)
-        {
-            Main.Content = new ShowFightersPage(this);
-        }
 
-        private void addFighter(object sender, RoutedEventArgs e)
-        {
-            Main.Content = new AddFighterPage(org);
-        }
-        private void BackButton_Click(object sender, RoutedEventArgs e)
-        {
-            Main.Content = new ShowFightersPage(this);
-            BackButton.Visibility = Visibility.Collapsed;
-        }
 
-        private void rbFighters_checked(object sender, RoutedEventArgs e)
-        {
-            if (rbAddFighter.IsChecked == true)
-            {
-                addFighter(sender, e);
-            }
-            else if (rbShowFighters.IsChecked == true)
-            {
-                showFighters(sender, e);
-            }
-        }
 
-        private void rbEvents_checked(object sender, RoutedEventArgs e)
+        private void settingsRB_checked(object sender, RoutedEventArgs e)
         {
-            if (rbAddEvent.IsChecked == true)
-            {
-                addFighter(sender, e);
-            }
-            else if (rbShowEvents.IsChecked == true)
-            {
-                showFighters(sender, e);
-            }
+            Main.Content = new SettingsPage();
         }
 
         private void logoutRB_checked(object sender, RoutedEventArgs e)
         {
             LoginView loginWindow = new LoginView();
-            org = null;
 
             if (this.WindowState == WindowState.Maximized)
             {
@@ -260,6 +192,4 @@ namespace MMA_Events.View
         }
 
     }
-
-
 }

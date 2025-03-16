@@ -2,7 +2,7 @@
 using System.Data;
 using System.Windows;
 
-namespace MMA_Fights
+namespace MMA_Events
 {
     /// <summary>
     /// Interaction logic for App.xaml

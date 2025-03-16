@@ -1,6 +1,6 @@
 ﻿using MMA_Events.Model;
-using MMA_Fights.Model;
-using MMA_Fights.Services;
+using MMA_Events.Model;
+using MMA_Events.Services;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;

@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Win32;
-using MMA_Fights.Model;
-using MMA_Fights.Services;
+using MMA_Events.Model;
+using MMA_Events.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -21,7 +21,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace MMA_Fights.View
+namespace MMA_Events.View
 {
     /// <summary>
     /// Interaction logic for ShowFighters.xaml

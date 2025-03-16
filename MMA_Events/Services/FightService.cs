@@ -1,4 +1,4 @@
-﻿using MMA_Fights.Model;
+﻿using MMA_Events.Model;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MMA_Fights.Services
+namespace MMA_Events.Services
 {
     public class FightService
     {

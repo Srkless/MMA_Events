@@ -1,4 +1,4 @@
-﻿<local:BaseWindow x:Class="MMA_Events.View.OrganizatorView"
+﻿<local:BaseWindow x:Class="MMA_Events.View.UserView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,16 +6,14 @@
         xmlns:local="clr-namespace:MMA_Events.View"
         xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
         mc:Ignorable="d"
-        Title="OrganizatorView" Height="550" Width="800"
+        Title="UserView"  Height="550" Width="800"
         MinHeight="550" MinWidth="800"
         WindowStyle="None"
         Background="Transparent"
         AllowsTransparency="True"
         WindowStartupLocation="CenterScreen"
         MouseDown="Window_MouseDown"
-        SizeChanged="Window_SizeChanged"
-        >
-
+        SizeChanged="Window_SizeChanged">
     <Window.Resources>
         <!-- Konverter za Visibility -->
         <BooleanToVisibilityConverter x:Key="BoolToVis" />
@@ -150,48 +148,20 @@
                                 </RadioButton>
 
 
-                                <RadioButton x:Name="EventRB" Grid.Row="2" Style="{DynamicResource menuButton}" Tag="{DynamicResource color1}" Checked="rbEvents_checked">
+                                <RadioButton x:Name="DashboardRB" Grid.Row="2" Style="{DynamicResource menuButton}" Tag="{DynamicResource color1}" Checked="rbDashBoard_checked">
                                     <StackPanel Grid.Column="1" Orientation="Horizontal">
-                                        <fa:IconImage Icon="CalendarTimes" Style="{DynamicResource menuButtonIcon}"></fa:IconImage>
-                                        <TextBlock Text="Events" Style="{DynamicResource menuButtonText}"></TextBlock>
-                                    </StackPanel>
-                                </RadioButton>
-                                <StackPanel Margin="10 0 0 0" Visibility="{Binding IsChecked, ElementName=EventRB, Converter={StaticResource BoolToVis}}">
-                                    <RadioButton x:Name="rbAddEvent" Grid.Row="2" Style="{DynamicResource menuButton}" Tag="{DynamicResource color1}" Checked="addEvent">
-                                        <StackPanel Grid.Column="1" Orientation="Horizontal">
-                                            <fa:IconImage Icon="CalendarPlus" Style="{DynamicResource menuButtonIcon}"></fa:IconImage>
-                                            <TextBlock Text="Add event" Style="{DynamicResource menuButtonText}"></TextBlock>
-                                        </StackPanel>
-                                    </RadioButton>
-                                    <RadioButton x:Name="rbShowEvents" Grid.Row="2" Style="{DynamicResource menuButton}" Tag="{DynamicResource color1}" Checked="showEvents">
-                                        <StackPanel Grid.Column="1" Orientation="Horizontal">
-                                            <fa:IconImage Icon="CalendarDays" Style="{DynamicResource menuButtonIcon}"></fa:IconImage>
-                                            <TextBlock Text="Show events" Style="{DynamicResource menuButtonText}"></TextBlock>
-                                        </StackPanel>
-                                    </RadioButton>
-                                </StackPanel>
-
-                                <RadioButton x:Name="rbFigters" Grid.Row="3" Style="{DynamicResource menuButton}" Tag="{DynamicResource color1}" Checked="rbFighters_checked">
-                                    <StackPanel Grid.Column="1" Orientation="Horizontal">
-                                        <fa:IconImage Icon="Users" Style="{DynamicResource menuButtonIcon}"></fa:IconImage>
-                                        <TextBlock Text="Fighters" Style="{DynamicResource menuButtonText}"></TextBlock>
+                                        <fa:IconImage Icon="Display" Style="{DynamicResource menuButtonIcon}"></fa:IconImage>
+                                        <TextBlock Text="Dashboard" Style="{DynamicResource menuButtonText}"></TextBlock>
                                     </StackPanel>
                                 </RadioButton>
 
-                                <StackPanel Margin="10 0 0 0" Visibility="{Binding IsChecked, ElementName=rbFigters, Converter={StaticResource BoolToVis}}">
-                                    <RadioButton x:Name="rbAddFighter" Grid.Row="2" Style="{DynamicResource menuButton}" Tag="{DynamicResource color1}" Checked="addFighter">
-                                        <StackPanel Grid.Column="1" Orientation="Horizontal">
-                                            <fa:IconImage Icon="UserPlus" Style="{DynamicResource menuButtonIcon}"></fa:IconImage>
-                                            <TextBlock Text="Add fighter" Style="{DynamicResource menuButtonText}"></TextBlock>
-                                        </StackPanel>
-                                    </RadioButton>
-                                    <RadioButton x:Name="rbShowFighters" Grid.Row="2" Style="{DynamicResource menuButton}" Tag="{DynamicResource color1}" Checked="showFighters">
-                                        <StackPanel Grid.Column="1" Orientation="Horizontal">
-                                            <fa:IconImage Icon="UsersRectangle" Style="{DynamicResource menuButtonIcon}"></fa:IconImage>
-                                            <TextBlock Text="Show fighters" Style="{DynamicResource menuButtonText}"></TextBlock>
-                                        </StackPanel>
-                                    </RadioButton>
-                                </StackPanel>
+                                <RadioButton x:Name="rbOrganizations" Grid.Row="3" Style="{DynamicResource menuButton}" Tag="{DynamicResource color1}" Checked="rbOrganizations_checked">
+                                    <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                        <fa:IconImage Icon="HandshakeAlt" Style="{DynamicResource menuButtonIcon}"></fa:IconImage>
+                                        <TextBlock Text="Organizations" Style="{DynamicResource menuButtonText}"></TextBlock>
+                                    </StackPanel>
+                                </RadioButton>
+
 
                                 <RadioButton Grid.Row="4" Style="{DynamicResource menuButton}" Tag="{DynamicResource color1}" Margin="-5,0,0,5" Checked="settingsRB_checked">
                                     <StackPanel Grid.Column="1" Orientation="Horizontal">
@@ -340,7 +310,7 @@ CornerRadius="15">
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
-                    
+
                 </Grid>
 
 

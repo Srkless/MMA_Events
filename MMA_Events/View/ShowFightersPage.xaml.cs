@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MMA_Fights.Model;
-using MMA_Fights.Services;
+using MMA_Events.Model;
+using MMA_Events.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -18,7 +18,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace MMA_Fights.View
+namespace MMA_Events.View
 {
     /// <summary>
     /// Interaction logic for ShowFighters.xaml
@@ -35,15 +35,10 @@ namespace MMA_Fights.View
 
             FighterDetails = new ObservableCollection<FighterDetails>();
 
-            //if (parentWindow != null && parentWindow is OrganizatorView)
-            //{
-            //    OrganizatorView view = (OrganizatorView)parentWindow;
-            //    Organizator organizator = view.org;
-            //    foreach (FighterDetails details in FighterService.GetAllFighters(organizator))
-            //    {
-            //        FighterDetails.Add(details);
-            //    }
-            //}
+                foreach (FighterDetails details in FighterService.GetAllFighters())
+                {
+                    FighterDetails.Add(details);
+                }
 
             DataContext = this;
         }

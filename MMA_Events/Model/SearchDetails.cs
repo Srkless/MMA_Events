@@ -1,4 +1,4 @@
-﻿using MMA_Fights.Model;
+﻿using MMA_Events.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;

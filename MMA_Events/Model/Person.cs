@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MMA_Fights.Models
+namespace MMA_Events.Model
 {
     public class Person
     {
