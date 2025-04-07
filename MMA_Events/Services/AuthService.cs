@@ -59,14 +59,16 @@ namespace MMA_Events.Services
                     }
 
                     string insertUserQuery = @"
-                        INSERT INTO User (Email, Password, idUser)
-                        VALUES (@Email, @Password, @idUser);";
+                        INSERT INTO User (Email, Password, idUser, style, language)
+                        VALUES (@Email, @Password, @idUser, @style, @language);";
 
                     using (MySqlCommand userCommand = new MySqlCommand(insertUserQuery, connection))
                     {
                         userCommand.Parameters.AddWithValue("@Email", email);
                         userCommand.Parameters.AddWithValue("@Password", password);
                         userCommand.Parameters.AddWithValue("@idUser", personId);
+                        userCommand.Parameters.AddWithValue("@style", "Style1.xaml");
+                        userCommand.Parameters.AddWithValue("@language", "en");
                         userCommand.ExecuteNonQuery();
                     }
                     return true;
@@ -95,7 +97,9 @@ namespace MMA_Events.Services
                         "User.Password," +
                         "Person.Name, " +
                         "Person.Surname, " +
-                        "Person.Country " +
+                        "Person.Country, " +
+                        "User.Style, " +
+                        "User.Language " +
                         "FROM User INNER JOIN Person ON User.idUser = Person.idPerson WHERE User.Email = @Email;";
 
                     using (MySqlCommand command = new MySqlCommand(query, connection))
@@ -113,7 +117,9 @@ namespace MMA_Events.Services
                                     Password = reader.GetString("Password"),
                                     Name = reader.GetString("Name"),
                                     Surname = reader.GetString("Surname"),
-                                    Country = reader.GetString("Country")
+                                    Country = reader.GetString("Country"),
+                                    Style = reader.GetString("Style"),
+                                    Language = reader.GetString("Language"),
                                 };
                             }
                         }
@@ -155,6 +161,8 @@ namespace MMA_Events.Services
                                     Password = reader.GetString("Password"),
                                     Name = reader.GetString("Name"),
                                     Image = reader.GetString("Image"),
+                                    Style = reader.GetString("Style"),
+                                    Language = reader.GetString("Language"),
                                 };
                             }
                         }
@@ -196,6 +204,8 @@ namespace MMA_Events.Services
                                     Password = reader.GetString("Password"),
                                     Name = reader.GetString("Name"),
                                     Image = reader.GetString("Image"),
+                                    Style = reader.GetString("Style"),
+                                    Language = reader.GetString("Language"),
                                 };
                             }
                         }

@@ -87,9 +87,20 @@ namespace MMA_Events.View
                     if (selectedItem.Fighter == null)
                     {
 
-                        view.bButton.Visibility = Visibility.Visible;
+                        view.bBack.Visibility = Visibility.Visible;
 
-                        ShowFightCard showFightCard = new ShowFightCard(organizatorView, selectedItem.Event);
+                        ShowFightCard showFightCard;
+
+                        if(view is OrganizatorView orgView)
+                        {
+                            showFightCard = new ShowFightCard(orgView, selectedItem.Event);
+                        }
+                        else
+                        {
+                            OrganizationService orgService = OrganizationService.GetInstance();
+                            Organizator org = orgService.GetOrganizatorByID(selectedItem.Event.idOrganization);
+                            showFightCard = new ShowFightCard(view, selectedItem.Event, org);
+                        }
 
                         if (view.WindowState == WindowState.Maximized)
                         {
@@ -97,8 +108,8 @@ namespace MMA_Events.View
                         }
                         else
                         {
-                            showFightCard.Width = organizatorView.Width;
-                            showFightCard.Height = organizatorView.Height;
+                            showFightCard.Width = view.Width;
+                            showFightCard.Height = view.Height;
 
                             showFightCard.WindowStartupLocation = WindowStartupLocation.CenterScreen;
 
@@ -110,7 +121,7 @@ namespace MMA_Events.View
                     else if (selectedItem.Event == null)
                     {
 
-                        view.bButton.Visibility = Visibility.Visible;
+                        view.bBack.Visibility = Visibility.Visible;
                         view.MainFrame.Content = new FighterProfilePage(selectedItem.Fighter);
 
                     }

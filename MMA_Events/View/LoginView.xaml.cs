@@ -44,7 +44,7 @@ namespace MMA_Events.View
 
             if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password))
             {
-                MessageBox.Show("Molimo unesite korisničko ime i lozinku!", "Greška", MessageBoxButton.OK, MessageBoxImage.Warning);
+                CustomMessageBox.Show(Application.Current.Resources["LoginFieldsError"] as string);
                 return;
             }
 
@@ -53,8 +53,7 @@ namespace MMA_Events.View
                 User user = _authService.GetUserByEmail(email);
                 if (user != null && user.Password == _validationService.HashPassword(password))
                 {
-                    MessageBox.Show("Uspešno ste se prijavili!", "Dobrodošli", MessageBoxButton.OK, MessageBoxImage.Information);
-                    UserView userView = new UserView();
+                    UserView userView = new UserView(user);
                     if (this.WindowState == WindowState.Maximized)
                     {
                         userView.WindowState = WindowState.Maximized;
@@ -72,7 +71,7 @@ namespace MMA_Events.View
                 }
                 else
                 {
-                    MessageBox.Show("Pogrešno korisničko ime ili lozinka!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+                    CustomMessageBox.Show(Application.Current.Resources["LoginIvalidUserError"] as string);
                     userEmail.Text = "";
                     userPass.Password = "";
                 }
@@ -82,7 +81,6 @@ namespace MMA_Events.View
                 Organizator organizator = _authService.GetByName(email);
                 if (organizator != null && organizator.Password == password)
                 {
-                    MessageBox.Show("Uspešno ste se prijavili!", "Dobrodošli", MessageBoxButton.OK, MessageBoxImage.Information);
                     OrganizatorView Window = new OrganizatorView(organizator);
 
 
@@ -104,7 +102,7 @@ namespace MMA_Events.View
                 }
                 else
                 {
-                    MessageBox.Show("Pogrešno korisničko ime ili lozinka!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+                    CustomMessageBox.Show(Application.Current.Resources["LoginIvalidOrgError"] as string);
                     userEmail.Text = "";
                     userPass.Password = "";
                 }

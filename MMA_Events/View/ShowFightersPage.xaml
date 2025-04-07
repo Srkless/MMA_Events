@@ -74,16 +74,15 @@
                                                     </TextBlock.Foreground>
                                                 </TextBlock>
                                                 <Grid>
-                                                    <Image Source="{Binding Image}" Height="200">
+                                                    <Image Source="{Binding Image}" Height="270">
                                                         <Image.Clip>
-                                                            <RectangleGeometry Rect="0,0,200,100"/>
-
+                                                            <RectangleGeometry Rect="0,0,200,175"/>
                                                         </Image.Clip>
 
                                                     </Image>
-                                                    <TextBlock Text="{Binding CategoryName}" Padding="0, 105, 0, 0" HorizontalAlignment="Center" Foreground="red" FontSize="13" FontFamily="Arial Black"/>
-                                                    <TextBlock Text="{Binding Fullname}" Padding="0, 120, 0, 0" HorizontalAlignment="Center" Foreground="White" FontSize="18"/>
-                                                    <TextBlock Text="{Binding Score, StringFormat='Score: {0}'}" Padding="0, 140, 0, 0" HorizontalAlignment="Center" Foreground="White" FontSize="18"/>
+                                                    <TextBlock Text="{Binding CategoryName}" Padding="0, 195, 0, 0" HorizontalAlignment="Center" Foreground="red" FontSize="13" FontFamily="Arial Black"/>
+                                                    <TextBlock Text="{Binding Fullname}" Padding="0, 212, 0, 0" HorizontalAlignment="Center" Foreground="White" FontSize="18"/>
+                                                    <TextBlock Text="{Binding Score, StringFormat='Score: {0}'}" Padding="0, 235, 0, 0" HorizontalAlignment="Center" Foreground="White" FontSize="18"/>
                                                 </Grid>
                                             </StackPanel>
                                         </Button>

@@ -77,6 +77,53 @@ namespace MMA_Events.Services
 
             return events;
         }
+
+        public List<EventDetails> GetActiveEventsByOrganization(Organizator org)
+        {
+            List<EventDetails> details = new List<EventDetails>();
+            FighterService fighterService = FighterService.getInstance();
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string query = @"SELECT * from EventDetails WHERE idOrganization=@Id and Date >= curdate();";
+
+
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                    {
+
+                        command.Parameters.AddWithValue("@Id", org.IdOrganizator);
+                        using (MySqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                details.Add(new EventDetails
+                                {
+                                    idEvent = reader.GetInt32("idEvent"),
+                                    idFightCard = reader.GetInt32("idFightCard"),
+                                    idOrganization = reader.GetInt32("idOrganization"),
+                                    Name = reader.GetString("Name"),
+                                    Date = reader.GetDateTime("Date").ToString("dd-MM-yyyy"),
+                                    Location = reader.GetString("Location"),
+                                    idRedCorner = reader.GetInt32("idRedCorner"),
+                                    idBlueCorner = reader.GetInt32("idBlueCorner"),
+                                    RedCorner = fighterService.GetFighterByID(org, reader.GetInt32("idRedCorner")),
+                                    BlueCorner = fighterService.GetFighterByID(org, reader.GetInt32("idBlueCorner")),
+                                });
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Greška: " + ex.Message);
+            }
+
+            return details;
+        }
         public List<EventDetails> GetAllEventsByOrganization(Organizator org)
         {
             List<EventDetails> details = new List<EventDetails>();

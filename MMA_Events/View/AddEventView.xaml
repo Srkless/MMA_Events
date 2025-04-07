@@ -117,7 +117,86 @@
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
+                    <Button Grid.Column="2" Grid.Row="0"
+                            x:Name="FullscreenButton"
+        Background="{DynamicResource buttonColor}" 
+        BorderBrush="{x:Null}" 
+        Foreground="#FF262626" 
+        FontFamily="Arial Black" 
+                            Click="FullscreenButton_Click"
+            
+            HorizontalAlignment="Right" 
+                            
+                VerticalAlignment="Top"
+            FontSize="14" Width="50" Height="30" Margin="0,10,80,0">
+                        <Rectangle Width="12" Height="12" Stroke="{DynamicResource plainTextColor}" StrokeThickness="3"/>
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border x:Name="border" 
+Background="{TemplateBinding Background}" 
+BorderBrush="{TemplateBinding BorderBrush}" 
+BorderThickness="{TemplateBinding BorderThickness}" 
+CornerRadius="15">
+                                    <!-- Zaobljenje rubova -->
+                                    <ContentPresenter HorizontalAlignment="Center" 
+              VerticalAlignment="Center"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <!-- Promijeni boju kada je miš iznad dugmeta -->
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter TargetName="border" Property="Background" Value="{DynamicResource panelOverColor}"/>
+                                        <!-- Zlatna boja -->
+                                    </Trigger>
 
+                                    <!-- Promijeni boju kada je dugme pritisnuto -->
+                                    <Trigger Property="IsPressed" Value="True">
+                                        <Setter TargetName="border" Property="Background" Value="{DynamicResource panelOverColor}"/>
+                                        <!-- Tamnocrvena boja -->
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <!-- Dugme za exit -->
+                    <Button Content="X" Grid.Column="2" Grid.Row="0"
+                            x:Name="ExitButton"
+        Background="{DynamicResource buttonColor}" 
+        BorderBrush="{x:Null}" 
+        Foreground="{DynamicResource plainTextColor}" 
+        FontFamily="Arial Black" 
+                            Click="ExitButton_Click"
+            
+            HorizontalAlignment="Right" 
+                            
+                VerticalAlignment="Top"
+            FontSize="14" Width="50" Height="30" Margin="0,10,25,0">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border x:Name="border" 
+Background="{TemplateBinding Background}" 
+BorderBrush="{TemplateBinding BorderBrush}" 
+BorderThickness="{TemplateBinding BorderThickness}" 
+CornerRadius="15">
+                                    <!-- Zaobljenje rubova -->
+                                    <ContentPresenter HorizontalAlignment="Center" 
+              VerticalAlignment="Center"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <!-- Promijeni boju kada je miš iznad dugmeta -->
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter TargetName="border" Property="Background" Value="{DynamicResource panelOverColor}"/>
+                                        <!-- Zlatna boja -->
+                                    </Trigger>
+
+                                    <!-- Promijeni boju kada je dugme pritisnuto -->
+                                    <Trigger Property="IsPressed" Value="True">
+                                        <Setter TargetName="border" Property="Background" Value="{DynamicResource panelOverColor}"/>
+                                        <!-- Tamnocrvena boja -->
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
 
                     <!--PreviewTextInput="OnlyText_PreviewTextInput" PreviewKeyDown="AllowControlKeys"-->
 
@@ -129,7 +208,8 @@
                             <ColumnDefinition Width="0.2*"></ColumnDefinition>
                             <ColumnDefinition></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <TextBox Grid.Column="0"
+                        <Grid Grid.Column="0">
+                            <TextBox 
                             x:Name="fieldEventName"
                              BorderBrush="#FFAF0E14" 
                              SelectionBrush="#FFAF0E14"
@@ -139,9 +219,10 @@
                              FontFamily="Arial Black" 
                                  VerticalAlignment="Bottom"
                                  Padding="0,0,0,5"
-                             FontSize="{DynamicResource ValueFontSize}"
+                             FontSize="{DynamicResource TypeFontSize}"
                                               Background="Transparent"
                              CaretBrush="white"
+                                HorizontalContentAlignment="Center"
                              VerticalContentAlignment="Center">
 
                             <TextBox.Style>
@@ -178,15 +259,62 @@
                                 </Style>
                             </TextBox.Style>
                         </TextBox>
-                        <DatePicker VerticalAlignment="Bottom" 
-                                    Grid.Column="2" Style="{DynamicResource MaterialDesignDatePicker}" 
+                            <TextBlock x:Name="NamePromptTextBlock"
+                                Text="{DynamicResource EventName}" 
+                                Foreground="Gray" 
+                                       FontFamily="Arial Black"
+                                VerticalAlignment="Center" 
+                                HorizontalAlignment="Center" 
+                                       FontSize="{DynamicResource TypeFontSize}"
+                                IsHitTestVisible="False">
+                                <TextBlock.Style>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Text, ElementName=fieldEventName}" Value="">
+                                                <Setter Property="Visibility" Value="Visible" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                        </Grid>
+                        <Grid Grid.Column="2">
+                            <DatePicker VerticalAlignment="Bottom" 
+                                     Style="{DynamicResource MaterialDesignDatePicker}" 
                                     x:Name="fieldEventDate"  
                                     Grid.Row="1" 
                                     Foreground="white" 
                                     FontSize="{DynamicResource ValueFontSize}" 
-                                    FontFamily="Arial" 
+                                    FontFamily="Arial Black"
+
+
+                                        HorizontalContentAlignment="Center"
                                     BorderBrush="#FF980B11"/>
-                        <TextBox Grid.Column="4"
+                            <TextBlock x:Name="DatePromptTextBlock"
+                            Text="{DynamicResource EventDate}" 
+                            Foreground="Gray" 
+                                   FontFamily="Arial Black"
+                            VerticalAlignment="Center" 
+                            HorizontalAlignment="Center" 
+                                   FontSize="{DynamicResource TypeFontSize}"
+                            IsHitTestVisible="False">
+                                <TextBlock.Style>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Text, ElementName=fieldEventDate}" Value="">
+                                                <Setter Property="Visibility" Value="Visible" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+
+                        </Grid>
+
+                        <Grid Grid.Column="4">
+                            <TextBox 
                             x:Name="fieldEventVenue"
                              BorderBrush="#FFAF0E14" 
                              SelectionBrush="#FFAF0E14"
@@ -196,45 +324,66 @@
                              FontFamily="Arial Black" 
                                  VerticalAlignment="Bottom"
                                  Padding="0,0,0,5"
-                             FontSize="{DynamicResource ValueFontSize}"
+                             FontSize="{DynamicResource TypeFontSize}"
                                               Background="Transparent"
                              CaretBrush="white"
+                                HorizontalContentAlignment="Center"
                              VerticalContentAlignment="Center">
 
-                            <TextBox.Style>
-                                <Style TargetType="TextBox">
-                                    <Setter Property="Template">
-                                        <Setter.Value>
-                                            <ControlTemplate TargetType="TextBox">
-                                                <Border x:Name="border" 
+                                <TextBox.Style>
+                                    <Style TargetType="TextBox">
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="TextBox">
+                                                    <Border x:Name="border" 
                                 Background="{TemplateBinding Background}" 
                                 BorderBrush="{TemplateBinding BorderBrush}" 
                                 BorderThickness="{TemplateBinding BorderThickness}">
-                                                    <ScrollViewer x:Name="PART_ContentHost"/>
-                                                </Border>
-                                                <ControlTemplate.Triggers>
-                                                    <Trigger Property="IsFocused" Value="True">
-                                                        <Setter TargetName="border" Property="BorderBrush" Value="#FFAF0E14"/>
-                                                    </Trigger>
-                                                    <Trigger Property="IsMouseOver" Value="True">
-                                                        <Setter TargetName="border" Property="BorderBrush" Value="#FFAF0E14"/>
-                                                    </Trigger>
-                                                </ControlTemplate.Triggers>
-                                            </ControlTemplate>
-                                        </Setter.Value>
-                                    </Setter>
-                                    <Setter Property="FontSize" Value="14"/>
-                                    <Style.Triggers>
-                                        <DataTrigger Binding="{Binding ActualHeight, RelativeSource={RelativeSource Self}}" Value="35">
-                                            <Setter Property="FontSize" Value="14"/>
-                                        </DataTrigger>
-                                        <DataTrigger Binding="{Binding ActualHeight, RelativeSource={RelativeSource Self}}" Value="70">
-                                            <Setter Property="FontSize" Value="25"/>
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </TextBox.Style>
-                        </TextBox>
+                                                        <ScrollViewer x:Name="PART_ContentHost"/>
+                                                    </Border>
+                                                    <ControlTemplate.Triggers>
+                                                        <Trigger Property="IsFocused" Value="True">
+                                                            <Setter TargetName="border" Property="BorderBrush" Value="#FFAF0E14"/>
+                                                        </Trigger>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter TargetName="border" Property="BorderBrush" Value="#FFAF0E14"/>
+                                                        </Trigger>
+                                                    </ControlTemplate.Triggers>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                        <Setter Property="FontSize" Value="14"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding ActualHeight, RelativeSource={RelativeSource Self}}" Value="35">
+                                                <Setter Property="FontSize" Value="14"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding ActualHeight, RelativeSource={RelativeSource Self}}" Value="70">
+                                                <Setter Property="FontSize" Value="25"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBox.Style>
+                            </TextBox>
+                            <TextBlock x:Name="VenuePromptTextBlock"
+                            Text="{DynamicResource EventLocation}" 
+                            Foreground="Gray" 
+                                   FontFamily="Arial Black"
+                            VerticalAlignment="Center" 
+                            HorizontalAlignment="Center" 
+                                   FontSize="{DynamicResource TypeFontSize}"
+                            IsHitTestVisible="False">
+                                <TextBlock.Style>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Text, ElementName=fieldEventVenue}" Value="">
+                                                <Setter Property="Visibility" Value="Visible" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                        </Grid>
 
                         <TextBlock x:Name="eventName"
                                    Text="" 
@@ -293,7 +442,7 @@
 
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <Border Padding="5" Margin="5,0,5,5" Width="140">
+                                    <Border Padding="5" Margin="5,0,5,5" Width="{DynamicResource addEventFighterCardSize}">
                                         <StackPanel>
                                             <Button CommandParameter="{Binding}" Click="ChooseLeftFigther">
                                                 <Button.Template>
@@ -310,7 +459,7 @@
                                                 </Button.Template>
                                                 <StackPanel>
                                                     <Grid>
-                                                        <Image Source="{Binding Image}" Height="130" Stretch="UniformToFill">
+                                                        <Image Source="{Binding Image}" Height="{DynamicResource addEventFighterCardSize}" Stretch="UniformToFill">
                                                         </Image>
                                                     </Grid>
                                                 </StackPanel>
@@ -386,7 +535,7 @@
 
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <Border Padding="5" Margin="5,0,5,5" Width="140">
+                                    <Border Padding="5" Margin="5,0,5,5" Width="{DynamicResource addEventFighterCardSize}">
                                         <StackPanel>
                                             <Button CommandParameter="{Binding}" Click="ChooseRightFigther">
                                                 <Button.Template>
@@ -403,7 +552,7 @@
                                                 </Button.Template>
                                                 <StackPanel>
                                                     <Grid>
-                                                        <Image Source="{Binding Image}" Height="130" Stretch="UniformToFill">
+                                                        <Image Source="{Binding Image}" Height="{DynamicResource addEventFighterCardSize}" Stretch="UniformToFill">
                                                         </Image>
                                                     </Grid>
                                                 </StackPanel>

@@ -27,7 +27,8 @@ namespace MMA_Events.View
     {
         public ObservableCollection<EventDetails> EventDetails { get; set; }
         public EventService service = EventService.getInstance();
-        public OrganizatorView organizatorView { get; set; }
+        public BaseWindow baseView { get; set; }
+        private Organizator org = null;
         public ShowEventsPage()
         {
             InitializeComponent();
@@ -37,17 +38,25 @@ namespace MMA_Events.View
             DataContext = this;
         }
 
-        public ShowEventsPage(OrganizatorView view)
+        public ShowEventsPage(BaseWindow baseWin, Organizator org = null)
         {
             InitializeComponent();
 
             EventDetails = new ObservableCollection<EventDetails>();
-            organizatorView = view;
+            baseView = baseWin;
+            this.org = org;
 
-            if (view != null)
+            if (baseView is OrganizatorView view && view != null)
             {
                 Organizator organizator = view.org;
                 foreach (EventDetails details in service.GetAllEventsByOrganization(organizator))
+                {
+                    EventDetails.Add(details);
+                }
+            }
+            else if (baseView is UserView userView && userView != null)
+            {
+                foreach (EventDetails details in service.GetAllEventsByOrganization(org))
                 {
                     EventDetails.Add(details);
                 }
@@ -102,32 +111,40 @@ namespace MMA_Events.View
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
             if (sender is Button button)
             {
                 if (button.CommandParameter is EventDetails details)
                 {
 
-                    organizatorView.BackButton.Visibility = Visibility.Visible;
-
-                    ShowFightCard showFightCard = new ShowFightCard(organizatorView, details);
-
-                    if (organizatorView.WindowState == WindowState.Maximized)
+                    baseView.bBack.Visibility = Visibility.Visible;
+                    ShowFightCard showFightCard = null;
+                    if (baseView is OrganizatorView view && view != null)
                     {
-                        showFightCard.WindowState = WindowState.Maximized;
+
+                        showFightCard = new ShowFightCard(view, details);
                     }
-                    else
+                    else if (baseView is UserView userView && userView != null)
                     {
-                        showFightCard.Width = organizatorView.Width;
-                        showFightCard.Height = organizatorView.Height;
-
-                        showFightCard.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-
+                        showFightCard = new ShowFightCard(userView, details, org);
                     }
-                    showFightCard.Show();
-                    //registerWindow.paddingAdjustment();
-                    organizatorView.Visibility = Visibility.Collapsed;
-                }
+
+                        if (baseView.WindowState == WindowState.Maximized)
+                        {
+                            showFightCard.WindowState = WindowState.Maximized;
+                        }
+                        else
+                        {
+                            showFightCard.Width = baseView.Width;
+                            showFightCard.Height = baseView.Height;
+
+                            showFightCard.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+
+                        }
+                        showFightCard.Show();
+                        //registerWindow.paddingAdjustment();
+                        baseView.Visibility = Visibility.Collapsed;
+                    }
+                
             }
         }
 

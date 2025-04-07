@@ -30,10 +30,6 @@ namespace MMA_Events.View
     {
 
         Organizator org = null;
-        //public AddFighterPage()
-        //{
-        //    InitializeComponent();
-        //}
 
         public AddFighterPage(Organizator org)
         {
@@ -62,6 +58,7 @@ namespace MMA_Events.View
                 {
                     bAddImage.Visibility = Visibility.Hidden;
                     RePickImageButton.Visibility = Visibility.Visible;
+                    OnFieldChanged(null, null);
                 }
             }
         }
@@ -82,6 +79,7 @@ namespace MMA_Events.View
 
                 // Postavljanje nove slike na Image kontrolu
                 SelectedImage.Source = bitmap;
+                OnFieldChanged(null, null);
             }
         }
 
@@ -126,6 +124,8 @@ namespace MMA_Events.View
                 tbfighterWeight.Text = GetWeightCategory(float.Parse(fieldFighterWeight.Text));
             else
                 tbfighterWeight.Text = "";
+
+            OnFieldChanged(sender, e);
         }
 
         private void AddFighter_Click(object sender, RoutedEventArgs e)
@@ -147,6 +147,16 @@ namespace MMA_Events.View
             }
             int idOrg = org.IdOrganizator;
 
+            if(Fullname.Length < 2)
+            {
+                CustomMessageBox.Show(Application.Current.Resources["FighterFullnameError"] as string);
+                return;
+            }
+
+            if(score.Length < 3)
+            {
+                CustomMessageBox.Show(Application.Current.Resources["FighterScoreError"] as string);
+            }
             Fighter fighter = new Fighter
             {
                 Name = Fullname[0],
@@ -175,8 +185,28 @@ namespace MMA_Events.View
             {
 
             }
+        }
 
+        private void OnFieldChanged(object sender, EventArgs e)
+        {
+            bool isImageSelected = SelectedImage.Source != null;
 
+            bAddFighter.IsEnabled =
+                !string.IsNullOrWhiteSpace(fieldUserNickname.Text) &&
+                !string.IsNullOrWhiteSpace(fieldUserFullname.Text) &&
+                !string.IsNullOrWhiteSpace(fieldFighterWeight.Text) &&
+                !string.IsNullOrWhiteSpace(fieldFighterCountry.Text) &&
+                fieldFighterBirthDate.SelectedDate.HasValue &&
+                !string.IsNullOrWhiteSpace(fieldFighterScore.Text) &&
+                !string.IsNullOrWhiteSpace(fieldFighterKOs.Text) &&
+                !string.IsNullOrWhiteSpace(fieldFighterSubmissions.Text) &&
+                isImageSelected;
+        }
+
+        private void OnDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // Poziv funkcije koja proverava da li su svi podaci popunjeni
+            OnFieldChanged(sender, e);
         }
 
         public static string GetWeightCategory(float fighterWeight)

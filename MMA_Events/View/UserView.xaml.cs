@@ -1,4 +1,6 @@
-﻿using MMA_Events.View;
+﻿using MMA_Events.Model;
+using MMA_Events.Services;
+using MMA_Events.View;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +14,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
 namespace MMA_Events.View
 {
     /// <summary>
@@ -22,10 +23,18 @@ namespace MMA_Events.View
     {
 
         public override Frame MainFrame => Main;
-        public override Button bButton => BackButton;
-        public UserView()
+        public override Button bBack => BackButton;
+
+        public User user { get; set; }
+        public UserView(User user) : base("User")
         {
             InitializeComponent();
+
+            this.user = user;
+            paddingAdjustment();
+            Main.Content = new ShowActiveEvents(this);
+
+            SettingsPage settingsPage = new SettingsPage(this, false);
         }
 
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -36,7 +45,7 @@ namespace MMA_Events.View
             Application.Current.Resources["FinishNumFontSize"] = width * 0.08;
             Application.Current.Resources["NameFontSize"] = width * 0.028;
             Application.Current.Resources["weightTextboxWidth"] = width * 0.040;
-            Application.Current.Resources["eventCardSize"] = width * 0.35;
+            Application.Current.Resources["eventCardSize"] = width * 0.25;
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
@@ -110,8 +119,11 @@ namespace MMA_Events.View
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            Main.Content = new ShowFightersPage();
-            BackButton.Visibility = Visibility.Collapsed;
+            if (MainFrame.CanGoBack)
+            {
+                MainFrame.GoBack();
+                BackButton.Visibility = MainFrame.CanGoBack ? Visibility.Visible : Visibility.Collapsed;
+            }
         }
 
 
@@ -134,41 +146,42 @@ namespace MMA_Events.View
             if (e.Key == Key.Enter)
             {
                 string searchText = searchTextBox.Text;
-                MessageBox.Show($"Prikazujem rezultate za: {searchText}");
+
                 if (Main.Content is SearchPage searchPage)
                 {
-                    // Pozovi metod za pretragu na postojećoj stranici
                     searchPage.Search(searchText);
                 }
                 else
                 {
-                    // Kreiraj novu instancu SearchPage i postavi je u Main.Content
                     searchPage = new SearchPage();
                     Main.Content = searchPage;
-                    searchPage.Search(searchText); // Pokreni pretragu odmah
+                    searchPage.Search(searchText);
                 }
-                searchPage.searchLabel.Text += "\"" + searchText + "\"";
+
+                // Postavljanje fiksnog dela teksta pre nove pretrage
+                if(searchPage.SearchDetails.Count > 0)
+                    searchPage.searchLabel.Text = (Application.Current.Resources["SearchResults"] as string) + " \"" + searchText + "\"";
+                else
+                    searchPage.searchLabel.Text = (Application.Current.Resources["NoSearchResults"] as string) + " \"" + searchText + "\"";
                 searchTextBox.Text = "";
                 SearchRadioButton_UnChecked(sender, e);
                 SerachRB.IsChecked = false;
             }
+
         }
         private void rbDashBoard_checked(object sender, RoutedEventArgs e)
         {
-
+            Main.Content = new ShowActiveEvents(this);
         }
 
         private void rbOrganizations_checked(object sender, RoutedEventArgs e)
         {
-
+            Main.Content = new ShowOrganizations(this);
         }
-
-
-
 
         private void settingsRB_checked(object sender, RoutedEventArgs e)
         {
-            Main.Content = new SettingsPage();
+            Main.Content = new SettingsPage(this);
         }
 
         private void logoutRB_checked(object sender, RoutedEventArgs e)
@@ -190,6 +203,9 @@ namespace MMA_Events.View
             loginWindow.paddingAdjustment();
             this.Close();
         }
-
+        public void ReloadWindow()
+        {
+            this.InvalidateVisual(); // Osvežava trenutni prozor
+        }
     }
 }

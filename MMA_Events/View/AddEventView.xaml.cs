@@ -14,6 +14,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
@@ -109,6 +110,66 @@ namespace MMA_Events.View
             }
         }
 
+        private void ExitButton_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown(); // Zatvori aplikaciju
+        }
+
+        private void FullscreenButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (WindowState == WindowState.Maximized)
+            {
+                WindowState = WindowState.Normal;
+                ResizeMode = ResizeMode.CanResize;
+                paddingAdjustment();
+            }
+            else
+            {
+                WindowState = WindowState.Maximized;
+                WindowStyle = WindowStyle.None;
+                ResizeMode = ResizeMode.NoResize;
+                paddingAdjustment();
+            }
+
+            WindowStartupLocation = WindowStartupLocation.CenterScreen;
+
+
+        }
+
+
+        public void paddingAdjustment()
+        {
+            double iconSize;
+            double fontSize;
+            double radioBoxSize;
+            //double valueFontSize;
+            //double typeFontSize;
+            if (WindowState != WindowState.Maximized)
+            {
+                iconSize = 22;
+                fontSize = 13.5;
+                radioBoxSize = 50;
+                //typeFontSize = 20;
+                //valueFontSize = 14;
+
+            }
+            else
+            {
+                iconSize = 45;
+                fontSize = 20;
+                radioBoxSize = 80;
+                //typeFontSize = 30;
+                //valueFontSize = 20;
+            }
+            Application.Current.Resources["MenuButtonFontSize"] = fontSize;
+            Application.Current.Resources["MenuIconSize"] = iconSize;
+            Application.Current.Resources["RadioBoxSize"] = radioBoxSize;
+
+            //Application.Current.Resources["ValueFontSize"] = valueFontSize;
+            //Application.Current.Resources["TypeFontSize"] = typeFontSize;
+
+        }
+
         private void ChooseLeftFigther(object sender, RoutedEventArgs e)
         {
 
@@ -150,6 +211,7 @@ namespace MMA_Events.View
             organizatorView.Show();
             organizatorView.rbAddEvent.IsChecked = false;
             organizatorView.Visibility = Visibility.Visible;
+            organizatorView.Main.Content = new ShowEventsPage(organizatorView);
             this.Close();
         }
         private void SwitchFighters_Click(object sender, RoutedEventArgs e)
@@ -194,7 +256,7 @@ namespace MMA_Events.View
             if (e.Key == Key.Enter)
             {
                 EventService service = EventService.getInstance();
-                if (fieldEventName.Text != ""! & fieldEventDate.Text != "" && fieldEventVenue.Text != "")
+                if (fieldEventName.Text != "" && fieldEventDate.Text != "" && fieldEventVenue.Text != "")
                 {
                     fieldEventName.Visibility = Visibility.Collapsed;
                     fieldEventDate.Visibility = Visibility.Collapsed;
@@ -211,6 +273,11 @@ namespace MMA_Events.View
                     eventDate.Visibility = Visibility.Visible;
                     eventVenue.Visibility = Visibility.Visible;
 
+
+                    VenuePromptTextBlock.Visibility = Visibility.Collapsed;
+                    DatePromptTextBlock.Visibility = Visibility.Collapsed;
+                    NamePromptTextBlock.Visibility = Visibility.Collapsed;
+
                     fieldEventName.Text = "";
                     fieldEventDate.Text = "";
                     fieldEventVenue.Text = "";
@@ -224,12 +291,12 @@ namespace MMA_Events.View
                         IdOrganization = organizatorView.org.IdOrganizator
                     };
 
-                    if ((Event.Id = service.createEvent(Event)) != null)
-                        MessageBox.Show("Event je upspjesno dodan!");
+                    if ((Event.Id = service.createEvent(Event)) == null)
+                        CustomMessageBox.Show(Application.Current.Resources["EventCreationError"] as string); 
                 }
                 else if (Event == null)
                 {
-                    MessageBox.Show("Popunite sve podatke vezane za event", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+                    CustomMessageBox.Show(Application.Current.Resources["EventFieldsError"] as string);
                 }
 
                 if (SelectedFighterRight != null && SelectedFighterLeft != null && Event != null)
@@ -259,9 +326,9 @@ namespace MMA_Events.View
                         idCard = card.id,
                     };
 
-                    if (service.addFight(fight))
+                    if (!service.addFight(fight))
                     {
-                        MessageBox.Show("Fight je upspjesno dodan!");
+                        CustomMessageBox.Show(Application.Current.Resources["FightCreationError"] as string);
                     }
                 }
             }

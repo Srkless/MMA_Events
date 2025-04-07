@@ -163,7 +163,7 @@ namespace MMA_Events.View
                 string.IsNullOrWhiteSpace(password) ||
                 string.IsNullOrWhiteSpace(confPass))
             {
-                MessageBox.Show("Molimo popunite sva polja.", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+                CustomMessageBox.Show(Application.Current.Resources["RegistrationFieldsError"] as string);
                 return;
             }
 
@@ -171,7 +171,7 @@ namespace MMA_Events.View
 
             if (!_validationService.validateEmail(email))
             {
-                MessageBox.Show("Neispravna email adresa", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+                CustomMessageBox.Show(Application.Current.Resources["RegistrationInvalidEmailError"] as string);
                 return;
             }
 
@@ -180,15 +180,14 @@ namespace MMA_Events.View
                 encPass = _validationService.HashPassword(password);
                 if (registerService.GetUserByEmail(email) == null && registerService.registerUser(username, surname, email, country, encPass))
                 {
-                    MessageBox.Show("Uspesno ste se registrovali", "Dobrodosli", MessageBoxButton.OK, MessageBoxImage.Information);
                     BtnLogin_Click(sender, e);
                 }
                 else
-                    MessageBox.Show("Registracija nije uspesna", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+                    CustomMessageBox.Show(Application.Current.Resources["RegistrationEmailError"] as string);
             }
             else
             {
-                MessageBox.Show("Sifre se ne poklapaju ili je manja od 8 karaktera.", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+                CustomMessageBox.Show(Application.Current.Resources["RegistrationPasswordError"] as string);
                 return;
             }
         }

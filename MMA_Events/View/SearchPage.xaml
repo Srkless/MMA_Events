@@ -12,7 +12,7 @@
     <Page.Resources>
         <conv:NicknameConverter x:Key="NicknameConverter"/>
         <DataTemplate x:Key="EventTemplate">
-            <Border Padding="5" Margin="5,0,5,5" Width="{DynamicResource eventCardSize}">
+            <Border Padding="6" Margin="0,0,0,3" Width="{DynamicResource eventCardSize}">
                 <StackPanel>
 
                     <Button Click="OpenPage" CommandParameter="{Binding}">
@@ -46,7 +46,7 @@
                                     </LinearGradientBrush>
                                 </Border.Background>
                             </Border>
-                            <TextBlock Text="{Binding Event.Name}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{DynamicResource FinishNumFontSize}" FontFamily="Arial Black">
+                            <TextBlock Text="{Binding Event.Name}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{DynamicResource weightTextboxWidth}" FontFamily="Arial Black">
                                 <TextBlock.Foreground>
                                     <SolidColorBrush Color="white" Opacity="0.6"/>
                                 </TextBlock.Foreground>
@@ -59,7 +59,7 @@
         </DataTemplate>
         <!-- Šablon za Fighter-a -->
         <DataTemplate x:Key="FighterTemplate">
-            <Border Padding="5" Margin="5,0,5,5" Width="180">
+            <Border Margin="5,0,10,5" Width="200">
                 <StackPanel>
                     <Button Click="OpenPage" CommandParameter="{Binding}">
                         <Button.Template>
@@ -81,16 +81,16 @@
                                 </TextBlock.Foreground>
                             </TextBlock>
                             <Grid>
-                                <Image Source="{Binding Fighter.Image}" Height="200">
+                                <Image Source="{Binding Fighter.Image}" Height="270">
                                     <Image.Clip>
-                                        <RectangleGeometry Rect="0,0,200,100"/>
+                                        <RectangleGeometry Rect="0,0,200,175"/>
 
                                     </Image.Clip>
 
                                 </Image>
-                                <TextBlock Text="{Binding Fighter.CategoryName}" Padding="0, 105, 0, 0" HorizontalAlignment="Center" Foreground="red" FontSize="13" FontFamily="Arial Black"/>
-                                <TextBlock Text="{Binding Fighter.Fullname}" Padding="0, 120, 0, 0" HorizontalAlignment="Center" Foreground="White" FontSize="18"/>
-                                <TextBlock Text="{Binding Fighter.Score, StringFormat='Score: {0}'}" Padding="0, 140, 0, 0" HorizontalAlignment="Center" Foreground="White" FontSize="18"/>
+                                <TextBlock Text="{Binding Fighter.CategoryName}" Padding="0, 185, 0, 0" HorizontalAlignment="Center" Foreground="red" FontSize="13" FontFamily="Arial Black"/>
+                                <TextBlock Text="{Binding Fighter.Fullname}" Padding="0, 205, 0, 0" HorizontalAlignment="Center" Foreground="White" FontSize="18"/>
+                                <TextBlock Text="{Binding Fighter.Score, StringFormat='Score: {0}'}" Padding="0, 235, 0, 0" HorizontalAlignment="Center" Foreground="White" FontSize="18"/>
                             </Grid>
                         </StackPanel>
                     </Button>
@@ -135,7 +135,7 @@ BorderThickness="4"
                         <RowDefinition Height="0.1*"></RowDefinition>
                         <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
-                    <TextBlock x:Name="searchLabel" Text="Rezultati pretrage za " FontSize="{DynamicResource NameFontSize}" 
+                    <TextBlock x:Name="searchLabel" Text="{DynamicResource SearchResults}" FontSize="{DynamicResource NameFontSize}" 
                                VerticalAlignment="Center" 
                                HorizontalAlignment="Center" FontFamily="Arial Black" Foreground="white"></TextBlock>
                     <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1">

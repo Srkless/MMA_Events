@@ -78,7 +78,7 @@ Background="{TemplateBinding Background}"
                             Background="{DynamicResource panelOverColor}"
                             BorderBrush="Transparent" 
                             Foreground="{DynamicResource plainTextColor}"
-                            x:Name="RePickImageButton" Content="Re-pick Image" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="100" Height="30" Click="RePickImageButton_Click" Visibility="Collapsed" FontFamily="Arial Black">
+                            x:Name="RePickImageButton" Content="{DynamicResource RepickImageButton}" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="100" Height="30" Click="RePickImageButton_Click" Visibility="Collapsed" FontFamily="Arial Black">
                             <Button.Template>
                                 <ControlTemplate TargetType="Button">
                                     <Border x:Name="border" 
@@ -130,6 +130,7 @@ CornerRadius="15">
 
                             <Grid Grid.Row="0">
                                 <TextBox x:Name="fieldUserNickname"
+                                         TextChanged="OnFieldChanged"
                                  PreviewTextInput="OnlyText_PreviewTextInput" PreviewKeyDown="AllowControlKeys"
                         TextWrapping="Wrap" 
                         BorderBrush="#FFAF0E14" 
@@ -182,7 +183,7 @@ CornerRadius="15">
 
                                 </TextBox>
                                 <TextBlock x:Name="NicknamePromptTextBlock" Grid.Row="1"
-                                  Text="Nickname" 
+                                  Text="{DynamicResource FighterNickname}" 
                                   Foreground="Gray" 
                                   VerticalAlignment="Center" 
                                   HorizontalAlignment="Left" 
@@ -202,6 +203,7 @@ CornerRadius="15">
 
                             <Grid Grid.Row="2">
                                 <TextBox x:Name="fieldUserFullname"
+                                         TextChanged="OnFieldChanged"
                                  PreviewTextInput="OnlyText_PreviewTextInput" PreviewKeyDown="AllowControlKeys"
                                  TextWrapping="Wrap" 
                                  BorderBrush="#FFAF0E14" 
@@ -254,7 +256,7 @@ CornerRadius="15">
 
                                 </TextBox>
                                 <TextBlock x:Name="FullNamePromptTextBlock" Grid.Row="1"
-                                   Text="Full name" 
+                                   Text="{DynamicResource FighterFullName}" 
                                    Foreground="Gray" 
                                    VerticalAlignment="Center" 
                                    HorizontalAlignment="Left" 
@@ -294,7 +296,7 @@ CornerRadius="15">
                                     <RowDefinition></RowDefinition>
                                     <RowDefinition></RowDefinition>
                                 </Grid.RowDefinitions>
-                                <TextBlock Margin="0,-10,0,0" Grid.Row="0" Text="Weight" FontSize="{DynamicResource TypeFontSize}" FontFamily="Arial Black">
+                                <TextBlock Margin="0,-10,0,0" Grid.Row="0" Text="{DynamicResource FighterWeight}" FontSize="{DynamicResource TypeFontSize}" FontFamily="Arial Black">
                                     <TextBlock.Foreground>
                                         <SolidColorBrush Color="#828282" Opacity="1"/>
                                     </TextBlock.Foreground>
@@ -302,7 +304,8 @@ CornerRadius="15">
 
                                 <!--Width="{DynamicResource weightTextboxWidth}"-->
                                 <Grid Grid.Row="1" >
-                                    <TextBox TextChanged="getCategoryName" PreviewTextInput="OnlyNumbersDotAndMinus_PreviewTextInput" PreviewKeyDown="AllowControlKeys"
+                                    <TextBox TextChanged="getCategoryName" 
+                                             PreviewTextInput="OnlyNumbersDotAndMinus_PreviewTextInput" PreviewKeyDown="AllowControlKeys"
                                         x:Name="fieldFighterWeight"
                                          Background="Transparent" 
                                          BorderBrush="#FF980B11" 
@@ -356,13 +359,14 @@ CornerRadius="15">
                                     <RowDefinition></RowDefinition>
                                     <RowDefinition></RowDefinition>
                                 </Grid.RowDefinitions>
-                                <TextBlock Margin="0,-10,0,0" Grid.Row="0" Text="Country" FontSize="{DynamicResource TypeFontSize}" FontFamily="Arial Black">
+                                <TextBlock Margin="0,-10,0,0" Grid.Row="0" Text="{DynamicResource FighterCountry}" FontSize="{DynamicResource TypeFontSize}" FontFamily="Arial Black">
                                     <TextBlock.Foreground>
                                         <SolidColorBrush Color="#828282" Opacity="1"/>
                                     </TextBlock.Foreground>
                                 </TextBlock>
 
                                 <TextBox Grid.Row="1"
+                                         TextChanged="OnFieldChanged" 
                                           PreviewTextInput="OnlyText_PreviewTextInput" PreviewKeyDown="AllowControlKeys"
                                     x:Name="fieldFighterCountry"
                                      Background="Transparent" 
@@ -409,13 +413,13 @@ CornerRadius="15">
                                     <RowDefinition></RowDefinition>
                                     <RowDefinition></RowDefinition>
                                 </Grid.RowDefinitions>
-                                <TextBlock Margin="0,-10,0,0" Grid.Row="0" Text="Birth" FontSize="{DynamicResource TypeFontSize}" FontFamily="Arial Black">
+                                <TextBlock Margin="0,-10,0,0" Grid.Row="0" Text="{DynamicResource FighterDob}" FontSize="{DynamicResource TypeFontSize}" FontFamily="Arial Black">
                                     <TextBlock.Foreground>
                                         <SolidColorBrush Color="#828282" Opacity="1"/>
                                     </TextBlock.Foreground>
                                 </TextBlock>
 
-                                <DatePicker Style="{DynamicResource MaterialDesignDatePicker}" x:Name="fieldFighterBirthDate" Padding="0,0,0,0" Grid.Row="1" Foreground="white" FontSize="{DynamicResource ValueFontSize}" FontFamily="Arial" BorderBrush="#FF980B11">
+                                <DatePicker  SelectedDateChanged="OnDateChanged" Style="{DynamicResource MaterialDesignDatePicker}" x:Name="fieldFighterBirthDate" Padding="0,0,0,0" Grid.Row="1" Foreground="white" FontSize="{DynamicResource ValueFontSize}" FontFamily="Arial" BorderBrush="#FF980B11">
 
                                 </DatePicker>
 
@@ -468,13 +472,13 @@ CornerRadius="15">
                                     <RowDefinition></RowDefinition>
                                     <RowDefinition></RowDefinition>
                                 </Grid.RowDefinitions>
-                                <TextBlock Grid.Row="0" Text="Score:" FontSize="{DynamicResource TypeFontSize}" FontFamily="Arial Black">
+                                <TextBlock Grid.Row="0" Text="{DynamicResource FighterScore}" FontSize="{DynamicResource TypeFontSize}" FontFamily="Arial Black">
                                     <TextBlock.Foreground>
                                         <SolidColorBrush Color="#828282" Opacity="1"/>
                                     </TextBlock.Foreground>
                                 </TextBlock>
                                 <Grid Grid.Row="1">
-                                    <TextBox 
+                                    <TextBox TextChanged="OnFieldChanged" 
                                         PreviewTextInput="OnlyNumbersDotAndMinus_PreviewTextInput" PreviewKeyDown="AllowControlKeys"
              x:Name="fieldFighterScore"
               Background="Transparent" 
@@ -541,7 +545,7 @@ CornerRadius="15">
 
                                     <Border Margin="20,0,20,0" BorderBrush="#FFEA3444" BorderThickness="0,0,0,1">
                                         <Grid>
-                                            <TextBox 
+                                            <TextBox TextChanged="OnFieldChanged" 
                                                 PreviewTextInput="OnlyNumbers_PreviewTextInput" PreviewKeyDown="AllowControlKeys"
 x:Name="fieldFighterKOs"
  Background="Transparent" 
@@ -589,7 +593,7 @@ x:Name="fieldFighterKOs"
                                     </Border>
 
 
-                                    <TextBlock Grid.Row="1" Text="  WINS BY KNOCKOUT" FontSize="{DynamicResource TypeFontSize}" FontFamily="Arial Black" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <TextBlock Grid.Row="1"  Text="{DynamicResource FighterKoWins}" FontSize="{DynamicResource TypeFontSize}" FontFamily="Arial Black" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center">
                                         <TextBlock.Foreground>
                                             <SolidColorBrush Color="#f5f5f5" Opacity="1"/>
                                         </TextBlock.Foreground>
@@ -606,7 +610,7 @@ x:Name="fieldFighterKOs"
 
                                     <Border Margin="20,0,20,0" BorderBrush="#FFEA3444" BorderThickness="0,0,0,1">
                                         <Grid>
-                                            <TextBox 
+                                            <TextBox TextChanged="OnFieldChanged" 
                                                 PreviewTextInput="OnlyNumbers_PreviewTextInput" PreviewKeyDown="AllowControlKeys"
 
 x:Name="fieldFighterSubmissions"
@@ -654,7 +658,7 @@ x:Name="fieldFighterSubmissions"
                                     </Border>
 
 
-                                    <TextBlock Grid.Row="1" Text="  WINS BY SUBMISSION" FontSize="{DynamicResource TypeFontSize}" FontFamily="Arial Black" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <TextBlock Grid.Row="1" Text="{DynamicResource FighterSubmisionWins}" FontSize="{DynamicResource TypeFontSize}" FontFamily="Arial Black" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center">
                                         <TextBlock.Foreground>
                                             <SolidColorBrush Color="#f5f5f5" Opacity="1"/>
                                         </TextBlock.Foreground>
@@ -667,10 +671,11 @@ x:Name="fieldFighterSubmissions"
                         </Grid>
                         <Button 
                                         Grid.Row="7"
+                            IsEnabled="False"
                             Background="{DynamicResource panelOverColor}"
                             BorderBrush="Transparent" 
                             Foreground="{DynamicResource plainTextColor}"
-                            x:Name="bAddFighter" Content="Add Fighter" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Height="30" Click="AddFighter_Click" FontFamily="Arial Black">
+                            x:Name="bAddFighter" Content="{DynamicResource AddFighterButton}" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Height="30" Click="AddFighter_Click" FontFamily="Arial Black">
                             <Button.Template>
                                 <ControlTemplate TargetType="Button">
                                     <Border x:Name="border" 

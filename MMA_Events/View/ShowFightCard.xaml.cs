@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -26,7 +27,7 @@ namespace MMA_Events.View
     public partial class ShowFightCard : Window, INotifyPropertyChanged
     {
 
-        public OrganizatorView organizatorView { get; set; }
+        public BaseWindow baseWindow { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
         public List<(int idFight, FighterDetails redCorner, FighterDetails blueCorner)> fighters;
@@ -68,20 +69,29 @@ namespace MMA_Events.View
         }
 
         private int currentIndex = 0;
+        private Organizator org = null;
         public ShowFightCard()
         {
             InitializeComponent();
             fighters = new List<(int idFight, FighterDetails redCornder, FighterDetails redCorder)>();
         }
 
-        public ShowFightCard(OrganizatorView organizatorView, EventDetails details)
+        public ShowFightCard(BaseWindow baseWindow, EventDetails details, Organizator org = null)
         {
             InitializeComponent();
-            this.organizatorView = organizatorView;
+            this.baseWindow = baseWindow;
             this.details = details;
+            this.org = org;
 
             EventService service = EventService.getInstance();
-            fighters = service.GetFightersFromCard(organizatorView.org, details);
+            if (org == null)
+            {
+                if (baseWindow is OrganizatorView organizatorView && organizatorView != null)
+                {
+                    this.org = organizatorView.org;
+                }
+            }
+            fighters = service.GetFightersFromCard(this.org, details);
 
             FightService fightService = FightService.getInstance();
 
@@ -98,14 +108,83 @@ namespace MMA_Events.View
             eventDate.Text = details.Date;
 
             DataContext = this;
+        }
+        private void ExitButton_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown(); // Zatvori aplikaciju
+        }
+
+        private void FullscreenButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (WindowState == WindowState.Maximized)
+            {
+                WindowState = WindowState.Normal;
+                ResizeMode = ResizeMode.CanResize;
+                fieldMethod.Margin = new Thickness(0, 0, -50, 0);
+                paddingAdjustment();
+            }
+            else
+            {
+                WindowState = WindowState.Maximized;
+                WindowStyle = WindowStyle.None;
+                ResizeMode = ResizeMode.NoResize;
+                fieldMethod.Margin = new Thickness(0, 0, -150, 0);
+                paddingAdjustment();
+            }
+
+            WindowStartupLocation = WindowStartupLocation.CenterScreen;
+
 
         }
 
+
+        public void paddingAdjustment()
+        {
+            double iconSize;
+            double fontSize;
+            double radioBoxSize;
+            //double valueFontSize;
+            //double typeFontSize;
+            if (WindowState != WindowState.Maximized)
+            {
+                iconSize = 22;
+                fontSize = 13.5;
+                radioBoxSize = 50;
+                //typeFontSize = 20;
+                //valueFontSize = 14;
+
+            }
+            else
+            {
+                iconSize = 45;
+                fontSize = 20;
+                radioBoxSize = 80;
+                //typeFontSize = 30;
+                //valueFontSize = 20;
+            }
+            Application.Current.Resources["MenuButtonFontSize"] = fontSize;
+            Application.Current.Resources["MenuIconSize"] = iconSize;
+            Application.Current.Resources["RadioBoxSize"] = radioBoxSize;
+
+            //Application.Current.Resources["ValueFontSize"] = valueFontSize;
+            //Application.Current.Resources["TypeFontSize"] = typeFontSize;
+
+        }
 
         private void OnlyNumbers_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             // Dozvoljava samo brojeve
             e.Handled = !int.TryParse(e.Text, out _);
+
+        }
+
+        private void OnlyText_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex(@"^[a-zA-Z\s]+$");
+            if (!regex.IsMatch(e.Text))
+            {
+                e.Handled = true; // Blokira unos nedozvoljenih znakova
+            }
 
         }
 
@@ -126,13 +205,11 @@ namespace MMA_Events.View
             leftFighterWinner.Visibility = Visibility.Visible;
             rightFighterWinner.Visibility = Visibility.Collapsed;
             Winner = SelectedFighterLeft;
-
         }
         private void btnT_Checked(object sender, RoutedEventArgs e)
         {
             DockPanel.SetDock(btnS, Dock.Right);
             ToggleGradientDirection(btnT);
-
 
             leftFighterWinner.Visibility = Visibility.Collapsed;
             rightFighterWinner.Visibility = Visibility.Visible;
@@ -164,7 +241,7 @@ namespace MMA_Events.View
 
             updateResults();
 
-            
+
             showButtons();
 
             DataContext = this;
@@ -177,6 +254,12 @@ namespace MMA_Events.View
 
             if (f == null)
             {
+                return;
+            }
+
+            if (baseWindow.Type == "User")
+            {
+                btnT.IsEnabled = false;
                 return;
             }
 
@@ -221,11 +304,19 @@ namespace MMA_Events.View
                     btnT.IsEnabled = true;
                     Winner = null;
                 }
+
+
             }
+            
         }
         private void showButtons()
         {
-            if (currentIndex == 0)
+            if(fighters.Count == 1)
+            {
+                prevFight.Visibility = Visibility.Collapsed;
+                nextFight.Visibility = Visibility.Collapsed;
+            }
+            else if (currentIndex == 0 && currentIndex < fighters.Count - 1)
             {
                 prevFight.Visibility = Visibility.Collapsed;
                 nextFight.Visibility = Visibility.Visible;
@@ -314,22 +405,25 @@ namespace MMA_Events.View
 
         private void MainMenu_Click(object sender, RoutedEventArgs e)
         {
+
             if (this.WindowState == WindowState.Maximized)
             {
-                organizatorView.WindowState = WindowState.Maximized;
+                baseWindow.WindowState = WindowState.Maximized;
             }
             else
             {
-                organizatorView.Width = this.Width;
-                organizatorView.Height = this.Height;
+                baseWindow.Width = this.Width;
+                baseWindow.Height = this.Height;
 
-                organizatorView.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+                baseWindow.WindowStartupLocation = WindowStartupLocation.CenterScreen;
 
             }
-            organizatorView.Show();
-            organizatorView.rbAddEvent.IsChecked = false;
-            organizatorView.Visibility = Visibility.Visible;
+            baseWindow.Show();
+            if (baseWindow is OrganizatorView organizatorView && organizatorView != null)
+                organizatorView.rbAddEvent.IsChecked = false;
+            baseWindow.Visibility = Visibility.Visible;
             this.Close();
+
         }
 
         private void nextFight_Click(object sender, RoutedEventArgs e)
@@ -348,16 +442,16 @@ namespace MMA_Events.View
             {
                 if (fieldMethod.Text != "" && fieldRound.Text != "" && (leftFighterWinner.Visibility == Visibility.Visible || rightFighterWinner.Visibility == Visibility.Visible))
                 {
-                    if (!fieldMethod.Text.Equals(FightMethod.KO.ToString(), StringComparison.OrdinalIgnoreCase) && 
-                        !fieldMethod.Text.Equals(FightMethod.Submission.ToString(), StringComparison.OrdinalIgnoreCase) && 
+                    if (!fieldMethod.Text.Equals(FightMethod.KO.ToString(), StringComparison.OrdinalIgnoreCase) &&
+                        !fieldMethod.Text.Equals(FightMethod.Submission.ToString(), StringComparison.OrdinalIgnoreCase) &&
                         !fieldMethod.Text.Equals(FightMethod.Decision.ToString(), StringComparison.OrdinalIgnoreCase))
                     {
-                        MessageBox.Show("Neispravna method (KO, Submission, Decision)!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+                        CustomMessageBox.Show(Application.Current.Resources["InvalidMethodError"] as string);
                         return;
                     }
-                    if(int.Parse(fieldRound.Text) < 1 || int.Parse(fieldRound.Text) > 5)
+                    if (int.Parse(fieldRound.Text) < 1 || int.Parse(fieldRound.Text) > 5)
                     {
-                        MessageBox.Show("Neispravan broj rundi!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+                        CustomMessageBox.Show(Application.Current.Resources["InvalidRoundNumberError"] as string);
                         return;
                     }
                     FightService fightService = FightService.getInstance();
@@ -365,12 +459,10 @@ namespace MMA_Events.View
 
                     fieldMethod.IsEnabled = false;
                     fieldRound.IsEnabled = false;
-
-                    MessageBox.Show("Uspesno ste uneli rezultat!", "Uspeh", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 else
                 {
-                    MessageBox.Show("Popunite sva polja i odaberite pobednika!", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+                    CustomMessageBox.Show(Application.Current.Resources["UpdateFighterFieldsError"] as string);
                 }
             }
         }

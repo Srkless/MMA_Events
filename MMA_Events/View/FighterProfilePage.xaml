@@ -102,7 +102,7 @@
                                     <RowDefinition></RowDefinition>
                                     <RowDefinition></RowDefinition>
                                 </Grid.RowDefinitions>
-                                <TextBlock Grid.Row="0" Text="Weight" FontSize="{DynamicResource TypeFontSize}" FontFamily="Arial Black">
+                                <TextBlock Grid.Row="0" Text="{DynamicResource FighterWeight}" FontSize="{DynamicResource TypeFontSize}" FontFamily="Arial Black">
                                     <TextBlock.Foreground>
                                         <SolidColorBrush Color="#828282" Opacity="1"/>
                                     </TextBlock.Foreground>
@@ -120,7 +120,7 @@
                                     <RowDefinition></RowDefinition>
                                     <RowDefinition></RowDefinition>
                                 </Grid.RowDefinitions>
-                                <TextBlock Grid.Row="0" Text="Country" FontSize="{DynamicResource TypeFontSize}" FontFamily="Arial Black">
+                                <TextBlock Grid.Row="0" Text="{DynamicResource FighterCountry}" FontSize="{DynamicResource TypeFontSize}" FontFamily="Arial Black">
                                     <TextBlock.Foreground>
                                         <SolidColorBrush Color="#828282" Opacity="1"/>
                                     </TextBlock.Foreground>
@@ -137,7 +137,7 @@
                                     <RowDefinition></RowDefinition>
                                     <RowDefinition></RowDefinition>
                                 </Grid.RowDefinitions>
-                                <TextBlock Grid.Row="0" Text="Dob" FontSize="{DynamicResource TypeFontSize}" FontFamily="Arial Black">
+                                <TextBlock Grid.Row="0" Text="{DynamicResource FighterDob}" FontSize="{DynamicResource TypeFontSize}" FontFamily="Arial Black">
                                     <TextBlock.Foreground>
                                         <SolidColorBrush Color="#828282" Opacity="1"/>
                                     </TextBlock.Foreground>
@@ -157,7 +157,7 @@
                                     <RowDefinition></RowDefinition>
                                     <RowDefinition></RowDefinition>
                                 </Grid.RowDefinitions>
-                                <TextBlock Grid.Row="0" Text="Score:" FontSize="{DynamicResource TypeFontSize}" FontFamily="Arial Black">
+                                <TextBlock Grid.Row="0" Text="{DynamicResource FighterScore}" FontSize="{DynamicResource TypeFontSize}" FontFamily="Arial Black">
                                     <TextBlock.Foreground>
                                         <SolidColorBrush Color="#828282" Opacity="1"/>
                                     </TextBlock.Foreground>
@@ -192,7 +192,7 @@
                                     </Border>
 
 
-                                    <TextBlock Grid.Row="1" Text="  WINS BY KNOCKOUT" FontSize="{DynamicResource TypeFontSize}" FontFamily="Arial Black" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <TextBlock Grid.Row="1" Text="{DynamicResource FighterKoWins}" FontSize="{DynamicResource TypeFontSize}" FontFamily="Arial Black" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center">
                                         <TextBlock.Foreground>
                                             <SolidColorBrush Color="#f5f5f5" Opacity="1"/>
                                         </TextBlock.Foreground>
@@ -216,7 +216,7 @@
                                     </Border>
 
 
-                                    <TextBlock Grid.Row="1" Text="  WINS BY SUBMISSION" FontSize="{DynamicResource TypeFontSize}" FontFamily="Arial Black" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <TextBlock Grid.Row="1" Text="{DynamicResource FighterSubmisionWins}" FontSize="{DynamicResource TypeFontSize}" FontFamily="Arial Black" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center">
                                         <TextBlock.Foreground>
                                             <SolidColorBrush Color="#f5f5f5" Opacity="1"/>
                                         </TextBlock.Foreground>

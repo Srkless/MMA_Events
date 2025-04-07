@@ -14,7 +14,7 @@
         >
 
 
-    <Border CornerRadius="50">
+    <Border>
         <Border.Background>
             <ImageBrush ImageSource="/Images/wallpaper2.jpg" AlignmentX="Center" >
                 <ImageBrush.Transform>
@@ -29,7 +29,6 @@
         </Border.Background>
 
         <Border
-           CornerRadius="50"
         BorderThickness="4">
 
             <Border.Background>

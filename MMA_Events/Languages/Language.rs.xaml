@@ -1,0 +1,69 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:System="clr-namespace:System;assembly=mscorlib"
+                    xmlns:local="clr-namespace:MMA_Events"
+                    >
+    <System:String x:Key="NavSearchName">Pretrazi</System:String>
+    <System:String x:Key="NavDashboardName">Pocetna</System:String>
+    <System:String x:Key="NavOrganizationsName">Organizacije</System:String>
+    <System:String x:Key="NavSettingName">Podesavanja</System:String>
+    <System:String x:Key="NavLogoutName">Odjava</System:String>
+    <System:String x:Key="NavEventsName">Dogadjaji</System:String>
+    <System:String x:Key="NavAddEventName">Dodaj dogadjaj</System:String>
+    <System:String x:Key="NavFightersName">Borci</System:String>
+    <System:String x:Key="NavAddFightertName">Dodaj borca</System:String>
+    <System:String x:Key="NavShowAllName">Prikazi sve</System:String>
+
+    <!--Search nav tab-->
+    <System:String x:Key="SearchResults">Rezultati pretrage za: </System:String>
+    <System:String x:Key="NoSearchResults">Nema rezultata za: </System:String>
+
+    <!--Events nav tab-->
+    <System:String x:Key="EventName">Naziv</System:String>
+    <System:String x:Key="EventDate">Datum</System:String>
+    <System:String x:Key="EventLocation">Lokacija</System:String>
+    
+    <!--Add Fighter tab-->
+    <System:String x:Key="FighterNickname">Nadimak</System:String>
+    <System:String x:Key="FighterFullName">Ime i prezime</System:String>
+    <System:String x:Key="FighterWeight">Tezina</System:String>
+    <System:String x:Key="FighterCountry">Drzava</System:String>
+    <System:String x:Key="FighterDob">Datum</System:String>
+    <System:String x:Key="FighterScore">Rezultat</System:String>
+    <System:String x:Key="FighterKoWins">&#160;&#160;&#160;&#160;POBEDE "KNOCKOUT"</System:String>
+    <System:String x:Key="FighterSubmisionWins">&#160;&#160;&#160;&#160;POBEDE "SUBMISSION"</System:String>
+    <System:String x:Key="AddFighterButton">Dodaj borca</System:String>
+    <System:String x:Key="RepickImageButton">Izaberi opet</System:String>
+    
+    <System:String x:Key="FightCardRound">Runda</System:String>
+    <System:String x:Key="FightCardMethod">Methoda</System:String>
+    
+    <System:String x:Key="OrganizationEventsTab">Dogadjaji</System:String>
+    <System:String x:Key="OrganizationFightersTab">Borci</System:String>
+    
+    <System:String x:Key="SettingsLangName">Jezici</System:String>
+    <System:String x:Key="SettingsStylesName">Stilovi</System:String>
+    
+    <!--MessageBox Text-->
+    <System:String x:Key="RegistrationFieldsError">Molimo popunite sva polja</System:String>
+    <System:String x:Key="RegistrationInvalidEmailError">Neispravna email adresa</System:String>
+    <System:String x:Key="RegistrationEmailError">Email adresa zauzeta</System:String>
+    <System:String x:Key="RegistrationPasswordError">Sifre se ne poklapaju ili je manja od 8 karaktera.</System:String>
+
+    <System:String x:Key="LoginFieldsError">Molimo unesite email i lozinku!</System:String>
+    <System:String x:Key="LoginIvalidUserError">Pogresna email adresa ili lozinka!</System:String>
+    <System:String x:Key="LoginIvalidOrgError">Pogresno korisničko ime ili lozinka!</System:String>
+
+    <System:String x:Key="EventCreationError">Greska pri kreiranju eventa!</System:String>
+    <System:String x:Key="EventFieldsError">Popunite sve podatke vezane za event!</System:String>
+    <System:String x:Key="FightCreationError">Greska pri kreiranju borbe!</System:String>
+
+    <System:String x:Key="FighterFullnameError">Unesite ime i prezime u formatu 'Ime Prezime'!</System:String>
+    <System:String x:Key="FighterScoreError">Unesite rezultat u formatu 'Pobede-Gubici-Nereseno'!</System:String>
+
+    <System:String x:Key="InvalidMethodError">Unesite rezultat u formatu 'Pobede-Gubici-Nereseno'!</System:String>
+    <System:String x:Key="InvalidRoundNumberError">Neispravan broj rundi!</System:String>
+    <System:String x:Key="UpdateFighterFieldsError">Popunite sva polja i odaberite pobednika!</System:String>
+
+
+</ResourceDictionary>

@@ -1,0 +1,68 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:System="clr-namespace:System;assembly=mscorlib"
+                    xmlns:local="clr-namespace:MMA_Events"
+                    >
+    <System:String x:Key="NavSearchName">Search</System:String>
+    <System:String x:Key="NavDashboardName">Dashboard</System:String>
+    <System:String x:Key="NavOrganizationsName">Organizations</System:String>
+    <System:String x:Key="NavSettingName">Settings</System:String>
+    <System:String x:Key="NavLogoutName">Logout</System:String>
+    <System:String x:Key="NavEventsName">Events</System:String>
+    <System:String x:Key="NavAddEventName">Add Event</System:String>
+    <System:String x:Key="NavFightersName">Fighters</System:String>
+    <System:String x:Key="NavAddFightertName">Add Fighter</System:String>
+    <System:String x:Key="NavShowAllName">Show all</System:String>
+
+    <!--Search nav tab-->
+    <System:String x:Key="SearchResults">Search results for: </System:String>
+    <System:String x:Key="NoSearchResults">No results for: </System:String>
+
+    <!--Events nav tab-->
+    <System:String x:Key="EventName">Name</System:String>
+    <System:String x:Key="EventDate">Date</System:String>
+    <System:String x:Key="EventLocation">Venue</System:String>
+
+    <!--Add Fighter tab-->
+    <System:String x:Key="FighterNickname">Nickname</System:String>
+    <System:String x:Key="FighterFullName">Full name</System:String>
+    <System:String x:Key="FighterWeight">Weight</System:String>
+    <System:String x:Key="FighterCountry">Country</System:String>
+    <System:String x:Key="FighterDob">Dob</System:String>
+    <System:String x:Key="FighterScore">Score</System:String>
+    <System:String x:Key="FighterKoWins">&#160;&#160;&#160;WINS BY KNOCKOUT</System:String>
+    <System:String x:Key="FighterSubmisionWins">&#160;&#160;&#160;WINS BY SUBMISSION</System:String>
+    <System:String x:Key="AddFighterButton">Add Fighter</System:String>
+    <System:String x:Key="RepickImageButton">Re-pick Image</System:String>
+    
+    <System:String x:Key="FightCardMethod">Method</System:String>
+    <System:String x:Key="FightCardRound">Round</System:String>
+    
+    <System:String x:Key="OrganizationEventsTab">Events</System:String>
+    <System:String x:Key="OrganizationFightersTab">Fighters</System:String>
+    
+    <System:String x:Key="SettingsLangName">Languages</System:String>
+    <System:String x:Key="SettingsStylesName">Styles</System:String>
+
+    <!--MessageBox Text-->
+    <System:String x:Key="RegistrationFieldsError">Please fill in all fields</System:String>
+    <System:String x:Key="RegistrationInvalidEmailError">Invalid email address</System:String>
+    <System:String x:Key="RegistrationEmailError">Email address already in use</System:String>
+    <System:String x:Key="RegistrationPasswordError">Passwords do not match or are less than 8 characters.</System:String>
+
+
+    <System:String x:Key="LoginFieldsError">Please enter your email and password!</System:String>
+    <System:String x:Key="LoginIvalidOrgError">Incorrect username or password!</System:String>
+    <System:String x:Key="LoginIvalidUserError">Incorrect email or password!</System:String>
+
+    <System:String x:Key="EventCreationError">Error occurred while creating the event!</System:String>
+    <System:String x:Key="EventFieldsError">Please fill in all event-related fields!</System:String>
+    <System:String x:Key="FightCreationError">Error occurred while creating the fight!</System:String>
+
+    <System:String x:Key="InvalidMethodError">Enter the result in the format 'Wins-Losses-Draws'!</System:String>
+    <System:String x:Key="InvalidRoundNumberError">Invalid number of rounds!</System:String>
+    <System:String x:Key="UpdateFighterFieldsError">Please fill in all fields and select a winner!</System:String>
+
+
+
+</ResourceDictionary>

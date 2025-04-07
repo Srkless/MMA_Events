@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MMA_Events.View"
         xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+                  xmlns:res="clr-namespace:MMA_Events.Languages"
         mc:Ignorable="d"
         Title="UserView"  Height="550" Width="800"
         MinHeight="550" MinWidth="800"
@@ -90,6 +91,7 @@
 
 
             <Grid>
+
                 <Grid.ColumnDefinitions>
                     <!--Navigation menu-->
                     <ColumnDefinition Width="0.3*" x:Name="NavBarColumn"/>
@@ -137,7 +139,7 @@
                                         <fa:IconImage Icon="Search" Style="{DynamicResource menuButtonIcon}"></fa:IconImage>
                                         <Grid>
                                             <!-- Prikazuje se kada RadioButton NIJE čekiran -->
-                                            <TextBlock x:Name="searchTextBlock" Text="Search" 
+                                            <TextBlock x:Name="searchTextBlock" Text="{DynamicResource NavSearchName}" 
                        Style="{DynamicResource menuButtonText}" Visibility="Visible"/>
 
                                             <!-- Prikazuje se kada je RadioButton čekiran -->
@@ -151,14 +153,14 @@
                                 <RadioButton x:Name="DashboardRB" Grid.Row="2" Style="{DynamicResource menuButton}" Tag="{DynamicResource color1}" Checked="rbDashBoard_checked">
                                     <StackPanel Grid.Column="1" Orientation="Horizontal">
                                         <fa:IconImage Icon="Display" Style="{DynamicResource menuButtonIcon}"></fa:IconImage>
-                                        <TextBlock Text="Dashboard" Style="{DynamicResource menuButtonText}"></TextBlock>
+                                        <TextBlock Text="{DynamicResource NavDashboardName}" Style="{DynamicResource menuButtonText}"></TextBlock>
                                     </StackPanel>
                                 </RadioButton>
 
                                 <RadioButton x:Name="rbOrganizations" Grid.Row="3" Style="{DynamicResource menuButton}" Tag="{DynamicResource color1}" Checked="rbOrganizations_checked">
                                     <StackPanel Grid.Column="1" Orientation="Horizontal">
                                         <fa:IconImage Icon="HandshakeAlt" Style="{DynamicResource menuButtonIcon}"></fa:IconImage>
-                                        <TextBlock Text="Organizations" Style="{DynamicResource menuButtonText}"></TextBlock>
+                                        <TextBlock Text="{DynamicResource NavOrganizationsName}" Style="{DynamicResource menuButtonText}"></TextBlock>
                                     </StackPanel>
                                 </RadioButton>
 
@@ -166,14 +168,14 @@
                                 <RadioButton Grid.Row="4" Style="{DynamicResource menuButton}" Tag="{DynamicResource color1}" Margin="-5,0,0,5" Checked="settingsRB_checked">
                                     <StackPanel Grid.Column="1" Orientation="Horizontal">
                                         <fa:IconImage Icon="Gear" Style="{DynamicResource menuButtonIcon}"></fa:IconImage>
-                                        <TextBlock Text="Settings" Style="{DynamicResource menuButtonText}"></TextBlock>
+                                        <TextBlock Text="{DynamicResource NavSettingName}" Style="{DynamicResource menuButtonText}"></TextBlock>
                                     </StackPanel>
                                 </RadioButton>
 
                                 <RadioButton Grid.Row="5" Style="{DynamicResource menuButton}" Tag="{DynamicResource color1}" Checked="logoutRB_checked">
                                     <StackPanel Grid.Column="1" Orientation="Horizontal">
                                         <fa:IconImage Icon="RightFromBracket" Style="{DynamicResource menuButtonIcon}"></fa:IconImage>
-                                        <TextBlock Text="Logout" Style="{DynamicResource menuButtonText}"></TextBlock>
+                                        <TextBlock Text="{DynamicResource NavLogoutName}" Style="{DynamicResource menuButtonText}"></TextBlock>
                                     </StackPanel>
                                 </RadioButton>
 

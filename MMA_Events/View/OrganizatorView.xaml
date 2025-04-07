@@ -139,7 +139,7 @@
                                         <fa:IconImage Icon="Search" Style="{DynamicResource menuButtonIcon}"></fa:IconImage>
                                         <Grid>
                                             <!-- Prikazuje se kada RadioButton NIJE čekiran -->
-                                            <TextBlock x:Name="searchTextBlock" Text="Search" 
+                                            <TextBlock x:Name="searchTextBlock" Text="{DynamicResource NavSearchName}" 
                        Style="{DynamicResource menuButtonText}" Visibility="Visible"/>
 
                                             <!-- Prikazuje se kada je RadioButton čekiran -->
@@ -153,20 +153,20 @@
                                 <RadioButton x:Name="EventRB" Grid.Row="2" Style="{DynamicResource menuButton}" Tag="{DynamicResource color1}" Checked="rbEvents_checked">
                                     <StackPanel Grid.Column="1" Orientation="Horizontal">
                                         <fa:IconImage Icon="CalendarTimes" Style="{DynamicResource menuButtonIcon}"></fa:IconImage>
-                                        <TextBlock Text="Events" Style="{DynamicResource menuButtonText}"></TextBlock>
+                                        <TextBlock Text="{DynamicResource NavEventsName}" Style="{DynamicResource menuButtonText}"></TextBlock>
                                     </StackPanel>
                                 </RadioButton>
                                 <StackPanel Margin="10 0 0 0" Visibility="{Binding IsChecked, ElementName=EventRB, Converter={StaticResource BoolToVis}}">
                                     <RadioButton x:Name="rbAddEvent" Grid.Row="2" Style="{DynamicResource menuButton}" Tag="{DynamicResource color1}" Checked="addEvent">
                                         <StackPanel Grid.Column="1" Orientation="Horizontal">
                                             <fa:IconImage Icon="CalendarPlus" Style="{DynamicResource menuButtonIcon}"></fa:IconImage>
-                                            <TextBlock Text="Add event" Style="{DynamicResource menuButtonText}"></TextBlock>
+                                            <TextBlock Text="{DynamicResource NavAddEventName}" Style="{DynamicResource menuButtonText}"></TextBlock>
                                         </StackPanel>
                                     </RadioButton>
                                     <RadioButton x:Name="rbShowEvents" Grid.Row="2" Style="{DynamicResource menuButton}" Tag="{DynamicResource color1}" Checked="showEvents">
                                         <StackPanel Grid.Column="1" Orientation="Horizontal">
                                             <fa:IconImage Icon="CalendarDays" Style="{DynamicResource menuButtonIcon}"></fa:IconImage>
-                                            <TextBlock Text="Show events" Style="{DynamicResource menuButtonText}"></TextBlock>
+                                            <TextBlock Text="{DynamicResource NavShowAllName}" Style="{DynamicResource menuButtonText}"></TextBlock>
                                         </StackPanel>
                                     </RadioButton>
                                 </StackPanel>
@@ -174,7 +174,7 @@
                                 <RadioButton x:Name="rbFigters" Grid.Row="3" Style="{DynamicResource menuButton}" Tag="{DynamicResource color1}" Checked="rbFighters_checked">
                                     <StackPanel Grid.Column="1" Orientation="Horizontal">
                                         <fa:IconImage Icon="Users" Style="{DynamicResource menuButtonIcon}"></fa:IconImage>
-                                        <TextBlock Text="Fighters" Style="{DynamicResource menuButtonText}"></TextBlock>
+                                        <TextBlock Text="{DynamicResource NavFightersName}" Style="{DynamicResource menuButtonText}"></TextBlock>
                                     </StackPanel>
                                 </RadioButton>
 
@@ -182,13 +182,13 @@
                                     <RadioButton x:Name="rbAddFighter" Grid.Row="2" Style="{DynamicResource menuButton}" Tag="{DynamicResource color1}" Checked="addFighter">
                                         <StackPanel Grid.Column="1" Orientation="Horizontal">
                                             <fa:IconImage Icon="UserPlus" Style="{DynamicResource menuButtonIcon}"></fa:IconImage>
-                                            <TextBlock Text="Add fighter" Style="{DynamicResource menuButtonText}"></TextBlock>
+                                            <TextBlock Text="{DynamicResource NavAddFightertName}" Style="{DynamicResource menuButtonText}"></TextBlock>
                                         </StackPanel>
                                     </RadioButton>
                                     <RadioButton x:Name="rbShowFighters" Grid.Row="2" Style="{DynamicResource menuButton}" Tag="{DynamicResource color1}" Checked="showFighters">
                                         <StackPanel Grid.Column="1" Orientation="Horizontal">
                                             <fa:IconImage Icon="UsersRectangle" Style="{DynamicResource menuButtonIcon}"></fa:IconImage>
-                                            <TextBlock Text="Show fighters" Style="{DynamicResource menuButtonText}"></TextBlock>
+                                            <TextBlock Text="{DynamicResource NavShowAllName}" Style="{DynamicResource menuButtonText}"></TextBlock>
                                         </StackPanel>
                                     </RadioButton>
                                 </StackPanel>
@@ -196,14 +196,14 @@
                                 <RadioButton Grid.Row="4" Style="{DynamicResource menuButton}" Tag="{DynamicResource color1}" Margin="-5,0,0,5" Checked="settingsRB_checked">
                                     <StackPanel Grid.Column="1" Orientation="Horizontal">
                                         <fa:IconImage Icon="Gear" Style="{DynamicResource menuButtonIcon}"></fa:IconImage>
-                                        <TextBlock Text="Settings" Style="{DynamicResource menuButtonText}"></TextBlock>
+                                        <TextBlock Text="{DynamicResource NavSettingName}" Style="{DynamicResource menuButtonText}"></TextBlock>
                                     </StackPanel>
                                 </RadioButton>
 
                                 <RadioButton Grid.Row="5" Style="{DynamicResource menuButton}" Tag="{DynamicResource color1}" Checked="logoutRB_checked">
                                     <StackPanel Grid.Column="1" Orientation="Horizontal">
                                         <fa:IconImage Icon="RightFromBracket" Style="{DynamicResource menuButtonIcon}"></fa:IconImage>
-                                        <TextBlock Text="Logout" Style="{DynamicResource menuButtonText}"></TextBlock>
+                                        <TextBlock Text="{DynamicResource NavLogoutName}" Style="{DynamicResource menuButtonText}"></TextBlock>
                                     </StackPanel>
                                 </RadioButton>
 

@@ -27,7 +27,9 @@ namespace MMA_Events.View
     {
         public ObservableCollection<FighterDetails> FighterDetails { get; set; }
         public FighterService FighterService = FighterService.getInstance();
-        public OrganizatorView organizatorView { get; set; }
+        public BaseWindow baseWindow { get; set; }
+
+        private Organizator org;
 
         public ShowFightersPage()
         {
@@ -41,19 +43,27 @@ namespace MMA_Events.View
                 }
 
             DataContext = this;
-        }
+        } 
 
-        public ShowFightersPage(OrganizatorView view)
+        public ShowFightersPage(BaseWindow baseWindow, Organizator org = null)
         {
             InitializeComponent();
 
             FighterDetails = new ObservableCollection<FighterDetails>();
-            organizatorView = view;
+            this.baseWindow = baseWindow;
+            this.org = org;
 
-            if (view != null)
+            if (baseWindow is OrganizatorView view && view != null)
             {
                 Organizator organizator = view.org;
                 foreach (FighterDetails details in FighterService.GetAllFighters(organizator))
+                {
+                    FighterDetails.Add(details);
+                }
+            }
+            else
+            {
+                foreach (FighterDetails details in FighterService.GetAllFighters(this.org))
                 {
                     FighterDetails.Add(details);
                 }
@@ -104,8 +114,8 @@ namespace MMA_Events.View
                 if(button.CommandParameter is FighterDetails details)
                 {
 
-                    organizatorView.BackButton.Visibility = Visibility.Visible;
-                    organizatorView.Main.Content = new FighterProfilePage(details);
+                    baseWindow.bBack.Visibility = Visibility.Visible;
+                    baseWindow.MainFrame.Content = new FighterProfilePage(details);
 
                 }
             }
