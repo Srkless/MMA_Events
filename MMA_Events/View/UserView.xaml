@@ -5,7 +5,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MMA_Events.View"
         xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
-                  xmlns:res="clr-namespace:MMA_Events.Languages"
         mc:Ignorable="d"
         Title="UserView"  Height="550" Width="800"
         MinHeight="550" MinWidth="800"

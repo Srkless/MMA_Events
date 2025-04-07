@@ -8,7 +8,8 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary x:Name="style1" Source="/Styles/Style1.xaml"></ResourceDictionary>
+                <ResourceDictionary x:Name="style" Source="/Styles/Style1.xaml"></ResourceDictionary>
+                <ResourceDictionary x:Name="language" Source="/Languages/Language.en.xaml"></ResourceDictionary>
                 <materialDesign:BundledTheme BaseTheme="Dark" PrimaryColor="Red" SecondaryColor="DeepOrange" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.DatePicker.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Card.xaml" />
@@ -27,6 +28,8 @@
             <System:Double x:Key="eventCardSize">200</System:Double>
             <System:Double x:Key="dockButtonWidth">92</System:Double>
             <System:Double x:Key="eventResultFontSize">12</System:Double>
+            <System:Double x:Key="addEventFighterCardSize">145</System:Double>
+            
         </ResourceDictionary>
     </Application.Resources>
 </Application>
