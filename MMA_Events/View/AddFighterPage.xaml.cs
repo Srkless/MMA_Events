@@ -35,6 +35,7 @@ namespace MMA_Events.View
         {
             InitializeComponent();
             this.org = org;
+            CountryComboBox.ItemsSource = CountryService.GetInstance().countries;
         }
 
         private void PickImageButton_Click(object sender, RoutedEventArgs e)
@@ -133,7 +134,7 @@ namespace MMA_Events.View
             string Nickname = fieldUserNickname.Text;
             string[] Fullname = fieldUserFullname.Text.Split(" ");
             float Weight = float.Parse(fieldFighterWeight.Text);
-            string Country = fieldFighterCountry.Text;
+            string Country = CountryComboBox.Text;
             DateTime BirthDate_DateTime = fieldFighterBirthDate.DisplayDate;
             string BirthDate = BirthDate_DateTime.ToString("yyyy-MM-dd");
             string[] score = fieldFighterScore.Text.Split("-");
@@ -195,7 +196,7 @@ namespace MMA_Events.View
                 !string.IsNullOrWhiteSpace(fieldUserNickname.Text) &&
                 !string.IsNullOrWhiteSpace(fieldUserFullname.Text) &&
                 !string.IsNullOrWhiteSpace(fieldFighterWeight.Text) &&
-                !string.IsNullOrWhiteSpace(fieldFighterCountry.Text) &&
+                !string.IsNullOrWhiteSpace(CountryComboBox.Text) &&
                 fieldFighterBirthDate.SelectedDate.HasValue &&
                 !string.IsNullOrWhiteSpace(fieldFighterScore.Text) &&
                 !string.IsNullOrWhiteSpace(fieldFighterKOs.Text) &&

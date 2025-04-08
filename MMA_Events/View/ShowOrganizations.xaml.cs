@@ -1,4 +1,5 @@
 ﻿using FontAwesome.Sharp;
+using Google.Protobuf.Reflection;
 using Microsoft.VisualBasic.ApplicationServices;
 using MMA_Events.Model;
 using MMA_Events.Services;
@@ -63,6 +64,7 @@ namespace MMA_Events.View
                         {
                                 // Pronađi IconImage unutar dugmeta
                                 var icon = FindChild<FontAwesome.Sharp.IconImage>(mainButton);
+                                
                                 if (icon != null)
                                 {
                                     // Uzimamo organizatora iz trenutnog itema
@@ -76,7 +78,17 @@ namespace MMA_Events.View
                                         icon.Icon = subscribeToOrgService.IsSubscribed(idUser, idOrg)
                                             ? FontAwesome.Sharp.IconChar.Check
                                             : FontAwesome.Sharp.IconChar.Plus;
+
+
+                                    ToolTip tooltip = mainButton.ToolTip as ToolTip;
+                                    if (tooltip != null)
+                                    {
+                                        tooltip.Content = subscribeToOrgService.IsSubscribed(idUser, idOrg)
+                                           ? Application.Current.Resources["UnfollowTooltipName"] as string
+                                           : Application.Current.Resources["FollowTooltipName"] as string;
+
                                     }
+                                }
                                 }
                             
                         }
@@ -137,29 +149,7 @@ namespace MMA_Events.View
             }
             return children;
         }
-        private List<Button> GetButtonsFromItemsControl()
-        {
-            List<Button> buttons = new List<Button>();
-
-            if (OrganizationsListView != null && OrganizationsListView.Items.Count > 0)
-            {
-                // Iteriranje kroz sve stavke u ItemsControl-u
-                for (int i = 0; i < OrganizationsListView.Items.Count; i++)
-                {
-                    var item = OrganizationsListView.ItemContainerGenerator.ContainerFromIndex(i) as FrameworkElement;
-                    if (item != null)
-                    {
-                        // Pronađi dugme unutar stavke
-                        var button = item.FindName("bSub") as Button;
-                        if (button != null)
-                        {
-                            buttons.Add(button);
-                        }
-                    }
-                }
-            }
-            return buttons;
-        }
+       
         private void ShowEvents(object sender, RoutedEventArgs e)
         {
 
@@ -198,18 +188,28 @@ namespace MMA_Events.View
                 int idUser = userView.user.IdUser;
                 int idOrg = selectedOrg.IdOrganizator;
                 SubscribeToOrgService subscribeToOrgService = SubscribeToOrgService.GetInstance();
-                
 
-                if(subscribeToOrgService.IsSubscribed(idUser, idOrg))
+                ToolTip tooltip = innerButton.ToolTip as ToolTip;
+                if (subscribeToOrgService.IsSubscribed(idUser, idOrg))
                 {
+                   
+                    if (tooltip != null)
+                    {
+                        tooltip.Content = Application.Current.Resources["FollowTooltipName"] as string; ;
+                    }
                     if (subscribeToOrgService.unsubscribe(idUser, idOrg))
                     {
                         FontAwesome.Sharp.IconImage icon = (FontAwesome.Sharp.IconImage)innerButton.Content;
                         icon.Icon = FontAwesome.Sharp.IconChar.Plus;
+                       
                     }
                 }
                 else
                 {
+                    if (tooltip != null)
+                    {
+                        tooltip.Content = Application.Current.Resources["UnfollowTooltipName"] as string; ;
+                    }
                     if (subscribeToOrgService.subscribe(idUser, idOrg))
                     {
                         FontAwesome.Sharp.IconImage icon = (FontAwesome.Sharp.IconImage)innerButton.Content;

@@ -9,6 +9,11 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+	<ItemGroup>
+		<Content Include="Images\**\*.*">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
   <ItemGroup>
     <None Remove="Images\background.jpg" />
     <None Remove="Images\Fighters\AleksandarIlic.png" />
@@ -20,6 +25,7 @@
     <None Remove="Images\icons8-moon-48.png" />
     <None Remove="Images\icons8-sun-48.png" />
     <None Remove="Images\logo.png" />
+    <None Remove="Images\mailIcon.png" />
     <None Remove="Images\night-sky.jpg" />
     <None Remove="Images\passIcon.png" />
     <None Remove="Images\registerLogo.png" />
@@ -63,6 +69,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\logo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\mailIcon.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\night-sky.jpg">

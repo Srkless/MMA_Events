@@ -65,5 +65,6 @@
     <System:String x:Key="InvalidRoundNumberError">Neispravan broj rundi!</System:String>
     <System:String x:Key="UpdateFighterFieldsError">Popunite sva polja i odaberite pobednika!</System:String>
 
-
+    <System:String x:Key="FollowTooltipName">Zaprati</System:String>
+    <System:String x:Key="UnFollowTooltipName">Otprati</System:String>
 </ResourceDictionary>

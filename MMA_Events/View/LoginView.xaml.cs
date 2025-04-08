@@ -34,6 +34,7 @@ namespace MMA_Events.View
             {
                 userEmail.Text = "";
             }
+            CountryService.GetInstance();
         }
 
         private void BtnLogin_Click(object sender, RoutedEventArgs e)

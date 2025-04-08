@@ -28,6 +28,7 @@ namespace MMA_Events.View
         public RegisterView()
         {
             InitializeComponent();
+            CountryComboBox.ItemsSource = CountryService.GetInstance().countries;
         }
 
         private void BtnLogin_Click(object sender, RoutedEventArgs e)
@@ -109,8 +110,12 @@ namespace MMA_Events.View
             userEmailField.Padding = padding;
             userEmailField.FontSize = fontSize;
 
-            userCountryField.Padding = padding;
-            userCountryField.FontSize = fontSize;
+            //userCountryField.Padding = padding;
+            //userCountryField.FontSize = fontSize;
+
+            CountryComboBox.Padding = padding;
+            CountryComboBox.FontSize = fontSize;
+            countryIcon.Width = padding.Left;
 
             userPassField.Padding = padding;
             userPassField.FontSize = fontSize;
@@ -127,8 +132,8 @@ namespace MMA_Events.View
             EmailPromptTextBlock.Padding = padding;
             EmailPromptTextBlock.FontSize = fontSize;
 
-            CountryPromptTextBlock.Padding = padding;
-            CountryPromptTextBlock.FontSize = fontSize;
+            //CountryPromptTextBlock.Padding = padding;
+            //CountryPromptTextBlock.FontSize = fontSize;
 
             PassPromptTextBlock.Padding = padding;
             PassPromptTextBlock.FontSize = fontSize;
@@ -149,7 +154,8 @@ namespace MMA_Events.View
             string username = userNameField.Text;
             string surname = userSurnameField.Text;
             string email = userEmailField.Text;
-            string country = userCountryField.Text;
+            //string country = userCountryField.Text;
+            string country = CountryComboBox.Text;
             string password = userPassField.Password;
             string confPass = userConfirmPassField.Password;
             string encPass;

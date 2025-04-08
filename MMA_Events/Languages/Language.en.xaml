@@ -64,5 +64,6 @@
     <System:String x:Key="UpdateFighterFieldsError">Please fill in all fields and select a winner!</System:String>
 
 
-
+    <System:String x:Key="FollowTooltipName">Follow</System:String>
+    <System:String x:Key="UnfollowTooltipName">Unfollow</System:String>
 </ResourceDictionary>
