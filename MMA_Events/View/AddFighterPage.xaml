@@ -683,15 +683,7 @@ Foreground="#f5f5f5"
                                     ItemsSource="{Binding Countries}" 
                                     SelectedItem="{Binding SelectedCountry}"
                                     HorizontalContentAlignment="Stretch">
-                                        <ComboBox.ItemContainerStyle>
-                                            <Style TargetType="ComboBoxItem">
-                                                <Style.Triggers>
-                                                    <Trigger Property="IsSelected" Value="True">
-                                                        <Setter Property="Visibility" Value="Collapsed"/>
-                                                    </Trigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                        </ComboBox.ItemContainerStyle>
+                                        
                                     <ComboBox.ItemTemplate>
                                         <DataTemplate>
                                             <Grid>

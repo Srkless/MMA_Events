@@ -10,11 +10,16 @@
         <GradientStop Color="#FF262626"/>
         <GradientStop Color="#FF980B11" Offset="4"/>
     </LinearGradientBrush>
+    
 
     <SolidColorBrush x:Key="buttonColor" Color="#FF980B11"/>
     <SolidColorBrush x:Key="color1" Color="#FF262626"/>
     <SolidColorBrush x:Key="plainTextColor" Color="#FF262626"/>
-    <SolidColorBrush x:Key="panelOverColor" Color="#FFEA3444"/>
+    <SolidColorBrush x:Key="panelOverColor" Color="#FFAF0E14"/>
     <SolidColorBrush x:Key="panelActiveColor" Color="#FFEA3444"/>
     <SolidColorBrush x:Key="titleColor3" Color="#FFFFCDCD"/>
+
+    <SolidColorBrush x:Key="reverseColor" Color="#FF980B11"/>
+    <Color x:Key="reverseComboBoxColor">#FF980B11</Color>
+
 </ResourceDictionary>

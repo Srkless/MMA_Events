@@ -18,6 +18,19 @@
     <System:String x:Key="SearchResults">Rezultati pretrage za: </System:String>
     <System:String x:Key="NoSearchResults">Nema rezultata za: </System:String>
 
+    <System:String x:Key="SearchFightersResults">Rezultati pretrage boraca za:</System:String>
+    <System:String x:Key="NoSearchFightersResults">Nema rezultata boraca za:</System:String>
+
+    <System:String x:Key="SearchEventsResults">Rezultati pretrage dogadjaja za: </System:String>
+    <System:String x:Key="NoSearchEventsResults">Nema rezultata dogadjaja za: </System:String>
+
+    <System:String x:Key="AllSearchResults">Svi rezultati pretrage</System:String>
+    <System:String x:Key="AllFightersSearchResults">Svi borci</System:String>
+    <System:String x:Key="AllSEventSearchResults">Svi dogadjaji</System:String>
+
+    <System:String x:Key="SearchFightersNav">Borci</System:String>
+    <System:String x:Key="SearchEventsNav">Dogadjaji</System:String>
+
     <!--Events nav tab-->
     <System:String x:Key="EventName">Naziv</System:String>
     <System:String x:Key="EventDate">Datum</System:String>
@@ -66,5 +79,19 @@
     <System:String x:Key="UpdateFighterFieldsError">Popunite sva polja i odaberite pobednika!</System:String>
 
     <System:String x:Key="FollowTooltipName">Zaprati</System:String>
-    <System:String x:Key="UnFollowTooltipName">Otprati</System:String>
+    <System:String x:Key="UnfollowTooltipName">Otprati</System:String>
+    
+    <!--Login forma-->
+    <System:String x:Key="LoginEmailName">Email adresa</System:String>
+    <System:String x:Key="LoginPasswordName">Sifra</System:String>
+    <System:String x:Key="LoginButtonName">Uloguj se</System:String>
+    <System:String x:Key="RegisterButtonName">Registruj se</System:String>
+
+    <!--Register forma-->
+    <System:String x:Key="RegisterName">Ime</System:String>
+    <System:String x:Key="RegisterSurname">Prezime</System:String>
+    <System:String x:Key="RegisterEmail">Email adresa</System:String>
+    <System:String x:Key="RegisterCountry">Drzava</System:String>
+    <System:String x:Key="RegisterPassword">Sifra</System:String>
+    <System:String x:Key="RegisterConfirmPassword">Ponovna sifra</System:String>
 </ResourceDictionary>

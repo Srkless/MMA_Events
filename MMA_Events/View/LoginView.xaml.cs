@@ -179,24 +179,22 @@ namespace MMA_Events.View
             if (WindowState != WindowState.Maximized)
             {
 
-                userEmail.Padding = new Thickness(30, 0, 0, 2);
-                userPass.Padding = new Thickness(30, 0, 0, 2);
+                userPass.Padding = new Thickness(0, 0, 0, 7);
+                PassPromptTextBlock.Padding = new Thickness(0, 0, 0, 5);
                 userEmail.FontSize = 12;
                 userPass.FontSize = 12;
             }
             else
             {
-                userEmail.Padding = new Thickness(50, 0, 0, 2);
+                userPass.Padding = new Thickness(0, 0, 0, 17);
+                PassPromptTextBlock.Padding = new Thickness(0, 0, 0, 10);
                 userEmail.FontSize = 20;
-                userPass.Padding = new Thickness(50, 0, 0, 2);
                 userPass.FontSize = 20;
             }
 
             EmailPromptTextBlock.FontSize = userEmail.FontSize;
-            EmailPromptTextBlock.Padding = userEmail.Padding;
 
             PassPromptTextBlock.FontSize = userPass.FontSize;
-            PassPromptTextBlock.Padding = userPass.Padding;
 
         }
 

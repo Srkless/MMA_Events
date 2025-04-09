@@ -73,6 +73,28 @@ namespace MMA_Events.View
             }
         }
 
+        public void SearchFighters(string searchText)
+        {
+            SearchDetails.Clear();
+            SearchService SearchService = SearchService.getInstance();
+
+            foreach(SearchDetails details in SearchService.SearchFighters(searchText))
+            {
+                SearchDetails.Add(details);
+            }
+        }
+
+        public void SearchEvents(string searchText)
+        {
+            SearchDetails.Clear();
+            SearchService SearchService = SearchService.getInstance();
+
+            foreach (SearchDetails details in SearchService.SearchEvents(searchText))
+            {
+                SearchDetails.Add(details);
+            }
+        }
+
         private void OpenPage(object sender, RoutedEventArgs e)
         {
             if (sender is Button button)

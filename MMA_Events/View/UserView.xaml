@@ -135,7 +135,36 @@
                             <StackPanel>
                                 <RadioButton x:Name="SerachRB" Style="{DynamicResource menuButton}" Tag="{DynamicResource color1}" Padding="0,0,0,8" MinHeight="7" Checked="SearchRadioButton_Checked" Unchecked="SearchRadioButton_UnChecked">
                                     <StackPanel Grid.Column="1" Orientation="Horizontal">
-                                        <fa:IconImage Icon="Search" Style="{DynamicResource menuButtonIcon}"></fa:IconImage>
+                                        <Grid>
+                                            <Button x:Name="bClearSearch" BorderThickness="0" Background="Transparent" Click="ClearSearchBox">
+                                                <fa:IconImage x:Name="searchIcon" Icon="Search" Style="{DynamicResource menuButtonIcon}"></fa:IconImage>
+                                                <Button.Template>
+                                                    <ControlTemplate TargetType="Button">
+                                                        <Border x:Name="border" 
+Background="{TemplateBinding Background}" 
+BorderBrush="{TemplateBinding BorderBrush}" 
+BorderThickness="{TemplateBinding BorderThickness}">
+                                                            <!-- Zaobljenje rubova -->
+                                                            <ContentPresenter HorizontalAlignment="Center" 
+              VerticalAlignment="Center"/>
+                                                        </Border>
+                                                        <ControlTemplate.Triggers>
+                                                            <!-- Promijeni boju kada je miš iznad dugmeta -->
+                                                            <Trigger Property="IsMouseOver" Value="True">
+                                                                <Setter TargetName="border" Property="Background" Value="Transparent"/>
+                                                                <!-- Zlatna boja -->
+                                                            </Trigger>
+
+                                                            <!-- Promijeni boju kada je dugme pritisnuto -->
+                                                            <Trigger Property="IsPressed" Value="True">
+                                                                <Setter TargetName="border" Property="Background" Value="Transparent"/>
+                                                                <!-- Tamnocrvena boja -->
+                                                            </Trigger>
+                                                        </ControlTemplate.Triggers>
+                                                    </ControlTemplate>
+                                                </Button.Template>
+                                            </Button>
+                                        </Grid>
                                         <Grid>
                                             <!-- Prikazuje se kada RadioButton NIJE čekiran -->
                                             <TextBlock x:Name="searchTextBlock" Text="{DynamicResource NavSearchName}" 
@@ -147,6 +176,24 @@
                                         </Grid>
                                     </StackPanel>
                                 </RadioButton>
+                                <StackPanel Margin="10 0 0 0" Visibility="{Binding IsChecked, ElementName=SerachRB, Converter={StaticResource BoolToVis}}">
+                                    <RadioButton x:Name="rbSearchFighters" Grid.Row="2" 
+                                                 PreviewMouseLeftButtonDown="RadioButton_PreviewMouseLeftButtonDown"
+                                                 Style="{DynamicResource menuButton}" Tag="{DynamicResource color1}" Checked="showFighters">
+                                        <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                            <fa:IconImage Icon="users" Style="{DynamicResource menuButtonIcon}"></fa:IconImage>
+                                            <TextBlock Text="{DynamicResource SearchFightersNav}" Style="{DynamicResource menuButtonText}"></TextBlock>
+                                        </StackPanel>
+                                    </RadioButton>
+                                    <RadioButton x:Name="rbSearchEvents" Grid.Row="2" 
+                                                 PreviewMouseLeftButtonDown="RadioButton_PreviewMouseLeftButtonDown"
+                                                 Style="{DynamicResource menuButton}" Tag="{DynamicResource color1}" Checked="showEvents">
+                                        <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                            <fa:IconImage Icon="CalendarDays" Style="{DynamicResource menuButtonIcon}"></fa:IconImage>
+                                            <TextBlock Text="{DynamicResource SearchEventsNav}" Style="{DynamicResource menuButtonText}"></TextBlock>
+                                        </StackPanel>
+                                    </RadioButton>
+                                </StackPanel>
 
 
                                 <RadioButton x:Name="DashboardRB" Grid.Row="2" Style="{DynamicResource menuButton}" Tag="{DynamicResource color1}" Checked="rbDashBoard_checked">

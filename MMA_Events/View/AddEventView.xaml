@@ -588,15 +588,15 @@ CornerRadius="15">
                >
                             <Border.BorderBrush>
                                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                    <GradientStop Offset="0" Color="#FF8C1313" />
+                                    <GradientStop Offset="0" Color="#FF13368C" />
                                     <GradientStop Offset="1" Color="Transparent" />
                                 </LinearGradientBrush>
                             </Border.BorderBrush>
                             <Border.Background>
                                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                    <GradientStop Offset="0" Color="#FF3E0000" />
+                                    <GradientStop Offset="0" Color="#FF00123E" />
                                     <!-- Full opacity -->
-                                    <GradientStop Offset="1" Color="#B23E0000" />
+                                    <GradientStop Offset="1" Color="#4C00123E" />
                                     <!-- Transparent (opacity = 0) -->
                                 </LinearGradientBrush>
                             </Border.Background>

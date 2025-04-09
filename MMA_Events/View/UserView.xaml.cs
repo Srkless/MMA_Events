@@ -138,37 +138,153 @@ namespace MMA_Events.View
         {
             searchTextBlock.Visibility = Visibility.Visible; // Sakrij TextBlock
             searchTextBox.Visibility = Visibility.Collapsed;     // Prikaži TextBox
-            searchTextBox.Text = "";
+            //searchTextBox.Text = "";
         }
 
         private void SearchTextBox_KeyDown(object sender, KeyEventArgs e)
         {
+            if(searchTextBox.Text != "")
+                searchIcon.Icon = FontAwesome.Sharp.IconChar.Eraser;
+            else
+                searchIcon.Icon = FontAwesome.Sharp.IconChar.MagnifyingGlass;
             if (e.Key == Key.Enter)
             {
                 string searchText = searchTextBox.Text;
+                
 
-                if (Main.Content is SearchPage searchPage)
+                
+
+                if(rbSearchFighters.IsChecked == true)
                 {
-                    searchPage.Search(searchText);
+                    searchFighters();
+                }
+
+                else if (rbSearchEvents.IsChecked == true)
+                {
+                    searchEvents();
                 }
                 else
                 {
-                    searchPage = new SearchPage();
-                    Main.Content = searchPage;
-                    searchPage.Search(searchText);
+                    searchAll();    
                 }
-
-                // Postavljanje fiksnog dela teksta pre nove pretrage
-                if(searchPage.SearchDetails.Count > 0)
-                    searchPage.searchLabel.Text = (Application.Current.Resources["SearchResults"] as string) + " \"" + searchText + "\"";
-                else
-                    searchPage.searchLabel.Text = (Application.Current.Resources["NoSearchResults"] as string) + " \"" + searchText + "\"";
-                searchTextBox.Text = "";
-                SearchRadioButton_UnChecked(sender, e);
-                SerachRB.IsChecked = false;
+                
+                //searchTextBox.Text = "";
+                //SearchRadioButton_UnChecked(sender, e);
+                //SerachRB.IsChecked = false;
             }
 
         }
+
+
+        public void searchAll()
+        {
+            string searchText = searchTextBox.Text;
+            if (Main.Content is SearchPage searchPage)
+            {
+                searchPage.Search(searchText);
+            }
+            else
+            {
+                searchPage = new SearchPage();
+                Main.Content = searchPage;
+                searchPage.Search(searchText);
+            }
+            if (searchPage.SearchDetails.Count > 0)
+                searchPage.searchLabel.Text = (Application.Current.Resources["SearchResults"] as string) + " \"" + searchText + "\"";
+            else
+                searchPage.searchLabel.Text = (Application.Current.Resources["NoSearchResults"] as string) + " \"" + searchText + "\"";
+            if (searchTextBox.Text == "")
+                searchPage.searchLabel.Text = Application.Current.Resources["AllSearchResults"] as string;
+        }
+        public void searchFighters()
+        {
+            string searchText = searchTextBox.Text;
+            if (Main.Content is SearchPage searchPage)
+            {
+                searchPage.SearchFighters(searchText);
+            }
+            else
+            {
+                searchPage = new SearchPage();
+                Main.Content = searchPage;
+                searchPage.SearchFighters(searchText);
+            }
+            if (searchPage.SearchDetails.Count > 0)
+                searchPage.searchLabel.Text = (Application.Current.Resources["SearchFightersResults"] as string) + " \"" + searchText + "\"";
+            else
+                searchPage.searchLabel.Text = (Application.Current.Resources["NoSearchFightersResults"] as string) + " \"" + searchText + "\"";
+
+            if (searchTextBox.Text == "")
+                searchPage.searchLabel.Text = Application.Current.Resources["AllFightersSearchResults"] as string;
+
+        }
+
+        public void searchEvents()
+        {
+            string searchText = searchTextBox.Text;
+            if (Main.Content is SearchPage searchPage)
+            {
+                searchPage.SearchEvents(searchText);
+            }
+            else
+            {
+                searchPage = new SearchPage();
+                Main.Content = searchPage;
+                searchPage.SearchEvents(searchText);
+            }
+            if (searchPage.SearchDetails.Count > 0)
+                searchPage.searchLabel.Text = (Application.Current.Resources["SearchEventsResults"] as string) + " \"" + searchText + "\"";
+            else
+                searchPage.searchLabel.Text = (Application.Current.Resources["NoSearchEventsResults"] as string) + " \"" + searchText + "\"";
+
+            if (searchTextBox.Text == "")
+                searchPage.searchLabel.Text = Application.Current.Resources["AllSEventSearchResults"] as string;
+        }
+        private void RadioButton_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            RadioButton rb = sender as RadioButton;
+
+            // Ako je već čekiran, odčekiraj ga i zaustavi normalno ponašanje
+            if (rb != null && rb.IsChecked == true)
+            {
+                rb.IsChecked = false;
+                e.Handled = true; // zaustavi da WPF ponovo čekira
+                //searchTextBox.Text = "";
+                searchAll();
+            }
+        }
+
+        private void showFighters(object sender, RoutedEventArgs e)
+        {
+            //SearchTextBox_KeyDown(sender, e);
+            searchFighters();
+        }
+
+        private void showEvents(object sender, RoutedEventArgs e)
+        {
+            searchEvents();
+            
+        }
+
+        private void ClearSearchBox(object sender, RoutedEventArgs e)
+        {
+            if (searchIcon.Icon == FontAwesome.Sharp.IconChar.Eraser)
+            {
+                searchTextBox.Text = "";
+                searchIcon.Icon = FontAwesome.Sharp.IconChar.MagnifyingGlass;
+                rbSearchEvents.IsChecked = false;
+                rbSearchFighters.IsChecked = false;
+                SearchRadioButton_UnChecked(sender, e);
+                SerachRB.IsChecked = false;
+                searchAll();
+
+            }
+            else
+            {
+                searchAll();
+            }
+        }
+
         private void rbDashBoard_checked(object sender, RoutedEventArgs e)
         {
             Main.Content = new ShowActiveEvents(this);
@@ -207,5 +323,7 @@ namespace MMA_Events.View
         {
             this.InvalidateVisual(); // Osvežava trenutni prozor
         }
+
+       
     }
 }

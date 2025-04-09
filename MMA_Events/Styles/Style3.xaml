@@ -17,4 +17,7 @@
     <SolidColorBrush x:Key="panelOverColor" Color="#607d8b"/>
     <SolidColorBrush x:Key="panelActiveColor" Color="Transparent"/>
     <SolidColorBrush x:Key="titleColor3" Color="#FFFFCDCD"/>
+    <SolidColorBrush x:Key="reverseColor" Color="#1565c0"/>
+
+    <Color x:Key="reverseComboBoxColor">#1565c0</Color>
 </ResourceDictionary>

@@ -90,13 +90,13 @@ namespace MMA_Events.View
             int fontSize;
             if (WindowState != WindowState.Maximized)
             {
-                padding = new Thickness(30, 0, 0, 2);
+                padding = new Thickness(0, 0, 0, 2);
                 fontSize = 12;
 
             }
             else
             {
-                padding = new Thickness(50, 0, 0, 2);
+                padding = new Thickness(0, 0, 0, 2);
                 fontSize = 20;
             }
 
@@ -115,7 +115,6 @@ namespace MMA_Events.View
 
             CountryComboBox.Padding = padding;
             CountryComboBox.FontSize = fontSize;
-            countryIcon.Width = padding.Left;
 
             userPassField.Padding = padding;
             userPassField.FontSize = fontSize;

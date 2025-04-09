@@ -18,6 +18,19 @@
     <System:String x:Key="SearchResults">Search results for: </System:String>
     <System:String x:Key="NoSearchResults">No results for: </System:String>
 
+    <System:String x:Key="SearchFightersResults">Search results for fighters: </System:String>
+    <System:String x:Key="NoSearchFightersResults">No results for fighters: </System:String>
+
+    <System:String x:Key="SearchEventsResults">Search results for events: </System:String>
+    <System:String x:Key="NoSearchEventsResults">No results for events: </System:String>
+
+    <System:String x:Key="AllSearchResults">All results</System:String>
+    <System:String x:Key="AllFightersSearchResults">All results for fighters</System:String>
+    <System:String x:Key="AllSEventSearchResults">All results for events</System:String>
+    
+    <System:String x:Key="SearchFightersNav">Fighters</System:String>
+    <System:String x:Key="SearchEventsNav">Events</System:String>
+
     <!--Events nav tab-->
     <System:String x:Key="EventName">Name</System:String>
     <System:String x:Key="EventDate">Date</System:String>
@@ -66,4 +79,18 @@
 
     <System:String x:Key="FollowTooltipName">Follow</System:String>
     <System:String x:Key="UnfollowTooltipName">Unfollow</System:String>
+
+    <!--Login forma-->
+    <System:String x:Key="LoginEmailName">Email address</System:String>
+    <System:String x:Key="LoginPasswordName">Password</System:String>
+    <System:String x:Key="LoginButtonName">Login</System:String>
+    <System:String x:Key="RegisterButtonName">Register</System:String>
+
+    <!--Register forma-->
+    <System:String x:Key="RegisterName">Name</System:String>
+    <System:String x:Key="RegisterSurname">Surname</System:String>
+    <System:String x:Key="RegisterEmail">Email address</System:String>
+    <System:String x:Key="RegisterCountry">Country</System:String>
+    <System:String x:Key="RegisterPassword">Password</System:String>
+    <System:String x:Key="RegisterConfirmPassword">Confirm password</System:String>
 </ResourceDictionary>

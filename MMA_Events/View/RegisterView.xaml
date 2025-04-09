@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
         xmlns:local="clr-namespace:MMA_Events.View"
         mc:Ignorable="d"
         Title="LoginView" Height="550" Width="800"
@@ -35,18 +36,18 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type ComboBoxItem}">
                         <Border x:Name="Bd" 
-                BorderBrush="{TemplateBinding BorderBrush}" 
-                BorderThickness="{TemplateBinding BorderThickness}" 
-                Background="{TemplateBinding Background}" 
-                Padding="{TemplateBinding Padding}" 
-                SnapsToDevicePixels="true">
+                        BorderBrush="{TemplateBinding BorderBrush}" 
+                        BorderThickness="{TemplateBinding BorderThickness}" 
+                        Background="{TemplateBinding Background}" 
+                        Padding="{TemplateBinding Padding}" 
+                        SnapsToDevicePixels="true">
                             <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
-                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
-                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                      SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
+                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsHighlighted" Value="true">
-                                <Setter Property="Background" TargetName="Bd" Value="#70090d"/>
+                                <Setter Property="Background" TargetName="Bd" Value="{DynamicResource reverseColor}"/>
                                 <Setter Property="Foreground" Value="White"/>
                             </Trigger>
                             <Trigger Property="IsEnabled" Value="false">
@@ -77,8 +78,8 @@
             <GradientStop Color="Transparent" Offset="0.0"/>
             <GradientStop Color="Transparent" Offset="1.0"/>
         </LinearGradientBrush>
-        <SolidColorBrush x:Key="ComboBox.Static.Border" Color="#FFAF0E14"/>
-        <SolidColorBrush x:Key="ComboBox.Static.Glyph" Color="#FFAF0E14"/>
+        <SolidColorBrush x:Key="ComboBox.Static.Border" Color="{DynamicResource reverseComboBoxColor}"/>
+        <SolidColorBrush x:Key="ComboBox.Static.Glyph" Color="{DynamicResource reverseComboBoxColor}"/>
         <SolidColorBrush x:Key="ComboBox.Static.Editable.Background" Color="Transparent"/>
         <SolidColorBrush x:Key="ComboBox.Static.Editable.Border" Color="Transparent"/>
         <SolidColorBrush x:Key="ComboBox.Static.Editable.Button.Background" Color="Transparent"/>
@@ -87,28 +88,28 @@
             <GradientStop Color="Transparent" Offset="0.0"/>
             <GradientStop Color="Transparent" Offset="1.0"/>
         </LinearGradientBrush>
-        <SolidColorBrush x:Key="ComboBox.MouseOver.Border" Color="#70090d"/>
-        <SolidColorBrush x:Key="ComboBox.MouseOver.Glyph" Color="#70090d"/>
+        <SolidColorBrush x:Key="ComboBox.MouseOver.Border" Color="{DynamicResource reverseComboBoxColor}"/>
+        <SolidColorBrush x:Key="ComboBox.MouseOver.Glyph" Color="{DynamicResource reverseComboBoxColor}"/>
         <SolidColorBrush x:Key="ComboBox.MouseOver.Editable.Background" Color="Transparent"/>
-        <SolidColorBrush x:Key="ComboBox.MouseOver.Editable.Border" Color="#70090d"/>
+        <SolidColorBrush x:Key="ComboBox.MouseOver.Editable.Border" Color="{DynamicResource reverseComboBoxColor}"/>
         <LinearGradientBrush x:Key="ComboBox.MouseOver.Editable.Button.Background" EndPoint="0,1" StartPoint="0,0">
             <GradientStop Color="Transparent" Offset="0.0"/>
             <GradientStop Color="Transparent" Offset="1.0"/>
         </LinearGradientBrush>
-        <SolidColorBrush x:Key="ComboBox.MouseOver.Editable.Button.Border" Color="#70090d"/>
+        <SolidColorBrush x:Key="ComboBox.MouseOver.Editable.Button.Border" Color="{DynamicResource reverseComboBoxColor}"/>
         <LinearGradientBrush x:Key="ComboBox.Pressed.Background" EndPoint="0,1" StartPoint="0,0">
             <GradientStop Color="Transparent" Offset="0.0"/>
             <GradientStop Color="Transparent" Offset="1.0"/>
         </LinearGradientBrush>
-        <SolidColorBrush x:Key="ComboBox.Pressed.Border" Color="#70090d"/>
+        <SolidColorBrush x:Key="ComboBox.Pressed.Border" Color="{DynamicResource reverseComboBoxColor}"/>
         <SolidColorBrush x:Key="ComboBox.Pressed.Glyph" Color="#FF000000"/>
         <SolidColorBrush x:Key="ComboBox.Pressed.Editable.Background" Color="Transparent"/>
-        <SolidColorBrush x:Key="ComboBox.Pressed.Editable.Border" Color="#70090d"/>
+        <SolidColorBrush x:Key="ComboBox.Pressed.Editable.Border" Color="{DynamicResource reverseComboBoxColor}"/>
         <LinearGradientBrush x:Key="ComboBox.Pressed.Editable.Button.Background" EndPoint="0,1" StartPoint="0,0">
             <GradientStop Color="Transparent" Offset="0.0"/>
             <GradientStop Color="Transparent" Offset="1.0"/>
         </LinearGradientBrush>
-        <SolidColorBrush x:Key="ComboBox.Pressed.Editable.Button.Border" Color="#70090d"/>
+        <SolidColorBrush x:Key="ComboBox.Pressed.Editable.Button.Border" Color="{DynamicResource reverseComboBoxColor}"/>
         <SolidColorBrush x:Key="ComboBox.Disabled.Background" Color="Transparent"/>
         <SolidColorBrush x:Key="ComboBox.Disabled.Border" Color="#FFD9D9D9"/>
         <SolidColorBrush x:Key="ComboBox.Disabled.Glyph" Color="#FFBFBFBF"/>
@@ -272,7 +273,7 @@
                 </Grid.ColumnDefinitions>
                 <Popup x:Name="PART_Popup" AllowsTransparency="true" Grid.ColumnSpan="2" IsOpen="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource Mode=TemplatedParent}}" Margin="1" Placement="Bottom" PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}">
                     <theme:SystemDropShadowChrome x:Name="shadow" Color="Transparent" MinWidth="{Binding ActualWidth, ElementName=templateRoot}" MaxHeight="{TemplateBinding MaxDropDownHeight}">
-                        <Border x:Name="dropDownBorder" Background="#FF262626" BorderBrush="#FF980B11" BorderThickness="1">
+                        <Border x:Name="dropDownBorder" Background="#FF262626" BorderBrush="{DynamicResource reverseColor}" BorderThickness="1">
                             <ScrollViewer x:Name="DropDownScrollViewer">
                                 <Grid x:Name="grid" RenderOptions.ClearTypeHint="Enabled">
                                     <Canvas x:Name="canvas" HorizontalAlignment="Left" Height="0" VerticalAlignment="Top" Width="0">
@@ -310,9 +311,9 @@
         </ControlTemplate>
         <Style x:Key="CountryComboBox" TargetType="{x:Type ComboBox}">
             <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
-            <Setter Property="Background" Value="{StaticResource ComboBox.Static.Background}"/>
-            <Setter Property="BorderBrush" Value="{StaticResource ComboBox.Static.Border}"/>
-            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource reverseColor}"/>
+            <Setter Property="Foreground" Value="white"/>
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Hidden"/>
             <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Hidden"/>
@@ -347,21 +348,14 @@
         </Border.Background>
 
         <Border
+             BorderBrush="{DynamicResource DynamicGradientBrush}"
         BorderThickness="4">
             <Border.Background>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" Opacity="0.95">
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" Opacity="0.96">
                     <GradientStop Color="#FF262626"/>
                     <GradientStop Color="#FF313131" Offset="1"/>
-                    <GradientStop Color="#FF262626"/>
-                    <GradientStop Color="#FF262626"/>
                 </LinearGradientBrush>
             </Border.Background>
-            <Border.BorderBrush>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#FF980B11"/>
-                    <GradientStop Color="#FFF34251" Offset="1"/>
-                </LinearGradientBrush>
-            </Border.BorderBrush>
 
             <Grid ClipToBounds="True">
                 <Grid.RowDefinitions>
@@ -391,7 +385,7 @@
                         <!-- Dugme za fullscreen -->
                         <Button Grid.Column="2" Grid.Row="0"
                             x:Name="FullscreenButton"
-        Background="#FFAF0E14" 
+         Background="{DynamicResource buttonColor}"  
         BorderBrush="{x:Null}" 
         Foreground="#FF262626" 
         FontFamily="Arial Black" 
@@ -401,7 +395,7 @@
                             
                 VerticalAlignment="Top"
             FontSize="14" Width="50" Height="30" Margin="0,10,80,0">
-                            <Rectangle Width="12" Height="12" Stroke="#FF262626" StrokeThickness="3"/>
+                            <Rectangle Width="12" Height="12" Stroke="{DynamicResource plainTextColor}" StrokeThickness="3"/>
                             <Button.Template>
                                 <ControlTemplate TargetType="Button">
                                     <Border x:Name="border" 
@@ -416,13 +410,13 @@ CornerRadius="15">
                                     <ControlTemplate.Triggers>
                                         <!-- Promijeni boju kada je miš iznad dugmeta -->
                                         <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter TargetName="border" Property="Background" Value="#910c11"/>
+                                            <Setter TargetName="border" Property="Background" Value="{DynamicResource panelOverColor}"/>
                                             <!-- Zlatna boja -->
                                         </Trigger>
 
                                         <!-- Promijeni boju kada je dugme pritisnuto -->
                                         <Trigger Property="IsPressed" Value="True">
-                                            <Setter TargetName="border" Property="Background" Value="#70090d"/>
+                                            <Setter TargetName="border" Property="Background" Value="{DynamicResource panelOverColor}"/>
                                             <!-- Tamnocrvena boja -->
                                         </Trigger>
                                     </ControlTemplate.Triggers>
@@ -433,9 +427,9 @@ CornerRadius="15">
                         <!-- Dugme za exit -->
                         <Button Content="X" Grid.Column="2" Grid.Row="0"
                             x:Name="ExitButton"
-        Background="#FFAF0E14" 
+         Background="{DynamicResource buttonColor}" 
         BorderBrush="{x:Null}" 
-        Foreground="#FF262626" 
+        Foreground="{DynamicResource plainTextColor}" 
         FontFamily="Arial Black" 
                             Click="ExitButton_Click"
             
@@ -457,13 +451,13 @@ CornerRadius="15">
                                     <ControlTemplate.Triggers>
                                         <!-- Promijeni boju kada je miš iznad dugmeta -->
                                         <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter TargetName="border" Property="Background" Value="#910c11"/>
+                                            <Setter TargetName="border" Property="Background" Value="{DynamicResource panelOverColor}"/>
                                             <!-- Zlatna boja -->
                                         </Trigger>
 
                                         <!-- Promijeni boju kada je dugme pritisnuto -->
                                         <Trigger Property="IsPressed" Value="True">
-                                            <Setter TargetName="border" Property="Background" Value="#70090d"/>
+                                            <Setter TargetName="border" Property="Background" Value="{DynamicResource panelOverColor}"/>
                                             <!-- Tamnocrvena boja -->
                                         </Trigger>
                                     </ControlTemplate.Triggers>
@@ -480,74 +474,74 @@ CornerRadius="15">
                             <RowDefinition Height="*" MinHeight="35"/>
                             <RowDefinition Height="*" MaxHeight="8"/>
                         </Grid.RowDefinitions>
-
-                        <TextBox x:Name = "userNameField" Grid.Row="1"
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.1*"/>
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="1">
+                                <TextBox x:Name = "userNameField" Grid.Row="1"
 TextWrapping = "Wrap"
-BorderBrush = "#FFAF0E14"
-SelectionBrush = "#FFAF0E14"
+BorderBrush = "{DynamicResource reverseColor}"
+SelectionBrush = "{DynamicResource reverseColor}"
 BorderThickness = "0,0,0,3"
-Foreground = "#FFAF0E14"
-Padding = "30,0,0,2"
+                                         Background="Transparent"
+                                      
+Margin="10,0,0,0"
+Foreground = "{DynamicResource reverseColor}"
+Padding = "0,0,0,2"
 SelectionTextBrush = "{x:Null}"
 FontFamily = "Arial"
-CaretBrush = "#FFAF0E14"
+CaretBrush = "{DynamicResource reverseColor}"
 VerticalContentAlignment = "Center" FontSize = "16" >
-                            <TextBox.Style >
-                                <Style TargetType = "{x:Type TextBox}" >
-                                    <Setter Property = "Template" >
-                                        <Setter.Value >
-                                            <ControlTemplate TargetType = "{x:Type TextBox}" >
-                                                <Border x:Name = "border"
+                                    <TextBox.Style >
+                                        <Style TargetType = "{x:Type TextBox}" >
+                                            <Setter Property = "Template" >
+                                                <Setter.Value >
+                                                    <ControlTemplate TargetType = "{x:Type TextBox}" >
+                                                        <Border x:Name = "border"
                        Background = "{TemplateBinding Background}"
                        BorderBrush = "{TemplateBinding BorderBrush}"
                        BorderThickness = "{TemplateBinding BorderThickness}"
                        CornerRadius = "2" >
-                                                    <ScrollViewer x:Name = "PART_ContentHost" />
-                                                </Border >
-                                                <ControlTemplate.Triggers >
-                                                    <Trigger Property = "IsFocused" Value = "True" >
-                                                        <Setter TargetName = "border" Property = "BorderBrush" Value = "#FFAF0E14" />
-                                                    </Trigger >
-                                                    <Trigger Property = "IsMouseOver" Value = "True" >
-                                                        <Setter TargetName = "border" Property = "BorderBrush" Value = "#FFAF0E14" />
-                                                    </Trigger >
-                                                </ControlTemplate.Triggers >
-                                            </ControlTemplate >
-                                        </Setter.Value >
-                                    </Setter >
-                                </Style >
-                            </TextBox.Style >
-                            <TextBox.Background >
-                                <ImageBrush ImageSource = "../Images/userIcon.png" Stretch = "Uniform" AlignmentX = "Left" >
-                                    <ImageBrush.RelativeTransform >
-                                        <TransformGroup >
-                                            <ScaleTransform CenterY = "0" CenterX = "0" ScaleX = "0.8" ScaleY = "0.8" />
-                                            <SkewTransform CenterX = "0" CenterY = "0" />
-                                            <RotateTransform Angle = "0" CenterX = "0" CenterY = "0" />
-                                            <TranslateTransform X = "0" />
-                                        </TransformGroup >
-                                    </ImageBrush.RelativeTransform >
+                                                            <ScrollViewer x:Name = "PART_ContentHost" />
+                                                        </Border >
+                                                        <ControlTemplate.Triggers >
+                                                            <Trigger Property = "IsFocused" Value = "True" >
+                                                                <Setter TargetName = "border" Property = "BorderBrush" Value = "{DynamicResource reverseColor}" />
+                                                            </Trigger >
+                                                            <Trigger Property = "IsMouseOver" Value = "True" >
+                                                                <Setter TargetName = "border" Property = "BorderBrush" Value = "{DynamicResource reverseColor}" />
+                                                            </Trigger >
+                                                        </ControlTemplate.Triggers >
+                                                    </ControlTemplate >
+                                                </Setter.Value >
+                                            </Setter >
+                                        </Style >
+                                    </TextBox.Style >
 
-                                </ImageBrush >
-                            </TextBox.Background >
-                        </TextBox  >
-                        <TextBlock x:Name = "NamePromptTextBlock" Grid.Row="1"
-  Text = "Name"
+                                </TextBox  >
+                                <TextBlock x:Name = "NamePromptTextBlock" Grid.Row="1"
+  Text = "{DynamicResource RegisterName}"
   Foreground = "Gray"
   VerticalAlignment = "Center"
   HorizontalAlignment = "Left"
-  IsHitTestVisible = "False" Padding="30,0,0,3" >
-                            <TextBlock.Style >
-                                <Style TargetType = "{x:Type TextBlock}" >
-                                    <Setter Property = "Visibility" Value = "Collapsed" />
-                                    <Style.Triggers>
-                                        <DataTrigger Binding = "{Binding Text, ElementName=userNameField}" Value = "" >
-                                            <Setter Property = "Visibility" Value = "Visible" />
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </TextBlock.Style>
-                        </TextBlock>
+Margin="10,0,0,0"
+  IsHitTestVisible = "False" Padding="0,0,0,3" >
+                                    <TextBlock.Style >
+                                        <Style TargetType = "{x:Type TextBlock}" >
+                                            <Setter Property = "Visibility" Value = "Collapsed" />
+                                            <Style.Triggers>
+                                                <DataTrigger Binding = "{Binding Text, ElementName=userNameField}" Value = "" >
+                                                    <Setter Property = "Visibility" Value = "Visible" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                            </Grid>
+                            <fa:IconImage Icon="User" Foreground="{DynamicResource reverseColor}"></fa:IconImage>
+                        </Grid>
                     </Grid>
 
                     <Grid Margin="30,0,90,0" Grid.Row="2">
@@ -556,74 +550,76 @@ VerticalContentAlignment = "Center" FontSize = "16" >
                             <RowDefinition Height="*" MinHeight="35"/>
                             <RowDefinition Height="*" MaxHeight="8"/>
                         </Grid.RowDefinitions>
-
-                        <TextBox x:Name = "userSurnameField" Grid.Row="1"
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.1*"/>
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="1">
+                                <TextBox x:Name = "userSurnameField" Grid.Row="1"
 TextWrapping = "Wrap"
-BorderBrush = "#FFAF0E14"
-SelectionBrush = "#FFAF0E14"
+BorderBrush = "{DynamicResource reverseColor}"
+SelectionBrush = "{DynamicResource reverseColor}"
 BorderThickness = "0,0,0,3"
-Foreground = "#FFAF0E14"
-Padding = "30,0,0,2"
+Foreground = "{DynamicResource reverseColor}"
+Padding = "0,0,0,2"
+                                         Margin="10,0,0,0"
+                                         Background="Transparent"
 SelectionTextBrush = "{x:Null}"
 FontFamily = "Arial"
-CaretBrush = "#FFAF0E14"
+CaretBrush = "{DynamicResource reverseColor}"
 VerticalContentAlignment = "Center" FontSize = "16" >
-                            <TextBox.Style >
-                                <Style TargetType = "{x:Type TextBox}" >
-                                    <Setter Property = "Template" >
-                                        <Setter.Value >
-                                            <ControlTemplate TargetType = "{x:Type TextBox}" >
-                                                <Border x:Name = "border"
+                                    <TextBox.Style >
+                                        <Style TargetType = "{x:Type TextBox}" >
+                                            <Setter Property = "Template" >
+                                                <Setter.Value >
+                                                    <ControlTemplate TargetType = "{x:Type TextBox}" >
+                                                        <Border x:Name = "border"
                        Background = "{TemplateBinding Background}"
                        BorderBrush = "{TemplateBinding BorderBrush}"
                        BorderThickness = "{TemplateBinding BorderThickness}"
                        CornerRadius = "2" >
-                                                    <ScrollViewer x:Name = "PART_ContentHost" />
-                                                </Border >
-                                                <ControlTemplate.Triggers >
-                                                    <Trigger Property = "IsFocused" Value = "True" >
-                                                        <Setter TargetName = "border" Property = "BorderBrush" Value = "#FFAF0E14" />
-                                                    </Trigger >
-                                                    <Trigger Property = "IsMouseOver" Value = "True" >
-                                                        <Setter TargetName = "border" Property = "BorderBrush" Value = "#FFAF0E14" />
-                                                    </Trigger >
-                                                </ControlTemplate.Triggers >
-                                            </ControlTemplate >
-                                        </Setter.Value >
-                                    </Setter >
-                                </Style >
-                            </TextBox.Style >
-                            <TextBox.Background >
-                                <ImageBrush ImageSource = "../Images/userIcon.png" Stretch = "Uniform" AlignmentX = "Left" >
-                                    <ImageBrush.RelativeTransform >
-                                        <TransformGroup >
-                                            <ScaleTransform CenterY = "0" CenterX = "0" ScaleX = "0.8" ScaleY = "0.8" />
-                                            <SkewTransform CenterX = "0" CenterY = "0" />
-                                            <RotateTransform Angle = "0" CenterX = "0" CenterY = "0" />
-                                            <TranslateTransform X = "0" />
-                                        </TransformGroup >
-                                    </ImageBrush.RelativeTransform >
+                                                            <ScrollViewer x:Name = "PART_ContentHost" />
+                                                        </Border >
+                                                        <ControlTemplate.Triggers >
+                                                            <Trigger Property = "IsFocused" Value = "True" >
+                                                                <Setter TargetName = "border" Property = "BorderBrush" Value = "{DynamicResource reverseColor}" />
+                                                            </Trigger >
+                                                            <Trigger Property = "IsMouseOver" Value = "True" >
+                                                                <Setter TargetName = "border" Property = "BorderBrush" Value = "{DynamicResource reverseColor}" />
+                                                            </Trigger >
+                                                        </ControlTemplate.Triggers >
+                                                    </ControlTemplate >
+                                                </Setter.Value >
+                                            </Setter >
+                                        </Style >
+                                    </TextBox.Style >
 
-                                </ImageBrush >
-                            </TextBox.Background >
-                        </TextBox  >
-                        <TextBlock x:Name = "SurnamePromptTextBlock" Grid.Row="1"
-  Text = "Surname"
+                                </TextBox  >
+                                <TextBlock x:Name = "SurnamePromptTextBlock" Grid.Row="1"
+  Text = "{DynamicResource RegisterSurname}"
   Foreground = "Gray"
   VerticalAlignment = "Center"
   HorizontalAlignment = "Left"
-  IsHitTestVisible = "False" Padding="30,0,0,3" >
-                            <TextBlock.Style >
-                                <Style TargetType = "{x:Type TextBlock}" >
-                                    <Setter Property = "Visibility" Value = "Collapsed" />
-                                    <Style.Triggers>
-                                        <DataTrigger Binding = "{Binding Text, ElementName=userSurnameField}" Value = "" >
-                                            <Setter Property = "Visibility" Value = "Visible" />
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </TextBlock.Style>
-                        </TextBlock>
+                                           Margin="10,0,0,0"
+  IsHitTestVisible = "False" Padding="0,0,0,3" >
+                                    <TextBlock.Style >
+                                        <Style TargetType = "{x:Type TextBlock}" >
+                                            <Setter Property = "Visibility" Value = "Collapsed" />
+                                            <Style.Triggers>
+                                                <DataTrigger Binding = "{Binding Text, ElementName=userSurnameField}" Value = "" >
+                                                    <Setter Property = "Visibility" Value = "Visible" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                            </Grid>
+                            <fa:IconImage Icon="User" Foreground="{DynamicResource reverseColor}"></fa:IconImage>
+
+                        </Grid>
+
+
                     </Grid>
 
                     <Grid Margin="30,0,90,0" Grid.Row="3">
@@ -632,74 +628,76 @@ VerticalContentAlignment = "Center" FontSize = "16" >
                             <RowDefinition Height="*" MinHeight="35"/>
                             <RowDefinition Height="*" MaxHeight="8"/>
                         </Grid.RowDefinitions>
-
-                        <TextBox x:Name = "userEmailField" Grid.Row="1"
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.1*"/>
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="1">
+                                <TextBox x:Name = "userEmailField" Grid.Row="1"
 TextWrapping = "Wrap"
-BorderBrush = "#FFAF0E14"
+BorderBrush = "{DynamicResource reverseColor}"
 SelectionBrush = "#FFAF0E14"
 BorderThickness = "0,0,0,3"
-Foreground = "#FFAF0E14"
-Padding = "30,0,0,2"
+                                         Background="Transparent"
+Foreground = "{DynamicResource reverseColor}"
+Padding = "0,0,0,2"
+                                         Margin="10,0,0,0"
 SelectionTextBrush = "{x:Null}"
 FontFamily = "Arial"
-CaretBrush = "#FFAF0E14"
+CaretBrush = "{DynamicResource reverseColor}"
 VerticalContentAlignment = "Center" FontSize = "16" >
-                            <TextBox.Style >
-                                <Style TargetType = "{x:Type TextBox}" >
-                                    <Setter Property = "Template" >
-                                        <Setter.Value >
-                                            <ControlTemplate TargetType = "{x:Type TextBox}" >
-                                                <Border x:Name = "border"
+                                    <TextBox.Style >
+                                        <Style TargetType = "{x:Type TextBox}" >
+                                            <Setter Property = "Template" >
+                                                <Setter.Value >
+                                                    <ControlTemplate TargetType = "{x:Type TextBox}" >
+                                                        <Border x:Name = "border"
                        Background = "{TemplateBinding Background}"
                        BorderBrush = "{TemplateBinding BorderBrush}"
                        BorderThickness = "{TemplateBinding BorderThickness}"
                        CornerRadius = "2" >
-                                                    <ScrollViewer x:Name = "PART_ContentHost" />
-                                                </Border >
-                                                <ControlTemplate.Triggers >
-                                                    <Trigger Property = "IsFocused" Value = "True" >
-                                                        <Setter TargetName = "border" Property = "BorderBrush" Value = "#FFAF0E14" />
-                                                    </Trigger >
-                                                    <Trigger Property = "IsMouseOver" Value = "True" >
-                                                        <Setter TargetName = "border" Property = "BorderBrush" Value = "#FFAF0E14" />
-                                                    </Trigger >
-                                                </ControlTemplate.Triggers >
-                                            </ControlTemplate >
-                                        </Setter.Value >
-                                    </Setter >
-                                </Style >
-                            </TextBox.Style >
-                            <TextBox.Background >
-                                <ImageBrush ImageSource = "../Images/mailIcon.png" Stretch = "Uniform" AlignmentX = "Left">
-                                    <ImageBrush.RelativeTransform >
-                                        <TransformGroup >
-                                            <ScaleTransform CenterY = "0" CenterX = "0" ScaleX = "0.8" ScaleY = "0.8" />
-                                            <SkewTransform CenterX = "0" CenterY = "0" />
-                                            <RotateTransform Angle = "0" CenterX = "0" CenterY = "0" />
-                                            <TranslateTransform X = "0" />
-                                        </TransformGroup >
-                                    </ImageBrush.RelativeTransform >
+                                                            <ScrollViewer x:Name = "PART_ContentHost" />
+                                                        </Border >
+                                                        <ControlTemplate.Triggers >
+                                                            <Trigger Property = "IsFocused" Value = "True" >
+                                                                <Setter TargetName = "border" Property = "BorderBrush" Value = "{DynamicResource reverseColor}" />
+                                                            </Trigger >
+                                                            <Trigger Property = "IsMouseOver" Value = "True" >
+                                                                <Setter TargetName = "border" Property = "BorderBrush" Value = "{DynamicResource reverseColor}" />
+                                                            </Trigger >
+                                                        </ControlTemplate.Triggers >
+                                                    </ControlTemplate >
+                                                </Setter.Value >
+                                            </Setter >
+                                        </Style >
+                                    </TextBox.Style >
 
-                                </ImageBrush >
-                            </TextBox.Background >
-                        </TextBox  >
-                        <TextBlock x:Name = "EmailPromptTextBlock" Grid.Row="1"
-  Text = "Email"
+                                </TextBox  >
+                                <TextBlock x:Name = "EmailPromptTextBlock" Grid.Row="1"
+  Text = "{DynamicResource RegisterEmail}"
   Foreground = "Gray"
   VerticalAlignment = "Center"
   HorizontalAlignment = "Left"
-  IsHitTestVisible = "False" Padding="30,0,0,3" >
-                            <TextBlock.Style >
-                                <Style TargetType = "{x:Type TextBlock}" >
-                                    <Setter Property = "Visibility" Value = "Collapsed" />
-                                    <Style.Triggers>
-                                        <DataTrigger Binding = "{Binding Text, ElementName=userEmailField}" Value = "" >
-                                            <Setter Property = "Visibility" Value = "Visible" />
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </TextBlock.Style>
-                        </TextBlock>
+                                           
+                                           Margin="10,0,0,0"
+  IsHitTestVisible = "False" Padding="0,0,0,3" >
+                                    <TextBlock.Style >
+                                        <Style TargetType = "{x:Type TextBlock}" >
+                                            <Setter Property = "Visibility" Value = "Collapsed" />
+                                            <Style.Triggers>
+                                                <DataTrigger Binding = "{Binding Text, ElementName=userEmailField}" Value = "" >
+                                                    <Setter Property = "Visibility" Value = "Visible" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                            </Grid>
+                            <fa:IconImage Icon="Envelope" Foreground="{DynamicResource reverseColor}"></fa:IconImage>
+
+                        </Grid>
+
                     </Grid>
 
 
@@ -709,110 +707,62 @@ VerticalContentAlignment = "Center" FontSize = "16" >
                             <RowDefinition Height="*" MinHeight="35"/>
                             <RowDefinition Height="*" MaxHeight="8"/>
                         </Grid.RowDefinitions>
-
-                        <ComboBox Style="{DynamicResource CountryComboBox}" x:Name="CountryComboBox" Grid.Row="1"
-                                  BorderBrush = "#FFAF0E14"
-                    BorderThickness = "0,0,0,3"
-                    Foreground = "#FFAF0E14"
-                    Padding = "50,0,0,2"
-                    FontFamily = "Arial"
-                    VerticalContentAlignment = "Center" FontSize = "20"
-                              ItemsSource="{Binding Countries}" 
-                              SelectedItem="{Binding SelectedCountry}"
-                              HorizontalContentAlignment="Stretch">
-                            <ComboBox.ItemContainerStyle>
-                                <Style TargetType="ComboBoxItem">
-                                    <Style.Triggers>
-                                        <Trigger Property="IsSelected" Value="True">
-                                            <Setter Property="Visibility" Value="Collapsed"/>
-                                        </Trigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </ComboBox.ItemContainerStyle>
-                            <ComboBox.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="30" />
-                                            <ColumnDefinition Width="*" />
-                                        </Grid.ColumnDefinitions>
-                                        <Image x:Name="imgFlag" Source="{Binding FlagImage}" Width="30" Height="20" Grid.Column="0" HorizontalAlignment="Left"/>
-                                        <TextBlock Text="{Binding Name}" Grid.Column="1" VerticalAlignment="Center"/>
-
-                                    </Grid>
-                                </DataTemplate>
-                            </ComboBox.ItemTemplate>
-                            
-                            
-                        </ComboBox>
-                        <Image x:Name="countryIcon"  Grid.Row="1" HorizontalAlignment="Left" Source="/Images/countryIcon.png" Margin="0,0,0,5"></Image>
-                        <!--<TextBox x:Name = "userCountryField" Grid.Row="1"
-TextWrapping = "Wrap"
-BorderBrush = "#FFAF0E14"
-SelectionBrush = "#FFAF0E14"
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.1*"/>
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="1">
+                                <ComboBox Style="{DynamicResource CountryComboBox}" x:Name="CountryComboBox" Grid.Row="1"
+              BorderBrush = "{DynamicResource reverseColor}"
 BorderThickness = "0,0,0,3"
-Foreground = "#FFAF0E14"
-Padding = "30,0,0,2"
-SelectionTextBrush = "{x:Null}"
+Foreground = "{DynamicResource reverseColor}"
+                                          Margin="10,0,0,0"
 FontFamily = "Arial"
-CaretBrush = "#FFAF0E14"
-VerticalContentAlignment = "Center" FontSize = "16" >
-                            <TextBox.Style >
-                                <Style TargetType = "{x:Type TextBox}" >
-                                    <Setter Property = "Template" >
-                                        <Setter.Value >
-                                            <ControlTemplate TargetType = "{x:Type TextBox}" >
-                                                <Border x:Name = "border"
-                       Background = "{TemplateBinding Background}"
-                       BorderBrush = "{TemplateBinding BorderBrush}"
-                       BorderThickness = "{TemplateBinding BorderThickness}"
-                       CornerRadius = "2" >
-                                                    <ScrollViewer x:Name = "PART_ContentHost" />
-                                                </Border >
-                                                <ControlTemplate.Triggers >
-                                                    <Trigger Property = "IsFocused" Value = "True" >
-                                                        <Setter TargetName = "border" Property = "BorderBrush" Value = "#FFAF0E14" />
-                                                    </Trigger >
-                                                    <Trigger Property = "IsMouseOver" Value = "True" >
-                                                        <Setter TargetName = "border" Property = "BorderBrush" Value = "#FFAF0E14" />
-                                                    </Trigger >
-                                                </ControlTemplate.Triggers >
-                                            </ControlTemplate >
-                                        </Setter.Value >
-                                    </Setter >
-                                </Style >
-                            </TextBox.Style >
-                            <TextBox.Background >
-                                <ImageBrush ImageSource = "../Images/countryIcon.png" Stretch = "Uniform" AlignmentX = "Left" >
-                                    <ImageBrush.RelativeTransform >
-                                        <TransformGroup >
-                                            <ScaleTransform CenterY = "0" CenterX = "0" ScaleX = "0.8" ScaleY = "0.8" />
-                                            <SkewTransform CenterX = "0" CenterY = "0" />
-                                            <RotateTransform Angle = "0" CenterX = "0" CenterY = "0" />
-                                            <TranslateTransform X = "0" />
-                                        </TransformGroup >
-                                    </ImageBrush.RelativeTransform >
+VerticalContentAlignment = "Center" FontSize = "20"
+          ItemsSource="{Binding Countries}" 
+          SelectedItem="{Binding SelectedCountry}"
+          HorizontalContentAlignment="Stretch">
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="30" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Image x:Name="imgFlag" Source="{Binding FlagImage}" Width="30" Height="20" Grid.Column="0" HorizontalAlignment="Left"/>
+                                                <TextBlock Text="{Binding Name}" Grid.Column="1" VerticalAlignment="Center"/>
 
-                                </ImageBrush >
-                            </TextBox.Background >
-                        </TextBox  >
-                        <TextBlock x:Name = "CountryPromptTextBlock" Grid.Row="1"
-  Text = "Country"
-  Foreground = "Gray"
-  VerticalAlignment = "Center"
-  HorizontalAlignment = "Left"
-  IsHitTestVisible = "False" Padding="30,0,0,3" >
-                            <TextBlock.Style >
-                                <Style TargetType = "{x:Type TextBlock}" >
-                                    <Setter Property = "Visibility" Value = "Collapsed" />
-                                    <Style.Triggers>
-                                        <DataTrigger Binding = "{Binding Text, ElementName=userCountryField}" Value = "" >
-                                            <Setter Property = "Visibility" Value = "Visible" />
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </TextBlock.Style>
-                        </TextBlock>-->
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+
+
+                                </ComboBox>
+                                <TextBlock x:Name = "CountryPromptTextBlock" Grid.Row="1"
+                                Text = "{DynamicResource RegisterCountry}"
+                                Foreground = "Gray"
+                                VerticalAlignment = "Center"
+                                HorizontalAlignment = "Left"
+                                         
+                                         Margin="10,0,0,0"
+IsHitTestVisible = "False" Padding="0,0,0,3" >
+                                    <TextBlock.Style >
+                                        <Style TargetType = "{x:Type TextBlock}" >
+                                            <Setter Property = "Visibility" Value = "Collapsed" />
+                                            <Style.Triggers>
+                                                <DataTrigger Binding = "{Binding Text, ElementName=CountryComboBox}" Value = "" >
+                                                    <Setter Property = "Visibility" Value = "Visible" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                            </Grid>
+                            <fa:IconImage Icon="MapLocation" Foreground="{DynamicResource reverseColor}"></fa:IconImage>
+
+                        </Grid>
+
                     </Grid>
 
                     <Grid Margin="30,0,90,0" Grid.Row="5">
@@ -821,67 +771,68 @@ VerticalContentAlignment = "Center" FontSize = "16" >
                             <RowDefinition Height="*" MinHeight="35"/>
                             <RowDefinition Height="*" MaxHeight="8"/>
                         </Grid.RowDefinitions>
-                        <PasswordBox x:Name="userPassField" Grid.Row="1"
-    BorderBrush="#FFAF0E14" 
-    SelectionBrush="#FFAF0E14"
-    BorderThickness="0,0,0,3" 
-    Foreground="#FFAF0E14" 
-    Padding="30,0,0,2" 
-    SelectionTextBrush="{x:Null}" 
-    FontFamily="Arial" 
-    CaretBrush="#FFAF0E14" 
-                 PasswordChanged="userPass_PasswordChanged"
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.1*"/>
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="1">
+                                <PasswordBox x:Name="userPassField" Grid.Row="1"
+BorderBrush="{DynamicResource reverseColor}" 
+SelectionBrush="{DynamicResource reverseColor}"
+BorderThickness="0,0,0,3" 
+Foreground="{DynamicResource reverseColor}" 
+Padding="0,0,0,2"
+                                             Margin="10,0,0,0"
+SelectionTextBrush="{x:Null}" 
+                                             Background="Transparent"
+FontFamily="Arial" 
+CaretBrush="{DynamicResource reverseColor}" 
+             PasswordChanged="userPass_PasswordChanged"
 
-    VerticalContentAlignment="Center" Height="NaN">
+VerticalContentAlignment="Center" Height="NaN">
 
-                            <PasswordBox.Style>
-                                <Style TargetType="PasswordBox">
-                                    <Setter Property="Template">
-                                        <Setter.Value>
-                                            <ControlTemplate TargetType="PasswordBox">
-                                                <Border x:Name="border" 
-    Background="{TemplateBinding Background}" 
-    BorderBrush="{TemplateBinding BorderBrush}" 
-    BorderThickness="{TemplateBinding BorderThickness}" 
-    CornerRadius="2">
-                                                    <ScrollViewer x:Name="PART_ContentHost"/>
-                                                </Border>
-                                                <ControlTemplate.Triggers>
-                                                    <Trigger Property="IsFocused" Value="True">
-                                                        <Setter TargetName="border" Property="BorderBrush" Value="#FFAF0E14"/>
-                                                    </Trigger>
-                                                    <Trigger Property="IsMouseOver" Value="True">
-                                                        <Setter TargetName="border" Property="BorderBrush" Value="#FFAF0E14"/>
-                                                    </Trigger>
-                                                </ControlTemplate.Triggers>
-                                            </ControlTemplate>
-                                        </Setter.Value>
-                                    </Setter>
-                                </Style>
-                            </PasswordBox.Style>
+                                    <PasswordBox.Style>
+                                        <Style TargetType="PasswordBox">
+                                            <Setter Property="Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate TargetType="PasswordBox">
+                                                        <Border x:Name="border" 
+Background="{TemplateBinding Background}" 
+BorderBrush="{TemplateBinding BorderBrush}" 
+BorderThickness="{TemplateBinding BorderThickness}" 
+CornerRadius="2">
+                                                            <ScrollViewer x:Name="PART_ContentHost"/>
+                                                        </Border>
+                                                        <ControlTemplate.Triggers>
+                                                            <Trigger Property="IsFocused" Value="True">
+                                                                <Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource reverseColor}"/>
+                                                            </Trigger>
+                                                            <Trigger Property="IsMouseOver" Value="True">
+                                                                <Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource reverseColor}"/>
+                                                            </Trigger>
+                                                        </ControlTemplate.Triggers>
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Style>
+                                    </PasswordBox.Style>
 
-                            <PasswordBox.Background>
-                                <ImageBrush ImageSource="../Images/passicon.png" Stretch="Uniform" AlignmentX="Left">
-                                    <ImageBrush.RelativeTransform>
-                                        <TransformGroup>
-                                            <ScaleTransform CenterY="0" CenterX="0" ScaleX="0.8" ScaleY="0.8"/>
-                                            <SkewTransform CenterX="0" CenterY="0"/>
-                                            <RotateTransform Angle="0" CenterX="0" CenterY="0"/>
-                                            <TranslateTransform X="0"/>
-                                        </TransformGroup>
-                                    </ImageBrush.RelativeTransform>
 
-                                </ImageBrush>
-                            </PasswordBox.Background>
 
-                        </PasswordBox>
-                        <TextBlock x:Name="PassPromptTextBlock" Grid.Row="1"
-     Text="Password" 
-     Foreground="Gray" 
-     VerticalAlignment="Center" 
-     HorizontalAlignment="Left" 
-     IsHitTestVisible="False" Padding="30,3,0,0">
-                        </TextBlock>
+                                </PasswordBox>
+                                <TextBlock x:Name="PassPromptTextBlock" Grid.Row="1"
+ Text="{DynamicResource RegisterPassword}" 
+ Foreground="Gray" 
+ VerticalAlignment="Center" 
+ HorizontalAlignment="Left" 
+ IsHitTestVisible="False" Padding="0,3,0,0" Margin="10,0,0,0">
+                                </TextBlock>
+                            </Grid>
+                            <fa:IconImage Icon="Key" Foreground="{DynamicResource reverseColor}"></fa:IconImage>
+
+                        </Grid>
+
                     </Grid>
 
                     <Grid Margin="30,0,90,0" Grid.Row="6">
@@ -890,67 +841,68 @@ VerticalContentAlignment = "Center" FontSize = "16" >
                             <RowDefinition Height="*" MinHeight="35"/>
                             <RowDefinition Height="*" MaxHeight="8"/>
                         </Grid.RowDefinitions>
-                        <PasswordBox x:Name="userConfirmPassField" Grid.Row="1"
-BorderBrush="#FFAF0E14" 
-SelectionBrush="#FFAF0E14"
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.1*"/>
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="1">
+
+                                <PasswordBox x:Name="userConfirmPassField" Grid.Row="1"
+BorderBrush="{DynamicResource reverseColor}" 
+SelectionBrush="{DynamicResource reverseColor}"
 BorderThickness="0,0,0,3" 
-Foreground="#FFAF0E14" 
-Padding="30,0,0,2" 
-SelectionTextBrush="{x:Null}" 
+Foreground="{DynamicResource reverseColor}" 
+Padding="0,0,0,2" 
+                                             Background="Transparent"
+Margin="10,0,0,0"
+                                             SelectionTextBrush="{x:Null}" 
 FontFamily="Arial" 
-CaretBrush="#FFAF0E14" 
+CaretBrush="{DynamicResource reverseColor}" 
              PasswordChanged="userConfirmPass_PasswordChanged"
 
 VerticalContentAlignment="Center" Height="NaN">
 
-                            <PasswordBox.Style>
-                                <Style TargetType="PasswordBox">
-                                    <Setter Property="Template">
-                                        <Setter.Value>
-                                            <ControlTemplate TargetType="PasswordBox">
-                                                <Border x:Name="border" 
+                                    <PasswordBox.Style>
+                                        <Style TargetType="PasswordBox">
+                                            <Setter Property="Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate TargetType="PasswordBox">
+                                                        <Border x:Name="border" 
 Background="{TemplateBinding Background}" 
 BorderBrush="{TemplateBinding BorderBrush}" 
 BorderThickness="{TemplateBinding BorderThickness}" 
 CornerRadius="2">
-                                                    <ScrollViewer x:Name="PART_ContentHost"/>
-                                                </Border>
-                                                <ControlTemplate.Triggers>
-                                                    <Trigger Property="IsFocused" Value="True">
-                                                        <Setter TargetName="border" Property="BorderBrush" Value="#FFAF0E14"/>
-                                                    </Trigger>
-                                                    <Trigger Property="IsMouseOver" Value="True">
-                                                        <Setter TargetName="border" Property="BorderBrush" Value="#FFAF0E14"/>
-                                                    </Trigger>
-                                                </ControlTemplate.Triggers>
-                                            </ControlTemplate>
-                                        </Setter.Value>
-                                    </Setter>
-                                </Style>
-                            </PasswordBox.Style>
+                                                            <ScrollViewer x:Name="PART_ContentHost"/>
+                                                        </Border>
+                                                        <ControlTemplate.Triggers>
+                                                            <Trigger Property="IsFocused" Value="True">
+                                                                <Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource reverseColor}"/>
+                                                            </Trigger>
+                                                            <Trigger Property="IsMouseOver" Value="True">
+                                                                <Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource reverseColor}"/>
+                                                            </Trigger>
+                                                        </ControlTemplate.Triggers>
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Style>
+                                    </PasswordBox.Style>
 
-                            <PasswordBox.Background>
-                                <ImageBrush ImageSource="../Images/passicon.png" Stretch="Uniform" AlignmentX="Left">
-                                    <ImageBrush.RelativeTransform>
-                                        <TransformGroup>
-                                            <ScaleTransform CenterY="0" CenterX="0" ScaleX="0.8" ScaleY="0.8"/>
-                                            <SkewTransform CenterX="0" CenterY="0"/>
-                                            <RotateTransform Angle="0" CenterX="0" CenterY="0"/>
-                                            <TranslateTransform X="0"/>
-                                        </TransformGroup>
-                                    </ImageBrush.RelativeTransform>
 
-                                </ImageBrush>
-                            </PasswordBox.Background>
 
-                        </PasswordBox>
-                        <TextBlock x:Name="ConfirmPassPromptTextBlock" Grid.Row="1"
- Text="Password" 
+                                </PasswordBox>
+                                <TextBlock x:Name="ConfirmPassPromptTextBlock" Grid.Row="1"
+ Text="{DynamicResource RegisterConfirmPassword}" 
  Foreground="Gray" 
  VerticalAlignment="Center" 
  HorizontalAlignment="Left" 
- IsHitTestVisible="False" Padding="30,3,0,0">
-                        </TextBlock>
+ IsHitTestVisible="False" Padding="0,3,0,0" Margin="10,0,0,0">
+                                </TextBlock>
+                            </Grid>
+                            <fa:IconImage Icon="Key" Foreground="{DynamicResource reverseColor}"></fa:IconImage>
+
+                        </Grid>
                     </Grid>
 
                     <Grid Margin="30,0,90,0" Grid.Row="7">
@@ -966,10 +918,10 @@ CornerRadius="2">
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
-                        <Button Content="Login" Grid.Column="0" Grid.Row="1"
-Background="#FFAF0E14" 
+                        <Button Content="{DynamicResource LoginButtonName}" Grid.Column="0" Grid.Row="1"
+Background="{DynamicResource buttonColor}" 
 BorderBrush="{x:Null}" 
-Foreground="#FF262626" 
+Foreground="{DynamicResource plainTextColor}" 
 FontFamily="Arial Black" 
 FontSize="16"
             Click="BtnLogin_Click"
@@ -988,11 +940,11 @@ CornerRadius="18">
                                     </Border>
                                     <ControlTemplate.Triggers>
                                         <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter TargetName="border" Property="Background" Value="#910c11"/>
+                                            <Setter TargetName="border" Property="Background" Value="{DynamicResource panelOverColor}"/>
                                         </Trigger>
 
                                         <Trigger Property="IsPressed" Value="True">
-                                            <Setter TargetName="border" Property="Background" Value="#70090d"/>
+                                            <Setter TargetName="border" Property="Background" Value="{DynamicResource panelOverColor}"/>
 
                                         </Trigger>
                                     </ControlTemplate.Triggers>
@@ -1000,10 +952,10 @@ CornerRadius="18">
                             </Button.Template>
                         </Button>
 
-                        <Button Content="Register" Grid.Column="1" Grid.Row="1"
-        Background="#FFAF0E14" 
+                        <Button Content="{DynamicResource RegisterButtonName}" Grid.Column="1" Grid.Row="1"
+        Background="{DynamicResource buttonColor}" 
         BorderBrush="{x:Null}" 
-        Foreground="#FF262626" 
+        Foreground="{DynamicResource plainTextColor}" 
         FontFamily="Arial Black" 
             
             Margin="20,0,10,0"
@@ -1022,13 +974,13 @@ CornerRadius="18">
                                     <ControlTemplate.Triggers>
                                         <!-- Promijeni boju kada je miš iznad dugmeta -->
                                         <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter TargetName="border" Property="Background" Value="#910c11"/>
+                                            <Setter TargetName="border" Property="Background" Value="{DynamicResource panelOverColor}"/>
                                             <!-- Zlatna boja -->
                                         </Trigger>
 
                                         <!-- Promijeni boju kada je dugme pritisnuto -->
                                         <Trigger Property="IsPressed" Value="True">
-                                            <Setter TargetName="border" Property="Background" Value="#70090d"/>
+                                            <Setter TargetName="border" Property="Background" Value="{DynamicResource panelOverColor}"/>
                                             <!-- Tamnocrvena boja -->
                                         </Trigger>
                                     </ControlTemplate.Triggers>
@@ -1042,13 +994,8 @@ CornerRadius="18">
 
                 <Grid Grid.Row="0" Grid.Column="0">
 
-                    <Rectangle StrokeThickness = "10" RenderTransformOrigin = "0.35,0" Height="42" Width="416" Grid.RowSpan="1" >
-                        <Rectangle.Stroke>
-                            <LinearGradientBrush EndPoint = "0.5,1" StartPoint = "0.5,0" >
-                                <GradientStop Color = "#FFCE0000" />
-                                <GradientStop Color = "#FFCE2A2A" Offset = "1" />
-                            </LinearGradientBrush>
-                        </Rectangle.Stroke>
+                    <Rectangle Stroke="{DynamicResource reverseColor}" StrokeThickness = "10" RenderTransformOrigin = "0.35,0" Height="42" Width="416" Grid.RowSpan="1" >
+
                         <Rectangle.RenderTransform >
                             <TransformGroup >
                                 <ScaleTransform ScaleX="5" ScaleY="1.45" />
@@ -1059,13 +1006,8 @@ CornerRadius="18">
                         </Rectangle.RenderTransform >
                     </Rectangle >
 
-                    <Rectangle Height = "10" StrokeThickness = "15" RenderTransformOrigin = "0,0" >
-                        <Rectangle.Stroke>
-                            <LinearGradientBrush EndPoint = "0.5,1" StartPoint = "0.5,0" >
-                                <GradientStop Color = "#FFCE0000" />
-                                <GradientStop Color = "#FFCE2A2A" Offset = "1" />
-                            </LinearGradientBrush >
-                        </Rectangle.Stroke >
+                    <Rectangle Height = "10" Stroke="{DynamicResource reverseColor}" StrokeThickness = "15" RenderTransformOrigin = "0,0" >
+
                         <Rectangle.RenderTransform >
                             <TransformGroup >
                                 <ScaleTransform />
