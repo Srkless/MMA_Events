@@ -17,6 +17,7 @@ using System.Windows.Documents;
 using System.Windows.Forms.VisualStyles;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -30,11 +31,13 @@ namespace MMA_Events.View
     {
 
         Organizator org = null;
+        public OrganizatorView OrganizatorView { get; set; } = null;
 
-        public AddFighterPage(Organizator org)
+        public AddFighterPage(OrganizatorView organizatorView)
         {
             InitializeComponent();
-            this.org = org;
+            this.org = organizatorView.org;
+            this.OrganizatorView = organizatorView;
             CountryComboBox.ItemsSource = CountryService.GetInstance().countries;
         }
 
@@ -174,8 +177,8 @@ namespace MMA_Events.View
             FighterStats stats = new FighterStats
             {
                 Wins = int.Parse(score[0]),
-                Losses = int.Parse(score[0]),
-                Draws = int.Parse(score[0]),
+                Losses = int.Parse(score[1]),
+                Draws = int.Parse(score[2]),
                 KOs = KOs,
                 Submissions = Submissions
             };
@@ -184,7 +187,10 @@ namespace MMA_Events.View
 
             if (_fService.addFighter(fighter, stats))
             {
-
+                OrganizatorView.Main.Content = new ShowFightersPage(OrganizatorView);
+                OrganizatorView.bBack.Visibility = Visibility.Collapsed;
+                OrganizatorView.rbAddFighter.IsChecked = false;
+                OrganizatorView.rbShowFighters.IsChecked = true;
             }
         }
 
@@ -193,7 +199,7 @@ namespace MMA_Events.View
             bool isImageSelected = SelectedImage.Source != null;
 
             bAddFighter.IsEnabled =
-                !string.IsNullOrWhiteSpace(fieldUserNickname.Text) &&
+                
                 !string.IsNullOrWhiteSpace(fieldUserFullname.Text) &&
                 !string.IsNullOrWhiteSpace(fieldFighterWeight.Text) &&
                 !string.IsNullOrWhiteSpace(CountryComboBox.Text) &&

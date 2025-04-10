@@ -33,6 +33,7 @@ namespace MMA_Events.View
             this.user = user;
             paddingAdjustment();
             Main.Content = new ShowActiveEvents(this);
+            DashboardRB.IsChecked = true;
 
             SettingsPage settingsPage = new SettingsPage(this, false);
         }

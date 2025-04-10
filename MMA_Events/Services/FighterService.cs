@@ -195,8 +195,8 @@ namespace MMA_Events.Services
                 INSERT INTO Person (Name, Surname, Country) 
                 VALUES (@Name, @Surname, @Country);
 
-                INSERT INTO Fighter (idFighter, idCategory, BirthDate, isReady, idOrganization, FightWeight, ProfileImage) 
-                VALUES (LAST_INSERT_ID(), @Category, @BirthDate, @IsReady, @Organization, @FightWeight, @ProfileImage);
+                INSERT INTO Fighter (idFighter, Nickname, idCategory, BirthDate, isReady, idOrganization, FightWeight, ProfileImage) 
+                VALUES (LAST_INSERT_ID(), @Nickname, @Category, @BirthDate, @IsReady, @Organization, @FightWeight, @ProfileImage);
 
                 INSERT INTO Fighter_Stats (idFighter, Wins, Losses, Draws, KOs, Submissions) 
                 VALUES (LAST_INSERT_ID(), @Wins, @Losses, @Draws, @KOs, @Submissions);
@@ -206,6 +206,7 @@ namespace MMA_Events.Services
                     {
                         command.Parameters.AddWithValue("@Name", fighter.Name);
                         command.Parameters.AddWithValue("@Surname", fighter.Surname);
+                        command.Parameters.AddWithValue("@Nickname", fighter.Nickname);
                         command.Parameters.AddWithValue("@Country", fighter.Country);
                         command.Parameters.AddWithValue("@Category", fighter.IdCategory);
                         command.Parameters.AddWithValue("@BirthDate", fighter.BirthDate);

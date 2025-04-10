@@ -35,7 +35,9 @@
     <System:String x:Key="EventName">Naziv</System:String>
     <System:String x:Key="EventDate">Datum</System:String>
     <System:String x:Key="EventLocation">Lokacija</System:String>
-    
+    <System:String x:Key="SwitchCorners">Promjeni uglove</System:String>
+    <System:String x:Key="RemoveMatch">Obrisi match</System:String>
+
     <!--Add Fighter tab-->
     <System:String x:Key="FighterNickname">Nadimak</System:String>
     <System:String x:Key="FighterFullName">Ime i prezime</System:String>
@@ -74,7 +76,7 @@
     <System:String x:Key="FighterFullnameError">Unesite ime i prezime u formatu 'Ime Prezime'!</System:String>
     <System:String x:Key="FighterScoreError">Unesite rezultat u formatu 'Pobede-Gubici-Nereseno'!</System:String>
 
-    <System:String x:Key="InvalidMethodError">Unesite rezultat u formatu 'Pobede-Gubici-Nereseno'!</System:String>
+    <System:String x:Key="InvalidMethodError">Neispravna metoda (Ko, Desicion, Submission)</System:String>
     <System:String x:Key="InvalidRoundNumberError">Neispravan broj rundi!</System:String>
     <System:String x:Key="UpdateFighterFieldsError">Popunite sva polja i odaberite pobednika!</System:String>
 

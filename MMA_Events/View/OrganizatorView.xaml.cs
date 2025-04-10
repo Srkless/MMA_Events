@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using MMA_Events.View;
 using MMA_Events.Model;
+using Microsoft.Extensions.Logging;
 
 namespace MMA_Events.View
 {
@@ -41,6 +42,8 @@ namespace MMA_Events.View
             DataContext = this;
 
             Main.Content = new ShowEventsPage(this);
+            EventRB.IsChecked = true;
+            rbShowEvents.IsChecked = true;
             SettingsPage settingsPage = new SettingsPage(this, false);
         }
 
@@ -320,6 +323,7 @@ namespace MMA_Events.View
                 addEventWindow.WindowStartupLocation = WindowStartupLocation.CenterScreen;
 
             }
+
             addEventWindow.Show();
             //registerWindow.paddingAdjustment();
             this.Visibility = Visibility.Collapsed;
@@ -337,7 +341,7 @@ namespace MMA_Events.View
 
         private void addFighter(object sender, RoutedEventArgs e)
         {
-            Main.Content = new AddFighterPage(org);
+            Main.Content = new AddFighterPage(this);
         }
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {

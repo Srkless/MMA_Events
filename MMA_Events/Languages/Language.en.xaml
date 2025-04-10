@@ -35,6 +35,8 @@
     <System:String x:Key="EventName">Name</System:String>
     <System:String x:Key="EventDate">Date</System:String>
     <System:String x:Key="EventLocation">Venue</System:String>
+    <System:String x:Key="SwitchCorners">Switch the corners</System:String>
+    <System:String x:Key="RemoveMatch">Delete the match</System:String>
 
     <!--Add Fighter tab-->
     <System:String x:Key="FighterNickname">Nickname</System:String>
@@ -72,7 +74,7 @@
     <System:String x:Key="EventFieldsError">Please fill in all event-related fields!</System:String>
     <System:String x:Key="FightCreationError">Error occurred while creating the fight!</System:String>
 
-    <System:String x:Key="InvalidMethodError">Enter the result in the format 'Wins-Losses-Draws'!</System:String>
+    <System:String x:Key="InvalidMethodError">Invalid method (Ko, Desicion, Submission)</System:String>
     <System:String x:Key="InvalidRoundNumberError">Invalid number of rounds!</System:String>
     <System:String x:Key="UpdateFighterFieldsError">Please fill in all fields and select a winner!</System:String>
 

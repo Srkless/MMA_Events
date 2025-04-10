@@ -260,7 +260,7 @@ namespace MMA_Events.View
             if (baseWindow.Type == "User")
             {
                 btnT.IsEnabled = false;
-                return;
+                //return;
             }
 
             if (f.winnerId == null || f.roundEnded == null || f.Method == null)

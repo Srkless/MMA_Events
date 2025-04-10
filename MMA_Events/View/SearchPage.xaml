@@ -11,6 +11,26 @@
 
     <Page.Resources>
         <conv:NicknameConverter x:Key="NicknameConverter"/>
+        <Style TargetType="{x:Type ScrollBar}">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Width" Value="0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ScrollBar}">
+                        <Grid>
+                            <Rectangle Fill="{DynamicResource DynamicGradientBackground}" />
+                            <Track Name="PART_Track" IsDirectionReversed="True">
+                                <Track.Thumb>
+                                    <Thumb Background="{DynamicResource PrimaryHueMidBrush}" Width="8"
+                         BorderThickness="1" BorderBrush="{DynamicResource PrimaryHueDarkBrush}"/>
+                                </Track.Thumb>
+                                
+                            </Track>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
         <DataTemplate x:Key="EventTemplate">
             <Border Padding="6" Margin="0,0,0,3" Width="{DynamicResource eventCardSize}">
                 <StackPanel>

@@ -330,6 +330,7 @@ namespace MMA_Events.View
                     {
                         CustomMessageBox.Show(Application.Current.Resources["FightCreationError"] as string);
                     }
+                    
                 }
             }
         }

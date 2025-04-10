@@ -442,7 +442,7 @@ CornerRadius="15">
 
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <Border Padding="5" Margin="5,0,5,5" Width="{DynamicResource addEventFighterCardSize}">
+                                    <Border Padding="5" Margin="5,0,5,5" Width="145">
                                         <StackPanel>
                                             <Button CommandParameter="{Binding}" Click="ChooseLeftFigther">
                                                 <Button.Template>
@@ -459,7 +459,7 @@ CornerRadius="15">
                                                 </Button.Template>
                                                 <StackPanel>
                                                     <Grid>
-                                                        <Image Source="{Binding Image}" Height="{DynamicResource addEventFighterCardSize}" Stretch="UniformToFill">
+                                                        <Image Source="{Binding Image}" Height="145" Stretch="UniformToFill">
                                                         </Image>
                                                     </Grid>
                                                 </StackPanel>
@@ -535,7 +535,7 @@ CornerRadius="15">
 
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <Border Padding="5" Margin="5,0,5,5" Width="{DynamicResource addEventFighterCardSize}">
+                                    <Border Padding="5" Margin="5,0,5,5" Width="145">
                                         <StackPanel>
                                             <Button CommandParameter="{Binding}" Click="ChooseRightFigther">
                                                 <Button.Template>
@@ -552,7 +552,7 @@ CornerRadius="15">
                                                 </Button.Template>
                                                 <StackPanel>
                                                     <Grid>
-                                                        <Image Source="{Binding Image}" Height="{DynamicResource addEventFighterCardSize}" Stretch="UniformToFill">
+                                                        <Image Source="{Binding Image}" Height="145" Stretch="UniformToFill">
                                                         </Image>
                                                     </Grid>
                                                 </StackPanel>
@@ -663,6 +663,9 @@ CornerRadius="15">
                                         </ControlTemplate.Triggers>
                                     </ControlTemplate>
                                 </Button.Template>
+                                <Button.ToolTip>
+                                    <ToolTip Content="{DynamicResource SwitchCorners}"/>
+                                </Button.ToolTip>
                             </Button>
                             <Button
                                 x:Name="ChangeFightersButton"
@@ -703,6 +706,10 @@ CornerRadius="15">
                                         </ControlTemplate.Triggers>
                                     </ControlTemplate>
                                 </Button.Template>
+
+                                <Button.ToolTip>
+                                    <ToolTip Content="{DynamicResource RemoveMatch}"/>
+                                </Button.ToolTip>
                             </Button>
                         </StackPanel>
 
