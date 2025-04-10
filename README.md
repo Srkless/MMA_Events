@@ -66,15 +66,15 @@ When selecting an organization, users can choose to view either all events or al
 
 ### **Show Events**
 
-<img src="https://github.com/user-attachments/assets/d0ced7ac-2f0c-4bfd-8f17-7e2fb0c37e7b" width="500"/>
+<img src="https://github.com/user-attachments/assets/d0ced7ac-2f0c-4bfd-8f17-7e2fb0c37e7b"/>
 
-<img src="https://github.com/user-attachments/assets/54ea852e-6344-43f6-bc7b-484303f42403" width="500"/>
+<img src="https://github.com/user-attachments/assets/54ea852e-6344-43f6-bc7b-484303f42403"/>
 
 ### **Show Fighters**
 
-<img src="https://github.com/user-attachments/assets/1b0da2b3-ef94-4896-b26a-1b1b382a1abc" width="500"/>
+<img src="https://github.com/user-attachments/assets/1b0da2b3-ef94-4896-b26a-1b1b382a1abc"/>
 
-<img src="https://github.com/user-attachments/assets/18b8fa8e-c393-46fa-8e1c-7f6c3991b4bf" width="500"/>
+<img src="https://github.com/user-attachments/assets/18b8fa8e-c393-46fa-8e1c-7f6c3991b4bf"/>
 
 ## **Settings**
 The Settings tab provides users with the ability to customize their experience by adjusting the following preferences:
@@ -82,9 +82,9 @@ The Settings tab provides users with the ability to customize their experience b
 - **Theme** – Users can choose between a **red**, **black** or **blue-red** theme for the interface, providing a more personalized viewing experience based on their preference.
 - **Language** – Users can select their preferred language from available options, allowing for a tailored language experience across the platform.
 
-<img src="https://github.com/user-attachments/assets/b5c1367f-34e9-4d38-b4a8-5d271952c03f" width="333"/>
-<img src="https://github.com/user-attachments/assets/067945c2-f27a-4811-8510-665fa2e16238" width="333"/>
-<img src="https://github.com/user-attachments/assets/019a1eae-ce28-4257-b186-42a35b6aa667" width="333"/>
+<img src="https://github.com/user-attachments/assets/b5c1367f-34e9-4d38-b4a8-5d271952c03f"/>
+<img src="https://github.com/user-attachments/assets/067945c2-f27a-4811-8510-665fa2e16238"/>
+<img src="https://github.com/user-attachments/assets/019a1eae-ce28-4257-b186-42a35b6aa667"/>
 
 # **Organization View**
 
